@@ -6,7 +6,7 @@
   <title>MindSpace ฮีลใจ | แพลตฟอร์มดูแลสุขภาพจิตและส่งต่อพลังใจ</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
   
-  <!-- Google Fonts: Montserrat & Noto Sans Thai & Prompt (From Figma Design) -->
+  <!-- Google Fonts: Montserrat (Modern UI Headings & Badges) + Noto Sans Thai & Prompt (Clean Thai Typography) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400&family=Noto+Sans+Thai:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -34,16 +34,25 @@
             body: ['Noto Sans Thai', 'Prompt', 'sans-serif'],
           },
           colors: {
-            figma: {
-              gold: '#F0B41D',
-              goldHover: '#f5be2d',
-              blue: '#29A6E7',
-              green: '#4CC689',
-              orange: '#EC693B',
-              dark: '#121212',
-              card: '#1c1c1c',
-              border: '#2e2e2e',
-              muted: '#888888',
+            brand: {
+              50: '#F0FDF4',
+              100: '#DCFCE7',
+              200: '#BBF7D0',
+              300: '#86EFAC',
+              400: '#4ADE80',
+              500: '#10B981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065F46',
+              900: '#064E3B',
+            },
+            calm: {
+              peach: '#FFF1E6',
+              lavender: '#EEF2FF',
+              sky: '#E0F2FE',
+              sage: '#E6F4EA',
+              rose: '#FFE4E6',
+              amber: '#FEF3C7',
             }
           },
           animation: {
@@ -68,66 +77,65 @@
 
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body class="bg-white text-slate-800 min-h-screen font-sans antialiased selection:bg-[#F0B41D] selection:text-[#121212]">
+<body class="bg-white text-slate-800 min-h-screen font-sans antialiased selection:bg-emerald-200 selection:text-emerald-900">
 
-  <!-- ================= TOP NAVIGATION (Figma Clean White Theme) ================= -->
-  <header class="sticky top-0 z-40 backdrop-blur-md bg-white/95 border-b border-slate-200/80 shadow-2xs transition-all">
+  <!-- ================= TOP NAVIGATION (Healing White Theme + Montserrat UI) ================= -->
+  <header class="sticky top-0 z-40 backdrop-blur-md bg-white/90 border-b border-emerald-100/80 shadow-2xs transition-all">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
-      <!-- Brand Logo (oldMyou Tri-Color Accents from Figma) -->
+      <!-- Brand Logo (MindSpace ฮีลใจ) -->
       <a href="#hero" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-[#4CC689] via-[#29A6E7] to-[#F0B41D] flex items-center justify-center text-[#121212] shadow-sm group-hover:scale-105 transition-transform">
-          <i data-lucide="heart-handshake" class="w-5 h-5 text-[#121212] stroke-[2.5]"></i>
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-500 via-teal-500 to-emerald-400 flex items-center justify-center text-white shadow-md shadow-emerald-200 group-hover:scale-105 transition-transform">
+          <i data-lucide="heart-handshake" class="w-5 h-5 text-white stroke-[2.5]"></i>
         </div>
         <div>
           <div class="flex items-center gap-2">
-            <span class="text-2xl font-extrabold tracking-wide font-heading">
-              <span class="text-[#4CC689]">Mind</span><span class="text-[#EC693B]">Space</span> <span class="text-[#29A6E7]">ฮีลใจ</span>
-            </span>
+            <span class="text-2xl font-extrabold tracking-tight font-heading bg-gradient-to-r from-emerald-700 via-teal-700 to-emerald-600 bg-clip-text text-transparent">MindSpace</span>
+            <span class="text-xs px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold font-heading">ฮีลใจ</span>
           </div>
           <p class="text-[11px] text-slate-500 hidden sm:block font-body">Digital Platform เพื่อสุขภาพจิตและสังคมเกื้อกูล</p>
         </div>
       </a>
 
-      <!-- Navigation Links (Desktop - Figma Pill Style) -->
-      <nav class="hidden md:flex items-center gap-1.5 lg:gap-2">
-        <a href="#vent-wall" class="figma-nav-item px-4 py-2 rounded-full text-sm font-semibold text-slate-700 hover:bg-[#F0B41D] hover:text-[#121212] transition-all flex items-center gap-2">
-          <i data-lucide="message-square-heart" class="w-4 h-4 text-[#4CC689]"></i>
+      <!-- Navigation Links (Modern Pill Style) -->
+      <nav class="hidden md:flex items-center gap-1 lg:gap-2">
+        <a href="#vent-wall" class="px-3.5 py-2 rounded-full text-xs lg:text-sm font-semibold text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 transition-all flex items-center gap-1.5">
+          <i data-lucide="message-square-heart" class="w-4 h-4 text-emerald-500"></i>
           <span>กำแพงฮีลใจ</span>
         </a>
-        <a href="#heart-unwind" class="figma-nav-item px-4 py-2 rounded-full text-sm font-semibold text-slate-700 hover:bg-[#F0B41D] hover:text-[#121212] transition-all flex items-center gap-2">
-          <i data-lucide="coffee" class="w-4 h-4 text-[#F0B41D]"></i>
+        <a href="#heart-unwind" class="px-3.5 py-2 rounded-full text-xs lg:text-sm font-semibold text-slate-600 hover:text-amber-800 hover:bg-amber-50 transition-all flex items-center gap-1.5">
+          <i data-lucide="coffee" class="w-4 h-4 text-amber-500"></i>
           <span>ห้องเทความในใจ</span>
         </a>
-        <a href="#ai-companion" class="figma-nav-item px-4 py-2 rounded-full text-sm font-semibold text-slate-700 hover:bg-[#F0B41D] hover:text-[#121212] transition-all flex items-center gap-2">
-          <i data-lucide="sparkles" class="w-4 h-4 text-[#29A6E7]"></i>
+        <a href="#ai-companion" class="px-3.5 py-2 rounded-full text-xs lg:text-sm font-semibold text-slate-600 hover:text-teal-700 hover:bg-teal-50 transition-all flex items-center gap-1.5">
+          <i data-lucide="sparkles" class="w-4 h-4 text-teal-500"></i>
           <span>น้องใจดี (AI)</span>
         </a>
-        <a href="#mood-tracker" class="figma-nav-item px-4 py-2 rounded-full text-sm font-semibold text-slate-700 hover:bg-[#F0B41D] hover:text-[#121212] transition-all flex items-center gap-2">
-          <i data-lucide="smile" class="w-4 h-4 text-[#F0B41D]"></i>
+        <a href="#mood-tracker" class="px-3.5 py-2 rounded-full text-xs lg:text-sm font-semibold text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 transition-all flex items-center gap-1.5">
+          <i data-lucide="smile" class="w-4 h-4 text-emerald-500"></i>
           <span>เช็กอินอารมณ์</span>
         </a>
-        <a href="#breathe-space" class="figma-nav-item px-4 py-2 rounded-full text-sm font-semibold text-slate-700 hover:bg-[#F0B41D] hover:text-[#121212] transition-all flex items-center gap-2">
-          <i data-lucide="wind" class="w-4 h-4 text-[#4CC689]"></i>
+        <a href="#breathe-space" class="px-3.5 py-2 rounded-full text-xs lg:text-sm font-semibold text-slate-600 hover:text-teal-700 hover:bg-teal-50 transition-all flex items-center gap-1.5">
+          <i data-lucide="wind" class="w-4 h-4 text-teal-500"></i>
           <span>ฝึกหายใจ</span>
         </a>
-        <a href="#directory" class="figma-nav-item px-4 py-2 rounded-full text-sm font-semibold text-slate-700 hover:bg-[#F0B41D] hover:text-[#121212] transition-all flex items-center gap-2">
-          <i data-lucide="phone-call" class="w-4 h-4 text-[#EC693B]"></i>
+        <a href="#directory" class="px-3.5 py-2 rounded-full text-xs lg:text-sm font-semibold text-slate-600 hover:text-rose-700 hover:bg-rose-50 transition-all flex items-center gap-1.5">
+          <i data-lucide="phone-call" class="w-4 h-4 text-rose-500"></i>
           <span>สายด่วน</span>
         </a>
       </nav>
 
-      <!-- Action Buttons (Figma Signature Gold Button) -->
+      <!-- Action Buttons -->
       <div class="flex items-center gap-2.5">
         <!-- AI Usage Report Modal Trigger (15 Points) -->
-        <button onclick="openAiDocModal()" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200 hover:border-[#F0B41D] hover:text-[#121212] hover:bg-[#fff9e6] transition-all shadow-xs">
-          <i data-lucide="cpu" class="w-3.5 h-3.5 text-[#29A6E7]"></i>
+        <button onclick="openAiDocModal()" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200/80 hover:bg-emerald-100 transition-all shadow-2xs font-heading">
+          <i data-lucide="cpu" class="w-3.5 h-3.5 text-emerald-600"></i>
           <span>ขั้นตอนการใช้ AI (15 คะแนน)</span>
         </button>
 
         <!-- SOS Quick Button -->
-        <button onclick="openSosModal()" class="btn-figma-primary px-4 py-2.5 rounded-full text-xs sm:text-sm font-bold bg-[#F0B41D] hover:bg-[#f5be2d] text-[#121212] shadow-md shadow-[#F0B41D]/25 transition-all flex items-center gap-1.5 hover:-translate-y-0.5">
-          <i data-lucide="shield-alert" class="w-4 h-4 text-[#121212]"></i>
+        <button onclick="openSosModal()" class="px-4 py-2.5 rounded-full text-xs sm:text-sm font-bold bg-rose-500 hover:bg-rose-600 text-white shadow-md shadow-rose-200/70 transition-all flex items-center gap-1.5 hover:-translate-y-0.5 active:translate-y-0 font-heading">
+          <i data-lucide="shield-alert" class="w-4 h-4 text-white"></i>
           <span>ขอความช่วยเหลือด่วน</span>
         </button>
 
@@ -140,15 +148,15 @@
     </div>
 
     <!-- Mobile Drawer -->
-    <div id="mobileMenu" class="md:hidden hidden border-t border-slate-200 bg-white px-4 pt-3 pb-5 space-y-1.5 shadow-xl">
-      <a href="#vent-wall" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100">กำแพงฮีลใจ (Vent Wall)</a>
-      <a href="#heart-unwind" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-amber-700 bg-amber-50 rounded-xl">☕ ห้องเทความในใจ (Soul Pour Room)</a>
-      <a href="#ai-companion" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100">น้องใจดี AI ผู้รับฟัง</a>
-      <a href="#mood-tracker" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100">เช็กอินอารมณ์ประจำวัน</a>
-      <a href="#breathe-space" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100">ฝึกหายใจผ่อนคลาย (4-7-8)</a>
-      <a href="#directory" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-100">สายด่วนสุขภาพจิต</a>
+    <div id="mobileMenu" class="md:hidden hidden border-t border-slate-200 bg-white px-4 pt-3 pb-5 space-y-1.5 shadow-xl font-body">
+      <a href="#vent-wall" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-emerald-50">กำแพงฮีลใจ (Vent Wall)</a>
+      <a href="#heart-unwind" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-amber-800 bg-amber-50">☕ ห้องเทความในใจ (Soul Pour Room)</a>
+      <a href="#ai-companion" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-teal-50">น้องใจดี AI ผู้รับฟัง</a>
+      <a href="#mood-tracker" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-emerald-50">เช็กอินอารมณ์ประจำวัน</a>
+      <a href="#breathe-space" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-teal-50">ฝึกหายใจผ่อนคลาย (4-7-8)</a>
+      <a href="#directory" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-rose-50">สายด่วนสุขภาพจิต</a>
       <div class="pt-2">
-        <button onclick="openAiDocModal()" class="w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold text-slate-900 bg-slate-100 hover:bg-[#fff9e6] flex items-center justify-between">
+        <button onclick="openAiDocModal()" class="w-full text-left px-3 py-2.5 rounded-xl text-sm font-semibold text-emerald-900 bg-emerald-50 hover:bg-emerald-100 flex items-center justify-between">
           <span>ขั้นตอนการใช้ AI ในโปรเจกต์นี้</span>
           <i data-lucide="chevron-right" class="w-4 h-4"></i>
         </button>
@@ -156,57 +164,57 @@
     </div>
   </header>
 
-  <!-- ================= HERO SECTION (Clean White Theme) ================= -->
-  <section id="hero" class="relative overflow-hidden pt-16 pb-20 md:pt-24 md:pb-28 bg-white border-b border-slate-100">
+  <!-- ================= HERO SECTION (Soothing White & Emerald Theme) ================= -->
+  <section id="hero" class="relative overflow-hidden pt-16 pb-20 md:pt-24 md:pb-28 bg-gradient-to-b from-[#F8FAF9] via-[#F4FBF7] to-white border-b border-emerald-100/60">
     <!-- Ambient Background Glows -->
-    <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[750px] h-[380px] bg-gradient-to-tr from-[#29A6E7]/10 via-[#F0B41D]/10 to-[#4CC689]/10 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+    <div class="absolute top-10 left-1/2 -translate-x-1/2 w-[750px] h-[380px] bg-gradient-to-tr from-emerald-200/35 via-teal-200/25 to-amber-100/30 rounded-full blur-3xl -z-10 pointer-events-none"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       
       <!-- Pill Badge -->
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs sm:text-sm font-medium shadow-2xs mb-6 backdrop-blur-xs">
-        <span class="flex h-2 w-2 rounded-full bg-[#4CC689] animate-ping"></span>
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-emerald-200 text-emerald-800 text-xs sm:text-sm font-semibold shadow-2xs mb-6 backdrop-blur-xs font-heading">
+        <span class="flex h-2 w-2 rounded-full bg-emerald-500 animate-ping"></span>
         <span>พื้นที่ปลอดภัย 100% ไม่เปิดเผยตัวตน • รับฟังโดยไม่ตัดสิน</span>
       </div>
 
       <!-- Main Headline in Montserrat Bold -->
       <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-tight max-w-4xl mx-auto font-heading">
         เหนื่อยไหมกับการต้องเก่งตลอดเวลา? <br class="hidden sm:inline">
-        ที่นี่คือ <span class="text-[#d99b06]">พื้นที่พักใจของคุณ</span>
+        ที่นี่คือ <span class="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-500 bg-clip-text text-transparent">พื้นที่พักใจของคุณ</span>
       </h1>
 
       <p class="mt-6 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto font-body leading-relaxed">
-        ระบายเรื่องหนักใจแบบนิรนาม, รับพลังบวกจากคนรอบข้าง, พูดคุยกับ <strong class="text-slate-900">AI เพื่อนรับฟัง (Active Listener)</strong> และเทความในใจพร้อมส่งกำลังใจให้กันตลอด 24 ชั่วโมง
+        ระบายเรื่องหนักใจแบบนิรนาม, รับพลังบวกจากคนรอบข้าง, พูดคุยกับ <strong class="text-slate-800">AI เพื่อนรับฟัง (Active Listener)</strong> และเทความในใจพร้อมส่งกำลังใจให้กันตลอด 24 ชั่วโมง
       </p>
 
-      <!-- Hero Actions (Figma Buttons) -->
+      <!-- Hero Actions (Modern Pill Buttons) -->
       <div class="mt-9 flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-        <a href="#vent-wall" class="btn-figma-primary px-7 py-3.5 rounded-full bg-[#F0B41D] hover:bg-[#f5be2d] text-[#121212] font-extrabold text-sm sm:text-base shadow-lg shadow-[#F0B41D]/25 transition-all flex items-center gap-2.5 hover:-translate-y-0.5">
-          <i data-lucide="edit-3" class="w-5 h-5 text-[#121212]"></i>
+        <a href="#vent-wall" class="btn-primary px-7 py-3.5 rounded-full text-white font-extrabold text-sm sm:text-base shadow-lg shadow-emerald-200/80 transition-all flex items-center gap-2.5 hover:-translate-y-0.5">
+          <i data-lucide="edit-3" class="w-5 h-5 text-white"></i>
           <span>เขียนระบายความในใจ</span>
         </a>
-        <a href="#heart-unwind" class="px-7 py-3.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 border border-slate-300 hover:border-[#F0B41D] font-bold text-sm sm:text-base shadow-xs transition-all flex items-center gap-2.5 hover:-translate-y-0.5">
-          <i data-lucide="coffee" class="w-5 h-5 text-[#d99b06]"></i>
+        <a href="#heart-unwind" class="btn-outline px-7 py-3.5 rounded-full bg-white hover:bg-amber-50/50 text-slate-800 border border-slate-200 hover:border-amber-400 font-bold text-sm sm:text-base shadow-xs transition-all flex items-center gap-2.5 hover:-translate-y-0.5">
+          <i data-lucide="coffee" class="w-5 h-5 text-amber-500"></i>
           <span>เข้าสู่ห้องเทความในใจ</span>
         </a>
       </div>
 
-      <!-- Live Quick Stats (Figma Clean White Card Style) -->
+      <!-- Live Quick Stats (Healing White Card Style) -->
       <div class="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-5 max-w-3xl mx-auto">
-        <div class="bg-white border border-slate-200/90 p-5 rounded-2xl shadow-xs hover:shadow-md hover:border-slate-300 transition-all">
-          <div class="text-2xl sm:text-3xl font-extrabold text-[#4CC689] font-heading" id="statHugs">1,420+</div>
+        <div class="bg-white/80 backdrop-blur-xs border border-emerald-100/90 p-5 rounded-3xl shadow-xs hover:shadow-md hover:border-emerald-200 transition-all">
+          <div class="text-2xl sm:text-3xl font-extrabold text-emerald-600 font-heading" id="statHugs">1,420+</div>
           <div class="text-xs text-slate-500 mt-1 font-medium font-body">อ้อมกอดและพลังใจที่ส่งให้กัน</div>
         </div>
-        <div class="bg-white border border-slate-200/90 p-5 rounded-2xl shadow-xs hover:shadow-md hover:border-slate-300 transition-all">
-          <div class="text-2xl sm:text-3xl font-extrabold text-[#29A6E7] font-heading" id="statVents">340+</div>
+        <div class="bg-white/80 backdrop-blur-xs border border-emerald-100/90 p-5 rounded-3xl shadow-xs hover:shadow-md hover:border-emerald-200 transition-all">
+          <div class="text-2xl sm:text-3xl font-extrabold text-teal-600 font-heading" id="statVents">340+</div>
           <div class="text-xs text-slate-500 mt-1 font-medium font-body">เรื่องราวที่ได้รับการรับฟัง</div>
         </div>
-        <div class="bg-white border border-slate-200/90 p-5 rounded-2xl shadow-xs hover:shadow-md hover:border-slate-300 transition-all">
-          <div class="text-2xl sm:text-3xl font-extrabold text-[#F0B41D] font-heading" id="statMoods">98.4%</div>
+        <div class="bg-white/80 backdrop-blur-xs border border-emerald-100/90 p-5 rounded-3xl shadow-xs hover:shadow-md hover:border-emerald-200 transition-all">
+          <div class="text-2xl sm:text-3xl font-extrabold text-amber-500 font-heading" id="statMoods">98.4%</div>
           <div class="text-xs text-slate-500 mt-1 font-medium font-body">ผู้ใช้รู้สึกผ่อนคลายขึ้น</div>
         </div>
-        <div class="bg-white border border-slate-200/90 p-5 rounded-2xl shadow-xs hover:shadow-md hover:border-slate-300 transition-all">
-          <div class="text-2xl sm:text-3xl font-extrabold text-[#EC693B] font-heading">24 ชม.</div>
+        <div class="bg-white/80 backdrop-blur-xs border border-emerald-100/90 p-5 rounded-3xl shadow-xs hover:shadow-md hover:border-emerald-200 transition-all">
+          <div class="text-2xl sm:text-3xl font-extrabold text-emerald-700 font-heading">24 ชม.</div>
           <div class="text-xs text-slate-500 mt-1 font-medium font-body">พร้อมรับฟังทุกช่วงเวลา</div>
         </div>
       </div>
@@ -214,28 +222,28 @@
     </div>
   </section>
 
-  <!-- ================= SECTION 1: ANONYMOUS VENT WALL (Clean White Theme) ================= -->
-  <section id="vent-wall" class="py-16 bg-slate-50/70 border-t border-b border-slate-200/80 scroll-mt-20">
+  <!-- ================= SECTION 1: ANONYMOUS VENT WALL (Soothing White Theme) ================= -->
+  <section id="vent-wall" class="py-16 bg-[#F8FAF9] border-t border-b border-emerald-100/60 scroll-mt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Section Header -->
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
         <div>
-          <div class="flex items-center gap-2 text-[#4CC689] font-bold text-sm mb-1">
-            <i data-lucide="message-square-heart" class="w-4 h-4 text-[#4CC689]"></i>
+          <div class="flex items-center gap-2 text-emerald-600 font-bold text-xs uppercase tracking-wider mb-1 font-heading">
+            <i data-lucide="message-square-heart" class="w-4 h-4 text-emerald-500"></i>
             <span>Anonymous Vent Wall</span>
           </div>
           <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-heading">กำแพงฮีลใจ: ไม่ต้องเอ่ยชื่อ แค่ปล่อยให้ใจได้พัก</h2>
           <p class="text-slate-600 text-sm mt-1 font-body">พื้นที่ระบายเรื่องกังวลใจ ทุกข้อความปลอดภัยและไม่มีการเก็บข้อมูลส่วนบุคคลใดๆ</p>
         </div>
 
-        <!-- Filter Tags (Figma Tab Style) -->
+        <!-- Filter Tags (Modern Pill Tabs) -->
         <div class="flex flex-wrap items-center gap-1.5" id="tagFilters">
-          <button onclick="filterPosts('all')" class="filter-chip active-filter px-4 py-1.5 rounded-full text-xs font-bold bg-[#F0B41D] text-[#121212] shadow-sm">ทั้งหมด</button>
-          <button onclick="filterPosts('หมดไฟ')" class="filter-chip px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-600 border border-slate-200 hover:border-[#F0B41D] hover:text-[#121212] transition-all">#หมดไฟ</button>
-          <button onclick="filterPosts('เครียดเรื่องเรียน')" class="filter-chip px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-600 border border-slate-200 hover:border-[#F0B41D] hover:text-[#121212] transition-all">#การเรียน</button>
-          <button onclick="filterPosts('ความสัมพันธ์')" class="filter-chip px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-600 border border-slate-200 hover:border-[#F0B41D] hover:text-[#121212] transition-all">#ความสัมพันธ์</button>
-          <button onclick="filterPosts('อยากได้กำลังใจ')" class="filter-chip px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-600 border border-slate-200 hover:border-[#F0B41D] hover:text-[#121212] transition-all">#ขอกำลังใจ</button>
+          <button onclick="filterPosts('all')" class="filter-chip active-filter px-4 py-1.5 rounded-full text-xs font-bold bg-emerald-600 text-white shadow-sm font-heading">ทั้งหมด</button>
+          <button onclick="filterPosts('หมดไฟ')" class="filter-chip px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-600 border border-slate-200 hover:border-emerald-400 hover:text-emerald-700 transition-all font-heading">#หมดไฟ</button>
+          <button onclick="filterPosts('เครียดเรื่องเรียน')" class="filter-chip px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-600 border border-slate-200 hover:border-emerald-400 hover:text-emerald-700 transition-all font-heading">#การเรียน</button>
+          <button onclick="filterPosts('ความสัมพันธ์')" class="filter-chip px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-600 border border-slate-200 hover:border-emerald-400 hover:text-emerald-700 transition-all font-heading">#ความสัมพันธ์</button>
+          <button onclick="filterPosts('อยากได้กำลังใจ')" class="filter-chip px-4 py-1.5 rounded-full text-xs font-semibold bg-white text-slate-600 border border-slate-200 hover:border-emerald-400 hover:text-emerald-700 transition-all font-heading">#ขอกำลังใจ</button>
         </div>
       </div>
 
@@ -243,33 +251,33 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         
         <!-- Post Input Form (4 cols on lg) -->
-        <div class="lg:col-span-4 bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md transition-all">
+        <div class="lg:col-span-4 bg-white rounded-3xl p-6 border border-emerald-100/90 shadow-sm hover:shadow-md transition-all">
           <div class="flex items-center justify-between mb-4">
-            <h3 class="font-bold text-slate-900 flex items-center gap-2">
-              <i data-lucide="pen-tool" class="w-4 h-4 text-[#F0B41D]"></i>
+            <h3 class="font-bold text-slate-900 flex items-center gap-2 font-heading">
+              <i data-lucide="pen-tool" class="w-4 h-4 text-emerald-500"></i>
               <span>เขียนความรู้สึกตอนนี้</span>
             </h3>
-            <span class="text-xs text-[#248556] bg-[#4CC689]/15 border border-[#4CC689]/30 px-2.5 py-1 rounded-full font-semibold">นิรนาม 100%</span>
+            <span class="text-xs text-emerald-800 bg-emerald-50 border border-emerald-200 px-2.5 py-1 rounded-full font-semibold font-heading">นิรนาม 100%</span>
           </div>
 
           <form id="ventForm" onsubmit="handleCreateVent(event)" class="space-y-4">
             <!-- Choose Cute Persona Avatar -->
             <div>
-              <label class="block text-xs font-semibold text-slate-600 mb-1.5">เลือกนามแฝงน่ารักของคุณ</label>
+              <label class="block text-xs font-semibold text-slate-600 mb-1.5 font-body">เลือกนามแฝงน่ารักของคุณ</label>
               <div class="grid grid-cols-5 gap-2" id="avatarSelector">
-                <button type="button" onclick="selectAvatar('🐱 น้องแมวส้ม')" class="avatar-opt active-avatar p-2 rounded-xl text-center text-sm border-2 border-[#F0B41D] bg-[#fff9e6] transition-all hover:scale-105">🐱</button>
-                <button type="button" onclick="selectAvatar('🐶 น้อนชิบะ')" class="avatar-opt p-2 rounded-xl text-center text-sm border border-slate-200 bg-white hover:border-[#F0B41D] transition-all hover:scale-105">🐶</button>
-                <button type="button" onclick="selectAvatar('🦉 นกฮูกนอนดึก')" class="avatar-opt p-2 rounded-xl text-center text-sm border border-slate-200 bg-white hover:border-[#F0B41D] transition-all hover:scale-105">🦉</button>
-                <button type="button" onclick="selectAvatar('🐰 กระต่ายขี้เซา')" class="avatar-opt p-2 rounded-xl text-center text-sm border border-slate-200 bg-white hover:border-[#F0B41D] transition-all hover:scale-105">🐰</button>
-                <button type="button" onclick="selectAvatar('🌻 ดอกทานตะวัน')" class="avatar-opt p-2 rounded-xl text-center text-sm border border-slate-200 bg-white hover:border-[#F0B41D] transition-all hover:scale-105">🌻</button>
+                <button type="button" onclick="selectAvatar('🐱 น้องแมวส้ม')" class="avatar-opt active-avatar p-2 rounded-xl text-center text-sm border-2 border-emerald-500 bg-emerald-50 transition-all hover:scale-105">🐱</button>
+                <button type="button" onclick="selectAvatar('🐶 น้อนชิบะ')" class="avatar-opt p-2 rounded-xl text-center text-sm border border-slate-200 bg-white hover:border-emerald-400 transition-all hover:scale-105">🐶</button>
+                <button type="button" onclick="selectAvatar('🦉 นกฮูกนอนดึก')" class="avatar-opt p-2 rounded-xl text-center text-sm border border-slate-200 bg-white hover:border-emerald-400 transition-all hover:scale-105">🦉</button>
+                <button type="button" onclick="selectAvatar('🐰 กระต่ายขี้เซา')" class="avatar-opt p-2 rounded-xl text-center text-sm border border-slate-200 bg-white hover:border-emerald-400 transition-all hover:scale-105">🐰</button>
+                <button type="button" onclick="selectAvatar('🌻 ดอกทานตะวัน')" class="avatar-opt p-2 rounded-xl text-center text-sm border border-slate-200 bg-white hover:border-emerald-400 transition-all hover:scale-105">🌻</button>
               </div>
               <input type="hidden" id="selectedAvatar" value="🐱 น้องแมวส้ม">
             </div>
 
             <!-- Topic Category -->
             <div>
-              <label for="ventTag" class="block text-xs font-semibold text-slate-600 mb-1">หมวดหมู่เรื่องราว</label>
-              <select id="ventTag" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm bg-slate-50 text-slate-800 focus:bg-white focus:outline-none focus:border-[#F0B41D] transition-all">
+              <label for="ventTag" class="block text-xs font-semibold text-slate-600 mb-1 font-body">หมวดหมู่เรื่องราว</label>
+              <select id="ventTag" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm bg-slate-50 text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-500 font-body transition-all">
                 <option value="หมดไฟ">🔥 ภาวะหมดไฟ (Burnout)</option>
                 <option value="เครียดเรื่องเรียน">📚 ความเครียดเรื่องเรียน/สอบ</option>
                 <option value="การทำงาน">💼 ปัญหาที่ทำงาน/หางาน</option>
@@ -282,23 +290,23 @@
             <!-- Text Content -->
             <div>
               <div class="flex items-center justify-between mb-1">
-                <label for="ventContent" class="block text-xs font-semibold text-slate-600">เรื่องที่อยากระบาย</label>
+                <label for="ventContent" class="block text-xs font-semibold text-slate-600 font-body">เรื่องที่อยากระบาย</label>
                 <span class="text-[11px] text-slate-400" id="charCount">0/300</span>
               </div>
-              <textarea id="ventContent" rows="4" maxlength="300" required placeholder="พิมพ์สิ่งที่อยู่ในใจได้เต็มที่เลยนะ... ที่นี่ไม่มีใครตัดสินคุณ" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm bg-slate-50 text-slate-800 focus:bg-white focus:outline-none focus:border-[#F0B41D] resize-none font-body placeholder:text-slate-400 transition-all"></textarea>
+              <textarea id="ventContent" rows="4" maxlength="300" required placeholder="พิมพ์สิ่งที่อยู่ในใจได้เต็มที่เลยนะ... ที่นี่ไม่มีใครตัดสินคุณ" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm bg-slate-50 text-slate-800 focus:bg-white focus:outline-none focus:border-emerald-500 resize-none font-body placeholder:text-slate-400 transition-all"></textarea>
             </div>
 
             <!-- AI Positive Suggestion Preview -->
-            <div id="aiGentlePreview" class="hidden p-3 rounded-xl bg-[#29A6E7]/10 border border-[#29A6E7]/30 text-xs text-[#1b7db5] flex items-start gap-2">
-              <i data-lucide="sparkle" class="w-4 h-4 text-[#29A6E7] shrink-0 mt-0.5"></i>
+            <div id="aiGentlePreview" class="hidden p-3 rounded-xl bg-teal-50 border border-teal-200 text-xs text-teal-800 flex items-start gap-2">
+              <i data-lucide="sparkle" class="w-4 h-4 text-teal-600 shrink-0 mt-0.5"></i>
               <span id="aiGentleText"></span>
             </div>
 
-            <button type="submit" class="btn-figma-primary w-full py-3.5 rounded-full bg-[#F0B41D] hover:bg-[#f5be2d] text-[#121212] font-extrabold text-sm shadow-md shadow-[#F0B41D]/25 transition-all flex items-center justify-center gap-2">
-              <i data-lucide="send" class="w-4 h-4 text-[#121212]"></i>
+            <button type="submit" class="btn-primary w-full py-3.5 rounded-full text-white font-extrabold text-sm shadow-md shadow-emerald-200/60 transition-all flex items-center justify-center gap-2 font-heading">
+              <i data-lucide="send" class="w-4 h-4 text-white"></i>
               <span>โพสต์ลงกำแพงใจ</span>
             </button>
-            <p class="text-[11px] text-center text-slate-400">ระบบมี AI ตรวจกรองคำหยาบคายและข้อความที่สร้างความเกลียดชังโดยอัตโนมัติ</p>
+            <p class="text-[11px] text-center text-slate-400 font-body">ระบบมี AI ตรวจกรองคำหยาบคายและข้อความที่สร้างความเกลียดชังโดยอัตโนมัติ</p>
           </form>
         </div>
 
@@ -314,27 +322,27 @@
     </div>
   </section>
 
-  <!-- ================= SECTION: SOUL POUR SPACE (ห้องเทความในใจ - Clean White Theme) ================= -->
-  <section id="heart-unwind" class="py-16 bg-white border-t border-b border-slate-100 scroll-mt-20 relative overflow-hidden">
+  <!-- ================= SECTION: SOUL POUR SPACE (ห้องเทความในใจ - Healing White Theme) ================= -->
+  <section id="heart-unwind" class="py-16 bg-white border-t border-b border-emerald-100/60 scroll-mt-20 relative overflow-hidden">
     <!-- Anchor alias for drink-on-me backward compatibility -->
     <div id="drink-on-me" class="absolute -top-24"></div>
 
     <!-- Soft Ambient Warm Background Lights -->
-    <div class="absolute -top-32 -left-32 w-96 h-96 bg-amber-100/50 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-orange-100/40 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-amber-50/70 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-emerald-50/70 rounded-full blur-3xl pointer-events-none"></div>
 
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       
       <!-- Lounge Header -->
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
         <div>
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold mb-3 shadow-2xs">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-900 text-xs font-bold mb-3 shadow-2xs font-heading">
             <span>☕ SOUL POUR SPACE</span>
-            <span class="w-1.5 h-1.5 rounded-full bg-[#F0B41D] animate-ping"></span>
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-ping"></span>
             <span>ห้องเทความในใจ</span>
           </div>
           <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight font-heading">
-            เหนื่อยไหมคืนนี้? <span class="text-[#d99b06]">เทความในใจออกมา แล้วรับแก้วกำลังใจ</span>
+            เหนื่อยไหมคืนนี้? <span class="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">เทความในใจออกมา แล้วรับแก้วกำลังใจ</span>
           </h2>
           <p class="text-slate-600 text-sm mt-2 max-w-2xl font-body leading-relaxed">
             พื้นที่ปลอดภัยให้คุณได้ปลดล็อกและระบายสิ่งที่อัดอั้น ไม่ต้องแบกไว้คนเดียว เลือกเครื่องดื่มอุ่นๆ จำลองความรู้สึก และส่งต่อ <strong>"แก้วกำลังใจ (Pour with Care)"</strong> ให้เพื่อนร่วมทางได้ตลอด 24 ชั่วโมง
@@ -343,25 +351,25 @@
 
         <!-- Ambient Sound Controls -->
         <div class="flex items-center gap-2">
-          <button id="loungeMusicBtn" onclick="toggleLoungeAmbientMusic()" class="px-4 py-2.5 rounded-2xl bg-white hover:bg-slate-50 border border-slate-200 text-slate-700 text-xs font-semibold transition-all flex items-center gap-2 shadow-xs">
-            <i data-lucide="music" id="loungeMusicIcon" class="w-4 h-4 text-[#F0B41D]"></i>
+          <button id="loungeMusicBtn" onclick="toggleLoungeAmbientMusic()" class="px-4 py-2.5 rounded-full bg-white hover:bg-amber-50/80 border border-amber-200/80 text-amber-900 text-xs font-semibold transition-all flex items-center gap-2 shadow-xs font-heading">
+            <i data-lucide="music" id="loungeMusicIcon" class="w-4 h-4 text-amber-600"></i>
             <span id="loungeMusicLabel">เปิดดนตรีคลอเบาๆ คลายกังวล</span>
           </button>
         </div>
       </div>
 
-      <!-- Bar Table Category Tabs (Figma White Pill Style) -->
+      <!-- Bar Table Category Tabs (Modern White Pill Style) -->
       <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-3 mb-6" id="loungeTableTabs">
-        <button onclick="switchBarTable('all')" class="bar-tab active-bar-tab shrink-0 px-4 py-2 rounded-2xl text-xs font-bold bg-[#F0B41D] text-[#121212] flex items-center gap-1.5 shadow-sm">
+        <button onclick="switchBarTable('all')" class="bar-tab active-bar-tab shrink-0 px-4 py-2 rounded-full text-xs font-bold bg-emerald-600 text-white flex items-center gap-1.5 shadow-sm font-heading">
           <span>☕ โต๊ะเทใจรวม</span>
         </button>
-        <button onclick="switchBarTable('burnout')" class="bar-tab shrink-0 px-4 py-2 rounded-2xl text-xs font-semibold bg-white hover:bg-slate-50 text-slate-600 border border-slate-200 flex items-center gap-1.5 transition-all">
+        <button onclick="switchBarTable('burnout')" class="bar-tab shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-white hover:bg-slate-50 text-slate-600 border border-slate-200 flex items-center gap-1.5 transition-all font-heading">
           <span>🕯️ มุมคนหมดไฟ & แบกงาน</span>
         </button>
-        <button onclick="switchBarTable('midnight')" class="bar-tab shrink-0 px-4 py-2 rounded-2xl text-xs font-semibold bg-white hover:bg-slate-50 text-slate-600 border border-slate-200 flex items-center gap-1.5 transition-all">
+        <button onclick="switchBarTable('midnight')" class="bar-tab shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-white hover:bg-slate-50 text-slate-600 border border-slate-200 flex items-center gap-1.5 transition-all font-heading">
           <span>🌙 มุมดึกดื่นนอนไม่หลับ</span>
         </button>
-        <button onclick="switchBarTable('heartbreak')" class="bar-tab shrink-0 px-4 py-2 rounded-2xl text-xs font-semibold bg-white hover:bg-slate-50 text-slate-600 border border-slate-200 flex items-center gap-1.5 transition-all">
+        <button onclick="switchBarTable('heartbreak')" class="bar-tab shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-white hover:bg-slate-50 text-slate-600 border border-slate-200 flex items-center gap-1.5 transition-all font-heading">
           <span>💔 มุมพักใจ & ปลดล็อกความเศร้า</span>
         </button>
       </div>
@@ -375,10 +383,10 @@
           <!-- Lounge Room Top Bar -->
           <div class="pb-3 border-b border-slate-100 flex items-center justify-between text-xs text-slate-500 mb-4">
             <div class="flex items-center gap-2">
-              <span class="w-2.5 h-2.5 rounded-full bg-[#4CC689] animate-pulse"></span>
-              <span id="loungeOnlineCount" class="font-medium text-slate-700">28 คนกำลังร่วมเทความในใจอยู่ที่นี่</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span id="loungeOnlineCount" class="font-medium text-slate-700 font-heading">28 คนกำลังร่วมเทความในใจอยู่ที่นี่</span>
             </div>
-            <span class="text-[11px] text-amber-700 bg-amber-50 px-2.5 py-0.5 rounded-full font-medium">☕ ส่งแก้วกำลังใจให้กันได้เสมอ</span>
+            <span class="text-[11px] text-amber-800 bg-amber-50 px-2.5 py-0.5 rounded-full font-medium font-body">☕ ส่งแก้วกำลังใจให้กันได้เสมอ</span>
           </div>
 
           <!-- Messages Stream Container -->
@@ -387,7 +395,7 @@
           </div>
 
           <!-- Quick Toast Alert when someone treats drink -->
-          <div id="drinkToast" class="hidden my-2 py-2 px-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-center justify-between animate-bounce">
+          <div id="drinkToast" class="hidden my-2 py-2 px-3 rounded-xl bg-amber-50 border border-amber-200 text-amber-900 text-xs flex items-center justify-between animate-bounce font-body">
             <span id="drinkToastText">☕ มีคนส่งแก้วกำลังใจให้เพื่อนร่วมห้อง!</span>
             <span class="text-sm">✨</span>
           </div>
@@ -395,12 +403,12 @@
           <!-- Chat Input inside Lounge -->
           <form id="loungeChatForm" onsubmit="handleSendLoungeMessage(event)" class="pt-3 border-t border-slate-100 flex items-center gap-2">
             <div class="relative flex-1">
-              <input type="text" id="loungeMsgInput" required placeholder="นั่งลงแล้วพิมพ์เรื่องที่อยู่ในใจ อยากระบายอะไรเล่าได้เลย..." class="w-full px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-[#F0B41D] text-sm text-slate-800 placeholder:text-slate-400 font-body transition-all">
-              <span id="loungeCurrentDrinkBadge" class="absolute right-3 top-1/2 -translate-y-1/2 text-xs bg-white text-amber-800 border border-amber-200 px-2 py-0.5 rounded-lg flex items-center gap-1 shadow-2xs font-medium">
+              <input type="text" id="loungeMsgInput" required placeholder="นั่งลงแล้วพิมพ์เรื่องที่อยู่ในใจ อยากระบายอะไรเล่าได้เลย..." class="w-full px-4 py-3 rounded-full bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-emerald-500 text-sm text-slate-800 placeholder:text-slate-400 font-body transition-all">
+              <span id="loungeCurrentDrinkBadge" class="absolute right-3 top-1/2 -translate-y-1/2 text-xs bg-white text-amber-800 border border-amber-200 px-2.5 py-0.5 rounded-full flex items-center gap-1 shadow-2xs font-medium font-body">
                 🍵 ชาคาโมมายล์
               </span>
             </div>
-            <button type="submit" class="btn-figma-primary px-5 py-3 rounded-2xl text-xs sm:text-sm shrink-0 flex items-center gap-1.5 shadow-sm">
+            <button type="submit" class="btn-primary px-5 py-3 rounded-full text-xs sm:text-sm shrink-0 flex items-center gap-1.5 shadow-sm font-heading">
               <span>ส่งเสียง</span>
               <i data-lucide="send" class="w-4 h-4"></i>
             </button>
@@ -415,10 +423,10 @@
           <div class="bg-white rounded-3xl border border-slate-200 p-5 sm:p-6 shadow-sm hover:shadow-md transition-all">
             <div class="flex items-center justify-between mb-4">
               <h3 class="font-bold text-slate-900 text-base flex items-center gap-2 font-heading">
-                <i data-lucide="glass-water" class="w-4 h-4 text-[#F0B41D]"></i>
+                <i data-lucide="glass-water" class="w-4 h-4 text-emerald-600"></i>
                 <span>เมนูเครื่องดื่มพักใจ</span>
               </h3>
-              <span class="text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full font-bold">ฟรีสำหรับทุกคน</span>
+              <span class="text-[10px] bg-emerald-50 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded-full font-bold font-heading">ฟรีสำหรับทุกคน</span>
             </div>
 
             <p class="text-xs text-slate-500 mb-4 leading-relaxed font-body">
@@ -428,23 +436,23 @@
             <!-- Drink Choices List -->
             <div class="space-y-2" id="drinkMenuChoices">
               
-              <button type="button" onclick="selectLoungeDrink('🍵 ชาคาโมมายล์อุ่น', 'ผ่อนคลายกล้ามเนื้อ หลับสบาย')" class="drink-choice active-drink w-full p-2.5 rounded-2xl bg-white border-2 border-[#F0B41D] text-left flex items-center justify-between transition-all">
+              <button type="button" onclick="selectLoungeDrink('🍵 ชาคาโมมายล์อุ่น', 'ผ่อนคลายกล้ามเนื้อ หลับสบาย')" class="drink-choice active-drink w-full p-2.5 rounded-2xl bg-white border-2 border-emerald-500 text-left flex items-center justify-between transition-all">
                 <div class="flex items-center gap-2.5">
                   <span class="text-xl">🍵</span>
                   <div>
-                    <span class="text-xs font-bold text-slate-900 block">ชาคาโมมายล์อุ่น</span>
-                    <span class="text-[10px] text-slate-500">สำหรับคนที่อยากปล่อยวางและพักผ่อน</span>
+                    <span class="text-xs font-bold text-slate-900 block font-heading">ชาคาโมมายล์อุ่น</span>
+                    <span class="text-[10px] text-slate-500 font-body">สำหรับคนที่อยากปล่อยวางและพักผ่อน</span>
                   </div>
                 </div>
-                <span class="text-[#d99b06] font-bold text-xs">✓</span>
+                <span class="text-emerald-600 font-bold text-xs">✓</span>
               </button>
 
               <button type="button" onclick="selectLoungeDrink('☕ ลาเต้ฟองนุ่ม', 'เติมความอุ่นใจ')" class="drink-choice w-full p-2.5 rounded-2xl bg-white border border-slate-200 hover:border-slate-300 text-left flex items-center justify-between transition-all">
                 <div class="flex items-center gap-2.5">
                   <span class="text-xl">☕</span>
                   <div>
-                    <span class="text-xs font-bold text-slate-900 block">ลาเต้ฟองนุ่ม</span>
-                    <span class="text-[10px] text-slate-500">สำหรับคนหมดไฟ เติมพลังให้ใจ</span>
+                    <span class="text-xs font-bold text-slate-900 block font-heading">ลาเต้ฟองนุ่ม</span>
+                    <span class="text-[10px] text-slate-500 font-body">สำหรับคนหมดไฟ เติมพลังให้ใจ</span>
                   </div>
                 </div>
               </button>
@@ -453,8 +461,8 @@
                 <div class="flex items-center gap-2.5">
                   <span class="text-xl">🍹</span>
                   <div>
-                    <span class="text-xs font-bold text-slate-900 block">ม็อกเทลยูซุโซดา</span>
-                    <span class="text-[10px] text-slate-500">สำหรับคนอึดอัด อยากระบายให้หมด</span>
+                    <span class="text-xs font-bold text-slate-900 block font-heading">ม็อกเทลยูซุโซดา</span>
+                    <span class="text-[10px] text-slate-500 font-body">สำหรับคนอึดอัด อยากระบายให้หมด</span>
                   </div>
                 </div>
               </button>
@@ -463,8 +471,8 @@
                 <div class="flex items-center gap-2.5">
                   <span class="text-xl">🥛</span>
                   <div>
-                    <span class="text-xs font-bold text-slate-900 block">นมอุ่นผสมน้ำผึ้ง</span>
-                    <span class="text-[10px] text-slate-500">สำหรับคนที่ต้องการอ้อมกอดอุ่นๆ</span>
+                    <span class="text-xs font-bold text-slate-900 block font-heading">นมอุ่นผสมน้ำผึ้ง</span>
+                    <span class="text-[10px] text-slate-500 font-body">สำหรับคนที่ต้องการอ้อมกอดอุ่นๆ</span>
                   </div>
                 </div>
               </button>
@@ -473,8 +481,8 @@
                 <div class="flex items-center gap-2.5">
                   <span class="text-xl">🍷</span>
                   <div>
-                    <span class="text-xs font-bold text-slate-900 block">ไวน์แดงไร้แอลกอฮอล์</span>
-                    <span class="text-[10px] text-slate-500">สำหรับคนเหงา นั่งฟังเพลงยามดึก</span>
+                    <span class="text-xs font-bold text-slate-900 block font-heading">ไวน์แดงไร้แอลกอฮอล์</span>
+                    <span class="text-[10px] text-slate-500 font-body">สำหรับคนเหงา นั่งฟังเพลงยามดึก</span>
                   </div>
                 </div>
               </button>
@@ -483,8 +491,8 @@
 
             <!-- Treat toggle -->
             <div class="mt-4 pt-4 border-t border-slate-100">
-              <label class="flex items-center gap-2.5 cursor-pointer text-xs text-amber-900 font-medium">
-                <input type="checkbox" id="treatAllCheckbox" class="w-4 h-4 rounded text-[#F0B41D] focus:ring-[#F0B41D] border-slate-300">
+              <label class="flex items-center gap-2.5 cursor-pointer text-xs text-amber-900 font-medium font-body">
+                <input type="checkbox" id="treatAllCheckbox" class="w-4 h-4 rounded text-emerald-600 focus:ring-emerald-500 border-slate-300">
                 <span>🌟 แก้วนี้ส่งใจให้เพื่อน (ขอส่งเครื่องดื่มฮีลใจให้ทุกคน)</span>
               </label>
             </div>
@@ -492,7 +500,7 @@
           </div>
 
           <!-- Total Drinks Treated Counter Card -->
-          <div class="bg-gradient-to-r from-amber-50 via-orange-50/60 to-amber-50 border border-amber-200/80 rounded-3xl p-5 flex items-center gap-4 shadow-2xs">
+          <div class="bg-gradient-to-r from-amber-50/80 via-emerald-50/40 to-white border border-amber-200/80 rounded-3xl p-5 flex items-center gap-4 shadow-2xs">
             <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-800 flex items-center justify-center text-2xl shrink-0">
               ☕
             </div>
@@ -509,14 +517,14 @@
     </div>
   </section>
 
-  <!-- ================= SECTION 2: AI COMPANION (น้องใจดี - Clean White Theme) ================= -->
-  <section id="ai-companion" class="py-16 bg-slate-50/70 border-t border-b border-slate-200/80 scroll-mt-20 relative">
+  <!-- ================= SECTION 2: AI COMPANION (น้องใจดี - Healing White Theme) ================= -->
+  <section id="ai-companion" class="py-16 bg-[#F8FAF9] border-t border-b border-emerald-100/60 scroll-mt-20 relative">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Section Header -->
       <div class="text-center max-w-2xl mx-auto mb-10">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#4CC689]/15 border border-[#4CC689]/30 text-[#1f7c4e] text-xs font-bold mb-3 shadow-2xs">
-          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#4CC689]"></i>
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-bold mb-3 shadow-2xs font-heading">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5 text-teal-600"></i>
           <span>AI Active Listening Companion</span>
         </div>
         <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-heading">คุยกับ "น้องใจดี" เพื่อนรับฟังที่เข้าใจคุณเสมอ</h2>
@@ -529,36 +537,36 @@
       <div class="bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all overflow-hidden flex flex-col h-[600px]">
         
         <!-- Chat Header -->
-        <div class="bg-white border-b border-slate-200 p-4 text-slate-800 flex items-center justify-between">
+        <div class="bg-white border-b border-slate-100 p-4 text-slate-800 flex items-center justify-between">
           <div class="flex items-center gap-3">
             <div class="relative">
-              <div class="w-10 h-10 rounded-2xl bg-[#e8f7ee] border border-[#4CC689]/30 flex items-center justify-center text-xl shadow-2xs">
+              <div class="w-10 h-10 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-xl shadow-2xs">
                 🌱
               </div>
-              <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-[#4CC689] border-2 border-white rounded-full"></span>
+              <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full"></span>
             </div>
             <div>
               <div class="font-bold text-sm sm:text-base flex items-center gap-2 font-heading">
                 <span class="text-slate-900">น้องใจดี (Jaidii AI)</span>
-                <span class="text-[10px] px-2.5 py-0.5 bg-amber-100 text-amber-900 border border-amber-200 rounded-full font-bold">พร้อมรับฟัง 24 ชม.</span>
+                <span class="text-[10px] px-2.5 py-0.5 bg-emerald-100 text-emerald-800 border border-emerald-200 rounded-full font-bold font-heading">พร้อมรับฟัง 24 ชม.</span>
               </div>
               <p class="text-xs text-slate-500 font-body">พื้นที่ปลอดภัย ไม่มีคำว่าผิดถูก เล่าให้ฟังได้ทุกเรื่องนะ</p>
             </div>
           </div>
 
           <!-- Reset / Clear Button -->
-          <button onclick="resetAiChat()" title="เริ่มบทสนทนาใหม่" class="px-3 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-600 transition-all text-xs flex items-center gap-1.5 font-medium">
+          <button onclick="resetAiChat()" title="เริ่มบทสนทนาใหม่" class="px-3 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 border border-slate-200 text-slate-600 transition-all text-xs flex items-center gap-1.5 font-medium font-heading">
             <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
             <span class="hidden sm:inline">ล้างแชต</span>
           </button>
         </div>
 
         <!-- Chat Messages Area -->
-        <div id="chatMessages" class="flex-1 p-4 sm:p-6 overflow-y-auto space-y-4 bg-slate-50/60">
+        <div id="chatMessages" class="flex-1 p-4 sm:p-6 overflow-y-auto space-y-4 bg-slate-50/50">
           <!-- Initial Welcome Message from AI -->
           <div class="flex items-start gap-3">
-            <div class="w-8 h-8 rounded-full bg-[#e8f7ee] border border-[#4CC689]/40 flex items-center justify-center text-sm shrink-0 mt-1 shadow-2xs">🌱</div>
-            <div class="bg-white border border-slate-200 rounded-2xl rounded-tl-xs p-4 max-w-md shadow-xs text-sm text-slate-800 leading-relaxed space-y-2 font-body">
+            <div class="w-8 h-8 rounded-full bg-emerald-100 border border-emerald-200 flex items-center justify-center text-sm shrink-0 mt-1 shadow-2xs">🌱</div>
+            <div class="bg-white border border-slate-200/90 rounded-2xl rounded-tl-xs p-4 max-w-md shadow-xs text-sm text-slate-800 leading-relaxed space-y-2 font-body">
               <p>สวัสดีครับคุณ วันนี้เป็นยังไงบ้างครับ? ร่างกายและจิตใจเหนื่อยล้าตรงไหนเป็นพิเศษหรือเปล่า?</p>
               <p class="text-xs text-slate-500">สามารถพิมพ์ระบาย เล่าสิ่งที่เจอมา หรือถ้าแค่อยากได้ยินคำพูดอบอุ่นหัวใจ ก็บอกใจดีได้เลยนะครับ 😊</p>
             </div>
@@ -566,26 +574,26 @@
         </div>
 
         <!-- Suggested Prompt Chips -->
-        <div class="px-4 py-2.5 bg-white border-t border-slate-200 flex items-center gap-2 overflow-x-auto no-scrollbar text-xs">
-          <span class="text-slate-400 shrink-0 font-bold text-[11px]">ลองกดหัวข้อนี้:</span>
-          <button onclick="sendQuickPrompt('เหนื่อยกับการเรียนมาก รู้สึกทำอะไรก็ไม่ดีพอเลย')" class="shrink-0 px-3.5 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-700 hover:border-[#F0B41D] hover:bg-[#fff9e6] hover:text-[#121212] transition-all font-body">
+        <div class="px-4 py-2.5 bg-white border-t border-slate-100 flex items-center gap-2 overflow-x-auto no-scrollbar text-xs">
+          <span class="text-slate-400 shrink-0 font-bold text-[11px] font-heading">ลองกดหัวข้อนี้:</span>
+          <button onclick="sendQuickPrompt('เหนื่อยกับการเรียนมาก รู้สึกทำอะไรก็ไม่ดีพอเลย')" class="shrink-0 px-3.5 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-700 hover:border-emerald-400 hover:bg-emerald-50 hover:text-emerald-800 transition-all font-body">
             📚 เหนื่อยกับการเรียน ทำอะไรก็ไม่ดีพอ
           </button>
-          <button onclick="sendQuickPrompt('รู้สึกหมดไฟในการทำงาน ตื่นเช้ามาไม่มีพลังเลย')" class="shrink-0 px-3.5 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-700 hover:border-[#F0B41D] hover:bg-[#fff9e6] hover:text-[#121212] transition-all font-body">
+          <button onclick="sendQuickPrompt('รู้สึกหมดไฟในการทำงาน ตื่นเช้ามาไม่มีพลังเลย')" class="shrink-0 px-3.5 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-700 hover:border-emerald-400 hover:bg-emerald-50 hover:text-emerald-800 transition-all font-body">
             🔥 หมดไฟในการทำงาน
           </button>
-          <button onclick="sendQuickPrompt('ขอคำพูดฮีลใจสั้นๆ เติมพลังหน่อยได้ไหม')" class="shrink-0 px-3.5 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-700 hover:border-[#F0B41D] hover:bg-[#fff9e6] hover:text-[#121212] transition-all font-body">
+          <button onclick="sendQuickPrompt('ขอคำพูดฮีลใจสั้นๆ เติมพลังหน่อยได้ไหม')" class="shrink-0 px-3.5 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-700 hover:border-emerald-400 hover:bg-emerald-50 hover:text-emerald-800 transition-all font-body">
             💖 ขอกำลังใจฮีลใจสั้นๆ
           </button>
-          <button onclick="sendQuickPrompt('ทะเลาะกับเพื่อน รู้สึกโดดเดี่ยวไม่มีใครเข้าใจ')" class="shrink-0 px-3.5 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-700 hover:border-[#F0B41D] hover:bg-[#fff9e6] hover:text-[#121212] transition-all font-body">
+          <button onclick="sendQuickPrompt('ทะเลาะกับเพื่อน รู้สึกโดดเดี่ยวไม่มีใครเข้าใจ')" class="shrink-0 px-3.5 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-slate-700 hover:border-emerald-400 hover:bg-emerald-50 hover:text-emerald-800 transition-all font-body">
             🫂 รู้สึกเหงาและโดดเดี่ยว
           </button>
         </div>
 
         <!-- Chat Input Form -->
-        <form id="aiChatForm" onsubmit="handleSendAiMessage(event)" class="p-3 sm:p-4 bg-white border-t border-slate-200 flex items-center gap-2">
-          <input type="text" id="aiInput" autocomplete="off" placeholder="พิมพ์ข้อความคุยกับน้องใจดีได้ที่นี่..." class="flex-1 px-4 py-3 rounded-2xl bg-slate-50 border border-slate-200 text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:border-[#F0B41D] text-sm font-body transition-all">
-          <button type="submit" id="sendBtn" class="btn-figma-primary px-6 py-3 rounded-2xl text-sm flex items-center gap-2 shadow-sm">
+        <form id="aiChatForm" onsubmit="handleSendAiMessage(event)" class="p-3 sm:p-4 bg-white border-t border-slate-100 flex items-center gap-2">
+          <input type="text" id="aiInput" autocomplete="off" placeholder="พิมพ์ข้อความคุยกับน้องใจดีได้ที่นี่..." class="flex-1 px-4 py-3 rounded-full bg-slate-50 border border-slate-200 text-slate-800 placeholder:text-slate-400 focus:bg-white focus:outline-none focus:border-emerald-500 text-sm font-body transition-all">
+          <button type="submit" id="sendBtn" class="btn-primary px-6 py-3 rounded-full text-sm flex items-center gap-2 shadow-sm font-heading">
             <span>ส่ง</span>
             <i data-lucide="send" class="w-4 h-4"></i>
           </button>
@@ -596,14 +604,14 @@
     </div>
   </section>
 
-  <!-- ================= SECTION 3: DAILY MOOD TRACKER & INSIGHTS (Clean White Theme) ================= -->
-  <section id="mood-tracker" class="py-16 bg-white border-b border-slate-100 scroll-mt-20">
+  <!-- ================= SECTION 3: DAILY MOOD TRACKER & INSIGHTS (Healing White Theme) ================= -->
+  <section id="mood-tracker" class="py-16 bg-white border-b border-emerald-100/60 scroll-mt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Header -->
       <div class="text-center max-w-2xl mx-auto mb-12">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-200 text-amber-800 text-xs font-bold mb-3 shadow-2xs">
-          <i data-lucide="calendar" class="w-3.5 h-3.5 text-[#F0B41D]"></i>
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold mb-3 shadow-2xs font-heading">
+          <i data-lucide="calendar" class="w-3.5 h-3.5 text-emerald-600"></i>
           <span>Self-Reflection & Analytics</span>
         </div>
         <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-heading">เช็กอินอารมณ์: สังเกตและโอบกอดตัวเอง</h2>
@@ -617,56 +625,56 @@
         <!-- Mood Check-in Card (5 cols on lg) -->
         <div class="lg:col-span-5 bg-white p-6 sm:p-7 rounded-3xl border border-slate-200 shadow-sm hover:shadow-md transition-all">
           <h3 class="font-bold text-slate-900 text-base sm:text-lg mb-1 flex items-center gap-2 font-heading">
-            <i data-lucide="smile-plus" class="w-5 h-5 text-[#F0B41D]"></i>
+            <i data-lucide="smile-plus" class="w-5 h-5 text-emerald-600"></i>
             <span>วันนี้คุณรู้สึกอย่างไรบ้าง?</span>
           </h3>
           <p class="text-xs text-slate-500 mb-6 font-body">เลือกอารมณ์ที่ตรงกับความรู้สึกหลักของคุณในวันนี้</p>
 
           <!-- Mood Emojis (5 choices) -->
           <div class="grid grid-cols-5 gap-2 mb-6" id="moodButtons">
-            <button type="button" onclick="selectMood('great', '🥳 สดใสมีพลัง')" class="mood-btn p-3 rounded-2xl text-center border-2 border-slate-200 bg-white hover:border-[#F0B41D] hover:bg-[#fff9e6] transition-all flex flex-col items-center">
+            <button type="button" onclick="selectMood('great', '🥳 สดใสมีพลัง')" class="mood-btn p-3 rounded-2xl text-center border-2 border-slate-200 bg-white hover:border-emerald-400 hover:bg-emerald-50/50 transition-all flex flex-col items-center">
               <span class="text-2xl sm:text-3xl">🥳</span>
-              <span class="text-[11px] font-bold text-slate-700 mt-1">สดใส</span>
+              <span class="text-[11px] font-bold text-slate-700 mt-1 font-heading">สดใส</span>
             </button>
-            <button type="button" onclick="selectMood('good', '😊 สบายใจสงบ')" class="mood-btn active-mood p-3 rounded-2xl text-center border-2 border-[#F0B41D] bg-[#fff9e6] transition-all flex flex-col items-center">
+            <button type="button" onclick="selectMood('good', '😊 สบายใจสงบ')" class="mood-btn active-mood p-3 rounded-2xl text-center border-2 border-emerald-500 bg-emerald-50 transition-all flex flex-col items-center">
               <span class="text-2xl sm:text-3xl">😊</span>
-              <span class="text-[11px] font-bold text-amber-900 mt-1">สบายใจ</span>
+              <span class="text-[11px] font-bold text-emerald-900 mt-1 font-heading">สบายใจ</span>
             </button>
-            <button type="button" onclick="selectMood('neutral', '😐 เฉยๆ ทั่วไป')" class="mood-btn p-3 rounded-2xl text-center border-2 border-slate-200 bg-white hover:border-[#F0B41D] hover:bg-[#fff9e6] transition-all flex flex-col items-center">
+            <button type="button" onclick="selectMood('neutral', '😐 เฉยๆ ทั่วไป')" class="mood-btn p-3 rounded-2xl text-center border-2 border-slate-200 bg-white hover:border-emerald-400 hover:bg-emerald-50/50 transition-all flex flex-col items-center">
               <span class="text-2xl sm:text-3xl">😐</span>
-              <span class="text-[11px] font-bold text-slate-700 mt-1">เฉยๆ</span>
+              <span class="text-[11px] font-bold text-slate-700 mt-1 font-heading">เฉยๆ</span>
             </button>
-            <button type="button" onclick="selectMood('tired', '😔 เหนื่อยล้า')" class="mood-btn p-3 rounded-2xl text-center border-2 border-slate-200 bg-white hover:border-[#F0B41D] hover:bg-[#fff9e6] transition-all flex flex-col items-center">
+            <button type="button" onclick="selectMood('tired', '😔 เหนื่อยล้า')" class="mood-btn p-3 rounded-2xl text-center border-2 border-slate-200 bg-white hover:border-emerald-400 hover:bg-emerald-50/50 transition-all flex flex-col items-center">
               <span class="text-2xl sm:text-3xl">😔</span>
-              <span class="text-[11px] font-bold text-slate-700 mt-1">เหนื่อย</span>
+              <span class="text-[11px] font-bold text-slate-700 mt-1 font-heading">เหนื่อย</span>
             </button>
-            <button type="button" onclick="selectMood('stressed', '😫 เครียด/กังวล')" class="mood-btn p-3 rounded-2xl text-center border-2 border-slate-200 bg-white hover:border-[#F0B41D] hover:bg-[#fff9e6] transition-all flex flex-col items-center">
+            <button type="button" onclick="selectMood('stressed', '😫 เครียด/กังวล')" class="mood-btn p-3 rounded-2xl text-center border-2 border-slate-200 bg-white hover:border-emerald-400 hover:bg-emerald-50/50 transition-all flex flex-col items-center">
               <span class="text-2xl sm:text-3xl">😫</span>
-              <span class="text-[11px] font-bold text-slate-700 mt-1">เครียด</span>
+              <span class="text-[11px] font-bold text-slate-700 mt-1 font-heading">เครียด</span>
             </button>
           </div>
           <input type="hidden" id="selectedMoodKey" value="good">
 
           <!-- Reason Chips -->
           <div class="mb-5">
-            <label class="block text-xs font-semibold text-slate-700 mb-2">เรื่องหลักที่กระทบอารมณ์ของคุณ (เลือกได้)</label>
+            <label class="block text-xs font-semibold text-slate-700 mb-2 font-body">เรื่องหลักที่กระทบอารมณ์ของคุณ (เลือกได้)</label>
             <div class="flex flex-wrap gap-1.5" id="moodFactors">
-              <button type="button" onclick="toggleFactor(this, 'การเรียน')" class="factor-chip px-3 py-1 rounded-xl text-xs bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors font-medium">📚 การเรียน</button>
-              <button type="button" onclick="toggleFactor(this, 'งาน')" class="factor-chip px-3 py-1 rounded-xl text-xs bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors font-medium">💼 งาน</button>
-              <button type="button" onclick="toggleFactor(this, 'เพื่อน')" class="factor-chip px-3 py-1 rounded-xl text-xs bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors font-medium">👥 เพื่อน</button>
-              <button type="button" onclick="toggleFactor(this, 'ความรัก')" class="factor-chip px-3 py-1 rounded-xl text-xs bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors font-medium">💖 ความรัก</button>
-              <button type="button" onclick="toggleFactor(this, 'ครอบครัว')" class="factor-chip px-3 py-1 rounded-xl text-xs bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors font-medium">🏡 ครอบครัว</button>
-              <button type="button" onclick="toggleFactor(this, 'สุขภาพ/การนอน')" class="factor-chip px-3 py-1 rounded-xl text-xs bg-slate-100 text-slate-700 hover:bg-slate-200 transition-colors font-medium">🛌 การนอน/สุขภาพ</button>
+              <button type="button" onclick="toggleFactor(this, 'การเรียน')" class="factor-chip px-3 py-1 rounded-full text-xs bg-slate-100 text-slate-700 hover:bg-emerald-50 transition-colors font-medium font-body">📚 การเรียน</button>
+              <button type="button" onclick="toggleFactor(this, 'งาน')" class="factor-chip px-3 py-1 rounded-full text-xs bg-slate-100 text-slate-700 hover:bg-emerald-50 transition-colors font-medium font-body">💼 งาน</button>
+              <button type="button" onclick="toggleFactor(this, 'เพื่อน')" class="factor-chip px-3 py-1 rounded-full text-xs bg-slate-100 text-slate-700 hover:bg-emerald-50 transition-colors font-medium font-body">👥 เพื่อน</button>
+              <button type="button" onclick="toggleFactor(this, 'ความรัก')" class="factor-chip px-3 py-1 rounded-full text-xs bg-slate-100 text-slate-700 hover:bg-emerald-50 transition-colors font-medium font-body">💖 ความรัก</button>
+              <button type="button" onclick="toggleFactor(this, 'ครอบครัว')" class="factor-chip px-3 py-1 rounded-full text-xs bg-slate-100 text-slate-700 hover:bg-emerald-50 transition-colors font-medium font-body">🏡 ครอบครัว</button>
+              <button type="button" onclick="toggleFactor(this, 'สุขภาพ/การนอน')" class="factor-chip px-3 py-1 rounded-full text-xs bg-slate-100 text-slate-700 hover:bg-emerald-50 transition-colors font-medium font-body">🛌 การนอน/สุขภาพ</button>
             </div>
           </div>
 
           <!-- Note -->
           <div class="mb-5">
-            <label for="moodNote" class="block text-xs font-semibold text-slate-700 mb-1">บันทึกสั้นๆ ประจำวัน (ไม่ระบุก็ได้)</label>
-            <input type="text" id="moodNote" placeholder="เช่น วันนี้พรีเซนต์งานเสร็จแล้ว โล่งใจมาก..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm bg-slate-50 focus:bg-white focus:outline-none focus:border-[#F0B41D] font-body transition-all">
+            <label for="moodNote" class="block text-xs font-semibold text-slate-700 mb-1 font-body">บันทึกสั้นๆ ประจำวัน (ไม่ระบุก็ได้)</label>
+            <input type="text" id="moodNote" placeholder="เช่น วันนี้พรีเซนต์งานเสร็จแล้ว โล่งใจมาก..." class="w-full px-3.5 py-2.5 rounded-full border border-slate-200 text-sm bg-slate-50 focus:bg-white focus:outline-none focus:border-emerald-500 font-body transition-all">
           </div>
 
-          <button onclick="handleSaveMood()" class="btn-figma-primary w-full py-3.5 rounded-full flex items-center justify-center gap-2 shadow-sm font-heading">
+          <button onclick="handleSaveMood()" class="btn-primary w-full py-3.5 rounded-full flex items-center justify-center gap-2 shadow-sm font-heading">
             <i data-lucide="check-circle" class="w-4 h-4"></i>
             <span>บันทึกอารมณ์วันนี้</span>
           </button>
@@ -682,7 +690,7 @@
                 <h4 class="font-bold text-slate-900 text-base font-heading">แนวโน้มสุขภาพจิตในรอบ 7 วัน</h4>
                 <p class="text-xs text-slate-500 font-body">วิเคราะห์ความสมดุลทางอารมณ์ของคุณ</p>
               </div>
-              <span class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
+              <span class="text-xs font-bold px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 font-heading">
                 🌱 บันทึกสะสม 7 ครั้ง
               </span>
             </div>
@@ -694,14 +702,14 @@
           </div>
 
           <!-- AI Mood Coach Insight Box -->
-          <div class="p-5 rounded-3xl bg-gradient-to-r from-amber-50 via-orange-50/50 to-white border border-amber-200/80 flex items-start gap-3.5 shadow-2xs">
-            <div class="w-10 h-10 rounded-2xl bg-[#F0B41D] text-[#121212] flex items-center justify-center shrink-0 shadow-xs font-bold">
+          <div class="p-5 rounded-3xl bg-gradient-to-r from-emerald-50 via-teal-50/50 to-white border border-emerald-200/80 flex items-start gap-3.5 shadow-2xs">
+            <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-500 text-white flex items-center justify-center shrink-0 shadow-xs font-bold">
               <i data-lucide="sparkles" class="w-5 h-5"></i>
             </div>
             <div>
               <div class="font-bold text-slate-900 text-sm flex items-center gap-2 font-heading">
                 <span>คำแนะนำฮีลใจจาก AI วิเคราะห์อารมณ์</span>
-                <span class="text-[10px] bg-amber-100 text-amber-900 border border-amber-200 px-2 py-0.5 rounded-full font-bold">AI Generated</span>
+                <span class="text-[10px] bg-emerald-100 text-emerald-900 border border-emerald-200 px-2 py-0.5 rounded-full font-bold font-heading">AI Generated</span>
               </div>
               <p id="aiMoodSummary" class="text-xs text-slate-700 mt-1.5 leading-relaxed font-body">
                 "สัปดาห์นี้คุณมีช่วงเวลาที่สบายใจและสดใสเป็นส่วนใหญ่ แต่มีช่วงที่เหนื่อยกับการเรียนช่วงกลางสัปดาห์ อย่าลืมให้รางวัลตัวเองด้วยการนอนหลับให้เต็มอิ่มและทำกิจกรรมที่ชอบนะ คุณเก่งมากแล้ว!"
@@ -716,12 +724,12 @@
     </div>
   </section>
 
-  <!-- ================= SECTION 4: BREATHE & CALM (4-7-8 RELAXATION - Clean White Theme) ================= -->
-  <section id="breathe-space" class="py-16 bg-slate-50/70 border-t border-b border-slate-200/80 scroll-mt-20">
+  <!-- ================= SECTION 4: BREATHE & CALM (4-7-8 RELAXATION - Healing White Theme) ================= -->
+  <section id="breathe-space" class="py-16 bg-[#F8FAF9] border-t border-b border-emerald-100/60 scroll-mt-20">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#29A6E7]/15 border border-[#29A6E7]/30 text-[#1b7db5] text-xs font-bold mb-3 shadow-2xs">
-        <i data-lucide="wind" class="w-3.5 h-3.5 text-[#29A6E7]"></i>
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 border border-teal-200 text-teal-800 text-xs font-bold mb-3 shadow-2xs font-heading">
+        <i data-lucide="wind" class="w-3.5 h-3.5 text-teal-600"></i>
         <span>Mindful Breathing (4-7-8 Technique)</span>
       </div>
       <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-heading">พักสัก 1 นาที: ฝึกหายใจคลายเครียด</h2>
@@ -734,7 +742,7 @@
         
         <!-- Ambient Sound Controls -->
         <div class="absolute top-4 right-4 flex items-center gap-2">
-          <button id="soundToggleBtn" onclick="toggleCalmSound()" class="px-3 py-1.5 rounded-xl bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs flex items-center gap-1.5 shadow-2xs transition-all font-medium">
+          <button id="soundToggleBtn" onclick="toggleCalmSound()" class="px-3.5 py-1.5 rounded-full bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs flex items-center gap-1.5 shadow-2xs transition-all font-medium font-heading">
             <i data-lucide="volume-x" id="soundIcon" class="w-4 h-4"></i>
             <span id="soundLabel">เปิดเสียงคลื่นทะเลบำบัด</span>
           </button>
@@ -745,14 +753,14 @@
           <div class="relative w-64 h-64 sm:w-72 sm:h-72 flex items-center justify-center">
             
             <!-- Outer Ripple Circles -->
-            <div id="breatheCircleOuter" class="absolute inset-0 rounded-full bg-[#F0B41D]/15 transition-transform duration-1000 scale-90"></div>
-            <div id="breatheCircleMiddle" class="absolute inset-4 rounded-full bg-[#4CC689]/20 transition-transform duration-1000 scale-95"></div>
+            <div id="breatheCircleOuter" class="absolute inset-0 rounded-full bg-emerald-500/15 transition-transform duration-1000 scale-90"></div>
+            <div id="breatheCircleMiddle" class="absolute inset-4 rounded-full bg-teal-400/20 transition-transform duration-1000 scale-95"></div>
             
             <!-- Core Interactive Circle -->
-            <div id="breatheCircleCore" class="relative w-44 h-44 sm:w-48 sm:h-48 rounded-full bg-gradient-to-tr from-[#F0B41D] to-[#f5be2d] text-[#121212] flex flex-col items-center justify-center shadow-lg shadow-[#F0B41D]/30 transition-all duration-1000 transform scale-100">
+            <div id="breatheCircleCore" class="relative w-44 h-44 sm:w-48 sm:h-48 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-500 text-white flex flex-col items-center justify-center shadow-lg shadow-emerald-200/50 transition-all duration-1000 transform scale-100">
               <span id="breatheActionText" class="text-lg sm:text-xl font-extrabold tracking-wide font-heading">พร้อมไหม?</span>
               <span id="breatheCountdown" class="text-3xl sm:text-4xl font-extrabold mt-1 font-heading">4</span>
-              <span id="breatheSubText" class="text-[11px] text-[#121212]/80 mt-1 font-medium font-body">คลิกเพื่อเริ่มฝึก</span>
+              <span id="breatheSubText" class="text-[11px] text-white/80 mt-1 font-medium font-body">คลิกเพื่อเริ่มฝึก</span>
             </div>
 
           </div>
@@ -760,24 +768,24 @@
 
         <!-- Breathing Controls -->
         <div class="flex items-center justify-center gap-3">
-          <button id="breatheStartBtn" onclick="toggleBreathingGuide()" class="btn-figma-primary px-8 py-3.5 rounded-full flex items-center gap-2 shadow-sm font-heading">
-            <i data-lucide="play" id="breatheBtnIcon" class="w-4 h-4 text-[#121212]"></i>
+          <button id="breatheStartBtn" onclick="toggleBreathingGuide()" class="btn-primary px-8 py-3.5 rounded-full flex items-center gap-2 shadow-sm font-heading">
+            <i data-lucide="play" id="breatheBtnIcon" class="w-4 h-4 text-white"></i>
             <span id="breatheBtnText">เริ่มฝึกหายใจ (Start)</span>
           </button>
         </div>
 
         <!-- 4-7-8 Legend -->
         <div class="mt-8 grid grid-cols-3 gap-2.5 max-w-md mx-auto text-center text-xs">
-          <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 shadow-2xs">
-            <span class="font-extrabold text-[#248556] block text-sm font-heading">4 วินาที</span>
+          <div class="p-3 rounded-2xl bg-emerald-50/60 border border-emerald-100 shadow-2xs">
+            <span class="font-extrabold text-emerald-700 block text-sm font-heading">4 วินาที</span>
             <span class="text-slate-500 font-body">หายใจเข้าช้าๆ ทางจมูก</span>
           </div>
-          <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 shadow-2xs">
-            <span class="font-extrabold text-[#d99b06] block text-sm font-heading">7 วินาที</span>
+          <div class="p-3 rounded-2xl bg-teal-50/60 border border-teal-100 shadow-2xs">
+            <span class="font-extrabold text-teal-700 block text-sm font-heading">7 วินาที</span>
             <span class="text-slate-500 font-body">กลั้นหายใจเบาๆ</span>
           </div>
-          <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 shadow-2xs">
-            <span class="font-extrabold text-[#1b7db5] block text-sm font-heading">8 วินาที</span>
+          <div class="p-3 rounded-2xl bg-sky-50/60 border border-sky-100 shadow-2xs">
+            <span class="font-extrabold text-sky-700 block text-sm font-heading">8 วินาที</span>
             <span class="text-slate-500 font-body">ผ่อนลมหายใจออกทางปาก</span>
           </div>
         </div>
@@ -787,14 +795,14 @@
     </div>
   </section>
 
-  <!-- ================= SECTION 5: EMERGENCY DIRECTORY & HOTLINES (Clean White Theme) ================= -->
-  <section id="directory" class="py-16 bg-white border-b border-slate-100 scroll-mt-20">
+  <!-- ================= SECTION 5: EMERGENCY DIRECTORY & HOTLINES ================= -->
+  <section id="directory" class="py-16 bg-white border-b border-emerald-100/60 scroll-mt-20">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Section Header -->
       <div class="text-center max-w-2xl mx-auto mb-12">
-        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EC693B]/15 border border-[#EC693B]/30 text-[#b53c15] text-xs font-bold mb-3 shadow-2xs">
-          <i data-lucide="shield-check" class="w-3.5 h-3.5 text-[#EC693B]"></i>
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-50 border border-rose-200 text-rose-700 text-xs font-bold mb-3 shadow-2xs font-heading">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5 text-rose-600"></i>
           <span>Official Support Directory</span>
         </div>
         <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-heading">ช่องทางช่วยเหลือฉุกเฉิน & จิตแพทย์</h2>
@@ -803,69 +811,69 @@
         </p>
       </div>
 
-      <!-- Hotline Cards Grid (Figma Brand Colored Cards) -->
+      <!-- Hotline Cards Grid (Modern Healing Style) -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
         
-        <!-- Hotline 1 (1323 - Orange Accent) -->
-        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-[#EC693B]/40 transition-all flex flex-col justify-between">
+        <!-- Hotline 1 (1323) -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-amber-300 transition-all flex flex-col justify-between">
           <div>
-            <div class="w-12 h-12 rounded-2xl bg-[#EC693B]/10 text-[#EC693B] flex items-center justify-center mb-4">
+            <div class="w-12 h-12 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center mb-4">
               <i data-lucide="phone-call" class="w-6 h-6"></i>
             </div>
             <h4 class="font-extrabold text-slate-900 text-base font-heading">สายด่วนสุขภาพจิต</h4>
             <p class="text-xs text-slate-500 mt-1 font-body">กรมสุขภาพจิต กระทรวงสาธารณสุข รับปรึกษาปัญหาทางจิตใจทุกเรื่อง</p>
-            <div class="text-3xl font-extrabold text-[#EC693B] my-4 font-heading">1323</div>
+            <div class="text-3xl font-extrabold text-amber-600 my-4 font-heading">1323</div>
           </div>
-          <a href="tel:1323" class="w-full py-2.5 rounded-xl bg-[#EC693B] hover:bg-[#d8582d] text-white font-bold text-xs text-center shadow-xs transition-all flex items-center justify-center gap-1.5">
+          <a href="tel:1323" class="w-full py-2.5 rounded-full bg-amber-500 hover:bg-amber-600 text-white font-bold text-xs text-center shadow-xs transition-all flex items-center justify-center gap-1.5 font-heading">
             <i data-lucide="phone" class="w-3.5 h-3.5"></i>
             <span>โทรฟรีตลอด 24 ชม.</span>
           </a>
         </div>
 
-        <!-- Hotline 2 (Samaritans - Green Accent) -->
-        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-[#4CC689]/40 transition-all flex flex-col justify-between">
+        <!-- Hotline 2 (Samaritans) -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-emerald-300 transition-all flex flex-col justify-between">
           <div>
-            <div class="w-12 h-12 rounded-2xl bg-[#4CC689]/10 text-[#4CC689] flex items-center justify-center mb-4">
+            <div class="w-12 h-12 rounded-2xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4">
               <i data-lucide="heart" class="w-6 h-6"></i>
             </div>
             <h4 class="font-extrabold text-slate-900 text-base font-heading">สมาคมสะมาริตันส์ไทย</h4>
             <p class="text-xs text-slate-500 mt-1 font-body">เพื่อนรับฟังเพื่อป้องกันการฆ่าตัวตาย โดยอาสาสมัครที่ผ่านการอบรม</p>
-            <div class="text-2xl font-extrabold text-[#248556] my-4 font-heading">02-113-6789</div>
+            <div class="text-2xl font-extrabold text-emerald-700 my-4 font-heading">02-113-6789</div>
           </div>
-          <a href="tel:021136789" class="w-full py-2.5 rounded-xl bg-[#4CC689] hover:bg-[#3db078] text-[#121212] font-bold text-xs text-center shadow-xs transition-all flex items-center justify-center gap-1.5">
-            <i data-lucide="phone" class="w-3.5 h-3.5 text-[#121212]"></i>
+          <a href="tel:021136789" class="w-full py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs text-center shadow-xs transition-all flex items-center justify-center gap-1.5 font-heading">
+            <i data-lucide="phone" class="w-3.5 h-3.5"></i>
             <span>โทร (12:00 - 22:00 น.)</span>
           </a>
         </div>
 
-        <!-- Hotline 3 (LINE - Blue Accent) -->
-        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-[#29A6E7]/40 transition-all flex flex-col justify-between">
+        <!-- Hotline 3 (LINE) -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-sky-300 transition-all flex flex-col justify-between">
           <div>
-            <div class="w-12 h-12 rounded-2xl bg-[#29A6E7]/10 text-[#29A6E7] flex items-center justify-center mb-4">
+            <div class="w-12 h-12 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center mb-4">
               <i data-lucide="message-circle" class="w-6 h-6"></i>
             </div>
             <h4 class="font-extrabold text-slate-900 text-base font-heading">แชตสายด่วนสุขภาพจิต</h4>
             <p class="text-xs text-slate-500 mt-1 font-body">บริการให้คำปรึกษาผ่านช่องทางแชต สำหรับผู้ที่ไม่สะดวกคุยทางโทรศัพท์</p>
-            <div class="text-sm font-bold text-[#1b7db5] my-4 font-heading">Line: @1323forthai</div>
+            <div class="text-sm font-bold text-sky-700 my-4 font-heading">Line: @1323forthai</div>
           </div>
-          <a href="https://line.me" target="_blank" class="w-full py-2.5 rounded-xl bg-[#29A6E7] hover:bg-[#1f8fcd] text-white font-bold text-xs text-center shadow-xs transition-all flex items-center justify-center gap-1.5">
+          <a href="https://line.me" target="_blank" class="w-full py-2.5 rounded-full bg-sky-500 hover:bg-sky-600 text-white font-bold text-xs text-center shadow-xs transition-all flex items-center justify-center gap-1.5 font-heading">
             <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
             <span>เพิ่มเพื่อนทาง LINE</span>
           </a>
         </div>
 
-        <!-- Hotline 4 (University - Gold Accent) -->
-        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-[#F0B41D]/40 transition-all flex flex-col justify-between">
+        <!-- Hotline 4 (University) -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-teal-300 transition-all flex flex-col justify-between">
           <div>
-            <div class="w-12 h-12 rounded-2xl bg-amber-50 text-[#F0B41D] flex items-center justify-center mb-4">
+            <div class="w-12 h-12 rounded-2xl bg-teal-50 text-teal-600 flex items-center justify-center mb-4">
               <i data-lucide="users" class="w-6 h-6"></i>
             </div>
             <h4 class="font-extrabold text-slate-900 text-base font-heading">ศูนย์ปรึกษามหาวิทยาลัย</h4>
             <p class="text-xs text-slate-500 mt-1 font-body">ห้องให้คำปรึกษาและจิตวิทยาสำหรับนิสิตนักศึกษาประจำสถาบัน</p>
-            <div class="text-sm font-bold text-amber-900 my-4 font-heading">บริการฟรีสำหรับนักศึกษา</div>
+            <div class="text-sm font-bold text-teal-800 my-4 font-heading">บริการฟรีสำหรับนักศึกษา</div>
           </div>
-          <button onclick="alert('กรุณาติดต่อหน่วยงานกิจการนักศึกษา หรือฝ่ายแนะแนวและจิตวิทยาของมหาวิทยาลัยของคุณ')" class="btn-figma-primary w-full py-2.5 rounded-xl text-xs text-center flex items-center justify-center gap-1.5">
-            <i data-lucide="info" class="w-3.5 h-3.5 text-[#121212]"></i>
+          <button onclick="alert('กรุณาติดต่อหน่วยงานกิจการนักศึกษา หรือฝ่ายแนะแนวและจิตวิทยาของมหาวิทยาลัยของคุณ')" class="w-full py-2.5 rounded-full bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs text-center shadow-xs transition-all flex items-center justify-center gap-1.5 font-heading">
+            <i data-lucide="info" class="w-3.5 h-3.5"></i>
             <span>ดูข้อมูลศูนย์นักศึกษา</span>
           </button>
         </div>
@@ -882,8 +890,8 @@
         
         <div class="md:col-span-2 space-y-3">
           <div class="flex items-center gap-2">
-            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-[#4CC689] via-[#29A6E7] to-[#F0B41D] flex items-center justify-center text-[#121212] font-bold">
-              <i data-lucide="heart-handshake" class="w-5 h-5 text-[#121212]"></i>
+            <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-white font-bold">
+              <i data-lucide="heart-handshake" class="w-5 h-5 text-white"></i>
             </div>
             <span class="text-lg font-extrabold text-white font-heading">MindSpace ฮีลใจ</span>
           </div>
@@ -895,20 +903,20 @@
         <div>
           <h5 class="text-xs font-bold text-white uppercase tracking-wider mb-3 font-heading">ฟีเจอร์หลัก</h5>
           <ul class="space-y-2 text-xs text-slate-400 font-body">
-            <li><a href="#vent-wall" class="hover:text-[#F0B41D] transition-colors">Anonymous Vent Wall</a></li>
-            <li><a href="#heart-unwind" class="hover:text-[#F0B41D] transition-colors">ห้องเทความในใจ (Soul Pour)</a></li>
-            <li><a href="#ai-companion" class="hover:text-[#F0B41D] transition-colors">น้องใจดี (AI Companion)</a></li>
-            <li><a href="#mood-tracker" class="hover:text-[#F0B41D] transition-colors">Daily Mood Tracker</a></li>
-            <li><a href="#breathe-space" class="hover:text-[#F0B41D] transition-colors">Mindful Breathing (4-7-8)</a></li>
+            <li><a href="#vent-wall" class="hover:text-emerald-400 transition-colors">Anonymous Vent Wall</a></li>
+            <li><a href="#heart-unwind" class="hover:text-emerald-400 transition-colors">ห้องเทความในใจ (Soul Pour)</a></li>
+            <li><a href="#ai-companion" class="hover:text-emerald-400 transition-colors">น้องใจดี (AI Companion)</a></li>
+            <li><a href="#mood-tracker" class="hover:text-emerald-400 transition-colors">Daily Mood Tracker</a></li>
+            <li><a href="#breathe-space" class="hover:text-emerald-400 transition-colors">Mindful Breathing (4-7-8)</a></li>
           </ul>
         </div>
 
         <div>
           <h5 class="text-xs font-bold text-white uppercase tracking-wider mb-3 font-heading">เอกสารนำเสนอ</h5>
           <ul class="space-y-2 text-xs text-slate-400 font-body">
-            <li><button onclick="openAiDocModal()" class="hover:text-[#F0B41D] transition-colors text-left">รายงานการใช้ AI ในโปรเจกต์</button></li>
-            <li><a href="#directory" class="hover:text-[#F0B41D] transition-colors">เบอร์โทรสายด่วนฉุกเฉิน</a></li>
-            <li><span class="text-[#F0B41D] font-semibold">กำหนดส่ง: 2 พ.ย. 69</span></li>
+            <li><button onclick="openAiDocModal()" class="hover:text-emerald-400 transition-colors text-left">รายงานการใช้ AI ในโปรเจกต์</button></li>
+            <li><a href="#directory" class="hover:text-emerald-400 transition-colors">เบอร์โทรสายด่วนฉุกเฉิน</a></li>
+            <li><span class="text-emerald-400 font-semibold font-heading">กำหนดส่ง: 2 พ.ย. 69</span></li>
           </ul>
         </div>
 
@@ -916,8 +924,8 @@
 
       <div class="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4 font-body">
         <p>© 2026 MindSpace (ฮีลใจ) Platform. All rights reserved. Created for Academic Project.</p>
-        <p class="flex items-center gap-1">
-          Made with <i data-lucide="heart" class="w-3.5 h-3.5 text-[#EC693B] fill-[#EC693B]"></i> & AI Assistance
+        <p class="flex items-center gap-1 font-heading">
+          Made with <i data-lucide="heart" class="w-3.5 h-3.5 text-rose-500 fill-rose-500"></i> & AI Assistance
         </p>
       </div>
     </div>
@@ -931,8 +939,8 @@
           <i data-lucide="alert-triangle" class="w-6 h-6"></i>
         </div>
         <div>
-          <h3 class="text-lg font-bold text-slate-900">ขอให้คุณสูดหายใจลึกๆ ก่อนนะ</h3>
-          <p class="text-xs text-rose-600 font-semibold">คุณไม่ได้อยู่ตัวคนเดียว มีคนที่พร้อมรับฟังคุณตอนนี้</p>
+          <h3 class="text-lg font-bold text-slate-900 font-heading">ขอให้คุณสูดหายใจลึกๆ ก่อนนะ</h3>
+          <p class="text-xs text-rose-600 font-semibold font-body">คุณไม่ได้อยู่ตัวคนเดียว มีคนที่พร้อมรับฟังคุณตอนนี้</p>
         </div>
       </div>
 
@@ -941,7 +949,7 @@
       </p>
 
       <div class="space-y-3 mb-6">
-        <a href="tel:1323" class="p-3.5 rounded-2xl bg-rose-500 hover:bg-rose-600 text-white flex items-center justify-between font-semibold shadow-md shadow-rose-200 transition-all">
+        <a href="tel:1323" class="p-3.5 rounded-2xl bg-rose-500 hover:bg-rose-600 text-white flex items-center justify-between font-semibold shadow-md shadow-rose-200 transition-all font-heading">
           <div class="flex items-center gap-2.5">
             <i data-lucide="phone-call" class="w-5 h-5"></i>
             <span>สายด่วนสุขภาพจิต (โทรฟรี 24 ชม.)</span>
@@ -949,7 +957,7 @@
           <span class="text-lg font-bold">1323</span>
         </a>
 
-        <a href="tel:021136789" class="p-3.5 rounded-2xl bg-slate-800 hover:bg-slate-900 text-white flex items-center justify-between font-semibold transition-all">
+        <a href="tel:021136789" class="p-3.5 rounded-2xl bg-slate-800 hover:bg-slate-900 text-white flex items-center justify-between font-semibold transition-all font-heading">
           <div class="flex items-center gap-2.5">
             <i data-lucide="heart-handshake" class="w-5 h-5"></i>
             <span>สมาคมสะมาริตันส์ไทย</span>
@@ -959,7 +967,7 @@
       </div>
 
       <div class="flex justify-end">
-        <button onclick="closeSosModal()" class="px-5 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium transition-colors">
+        <button onclick="closeSosModal()" class="px-5 py-2.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium transition-colors font-heading">
           ปิดหน้าต่างนี้
         </button>
       </div>
@@ -973,8 +981,8 @@
       <!-- Modal Header -->
       <div class="p-6 bg-slate-900 text-white flex items-center justify-between border-b border-slate-800">
         <div class="flex items-center gap-3">
-          <div class="w-10 h-10 rounded-xl bg-[#F0B41D]/20 text-[#F0B41D] flex items-center justify-center font-bold">
-            <i data-lucide="cpu" class="w-5 h-5 text-[#F0B41D]"></i>
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold">
+            <i data-lucide="cpu" class="w-5 h-5 text-emerald-400"></i>
           </div>
           <div>
             <h3 class="text-base sm:text-lg font-extrabold font-heading text-white">รายงานการใช้ AI ในการพัฒนา Digital Platform</h3>
@@ -990,9 +998,9 @@
       <div class="p-6 overflow-y-auto space-y-6 text-sm text-slate-700 leading-relaxed font-body">
         
         <!-- Step 1 -->
-        <div class="border-l-4 border-[#4CC689] pl-4 py-1">
+        <div class="border-l-4 border-emerald-500 pl-4 py-1">
           <h4 class="font-extrabold text-slate-900 text-sm flex items-center gap-2 font-heading">
-            <span class="w-5 h-5 rounded-full bg-[#4CC689]/20 text-[#248556] text-xs flex items-center justify-center font-bold">1</span>
+            <span class="w-5 h-5 rounded-full bg-emerald-100 text-emerald-800 text-xs flex items-center justify-center font-bold">1</span>
             <span>ขั้นตอนการระดมไอเดีย & วิเคราะห์ปัญหา (Ideation & Problem Formulation)</span>
           </h4>
           <p class="text-xs text-slate-600 mt-1 font-body">
@@ -1001,20 +1009,20 @@
         </div>
 
         <!-- Step 2 -->
-        <div class="border-l-4 border-[#29A6E7] pl-4 py-1">
+        <div class="border-l-4 border-teal-500 pl-4 py-1">
           <h4 class="font-extrabold text-slate-900 text-sm flex items-center gap-2 font-heading">
-            <span class="w-5 h-5 rounded-full bg-[#29A6E7]/20 text-[#1b7db5] text-xs flex items-center justify-center font-bold">2</span>
+            <span class="w-5 h-5 rounded-full bg-teal-100 text-teal-800 text-xs flex items-center justify-center font-bold">2</span>
             <span>ขั้นตอนการออกแบบระบบ & UX/UI (System & UX Design)</span>
           </h4>
           <p class="text-xs text-slate-600 mt-1 font-body">
-            <strong>การใช้ AI:</strong> ใช้ AI ในการช่วยร่างโครงสร้าง Feature สำคัญ ได้แก่ Anonymous Vent Wall (พื้นที่ปลอดภัย), Soul Pour Space (ห้องเทความในใจ), AI Empathetic Companion (รับฟังด้วยจิตวิทยา Active Listening), Daily Mood Tracker และ 4-7-8 Breathing Circle พร้อมทั้งเลือกใช้ชุดสีตาม Figma Design System
+            <strong>การใช้ AI:</strong> ใช้ AI ในการช่วยร่างโครงสร้าง Feature สำคัญ ได้แก่ Anonymous Vent Wall (พื้นที่ปลอดภัย), Soul Pour Space (ห้องเทความในใจ), AI Empathetic Companion (รับฟังด้วยจิตวิทยา Active Listening), Daily Mood Tracker และ 4-7-8 Breathing Circle พร้อมทั้งเลือกใช้ชุดสีที่ช่วยลดความวิตกกังวลและผ่อนคลายจิตใจ (Calming White & Emerald Green Palette)
           </p>
         </div>
 
         <!-- Step 3 -->
-        <div class="border-l-4 border-[#F0B41D] pl-4 py-1">
+        <div class="border-l-4 border-amber-500 pl-4 py-1">
           <h4 class="font-extrabold text-slate-900 text-sm flex items-center gap-2 font-heading">
-            <span class="w-5 h-5 rounded-full bg-amber-100 text-amber-900 text-xs flex items-center justify-center font-bold">3</span>
+            <span class="w-5 h-5 rounded-full bg-amber-100 text-amber-800 text-xs flex items-center justify-center font-bold">3</span>
             <span>ขั้นตอนการเขียนโปรแกรม & การผสาน AI เข้าในระบบ (Development & Implementation)</span>
           </h4>
           <p class="text-xs text-slate-600 mt-1 font-body">
@@ -1025,9 +1033,9 @@
         </div>
 
         <!-- Step 4 -->
-        <div class="border-l-4 border-[#EC693B] pl-4 py-1">
+        <div class="border-l-4 border-rose-500 pl-4 py-1">
           <h4 class="font-extrabold text-slate-900 text-sm flex items-center gap-2 font-heading">
-            <span class="w-5 h-5 rounded-full bg-[#EC693B]/20 text-[#b53c15] text-xs flex items-center justify-center font-bold">4</span>
+            <span class="w-5 h-5 rounded-full bg-rose-100 text-rose-800 text-xs flex items-center justify-center font-bold">4</span>
             <span>ขั้นตอนการจัดทำสื่อนำเสนอ & วิดีโอ (Pitching & Presentation)</span>
           </h4>
           <p class="text-xs text-slate-600 mt-1 font-body">
@@ -1040,7 +1048,7 @@
       <!-- Modal Footer -->
       <div class="p-4 bg-slate-50 border-t border-slate-200 flex justify-between items-center">
         <span class="text-xs text-slate-500 font-body">สามารถคัดลอกส่วนนี้ไปใส่ใน Slide และรายงานได้ทันที</span>
-        <button onclick="closeAiDocModal()" class="btn-figma-primary px-6 py-2 rounded-full font-extrabold text-xs">
+        <button onclick="closeAiDocModal()" class="btn-primary px-6 py-2 rounded-full font-extrabold text-xs font-heading">
           ตกลง
         </button>
       </div>

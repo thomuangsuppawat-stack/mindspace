@@ -327,13 +327,13 @@ function renderVents() {
         <span class="text-[11px] text-slate-400">ส่งต่อกำลังใจ:</span>
         <div class="flex items-center gap-2">
           <!-- Hug Button -->
-          <button onclick="handleReact('${item.id}', 'hug')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold ${item.userInteractions?.hugged ? 'bg-[#4CC689]/20 text-[#1f7c4e] border border-[#4CC689]' : 'bg-slate-100 hover:bg-slate-200 text-slate-600 border border-slate-200'} transition-all">
+          <button onclick="handleReact('${item.id}', 'hug')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold ${item.userInteractions?.hugged ? 'bg-emerald-100 text-emerald-800 border border-emerald-300' : 'bg-slate-50 hover:bg-emerald-50 text-slate-600 border border-slate-200'} transition-all font-heading">
             <span>🫂</span>
             <span id="hugCount_${item.id}">${item.hugs}</span>
           </button>
           
           <!-- Send Love Button -->
-          <button onclick="handleReact('${item.id}', 'love')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold ${item.userInteractions?.loved ? 'bg-[#EC693B]/20 text-[#b53c15] border border-[#EC693B]' : 'bg-slate-100 hover:bg-slate-200 text-slate-600 border border-slate-200'} transition-all">
+          <button onclick="handleReact('${item.id}', 'love')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold ${item.userInteractions?.loved ? 'bg-rose-100 text-rose-800 border border-rose-300' : 'bg-slate-50 hover:bg-rose-50 text-slate-600 border border-slate-200'} transition-all font-heading">
             <span>💖</span>
             <span id="loveCount_${item.id}">${item.loves}</span>
           </button>
@@ -385,17 +385,17 @@ function triggerHeartFloat() {
       particleCount: 15,
       spread: 45,
       origin: { y: 0.8 },
-      colors: ['#F0B41D', '#4CC689', '#EC693B']
+      colors: ['#10B981', '#14B8A6', '#F43F5E']
     });
   }
 }
 
 function getTagStyle(tag) {
-  if (tag.includes("หมดไฟ")) return "bg-[#EC693B]/10 text-[#c94b21] border border-[#EC693B]/30";
-  if (tag.includes("เรียน")) return "bg-[#29A6E7]/10 text-[#1b7db5] border border-[#29A6E7]/30";
-  if (tag.includes("ความสัมพันธ์")) return "bg-[#4CC689]/10 text-[#248556] border border-[#4CC689]/30";
-  if (tag.includes("กำลังใจ")) return "bg-[#F0B41D]/15 text-[#9a6a00] border border-[#F0B41D]/30";
-  return "bg-[#F0B41D]/15 text-[#9a6a00] border border-[#F0B41D]/30";
+  if (tag.includes("หมดไฟ")) return "bg-amber-50 text-amber-800 border border-amber-200/80";
+  if (tag.includes("เรียน")) return "bg-sky-50 text-sky-800 border border-sky-200/80";
+  if (tag.includes("ความสัมพันธ์")) return "bg-rose-50 text-rose-800 border border-rose-200/80";
+  if (tag.includes("กำลังใจ")) return "bg-emerald-50 text-emerald-800 border border-emerald-200/80";
+  return "bg-teal-50 text-teal-800 border border-teal-200/80";
 }
 
 function escapeHtml(text) {
@@ -525,14 +525,14 @@ function appendChatMessage(sender, message) {
 
   if (sender === "user") {
     msgDiv.innerHTML = `
-      <div class="w-8 h-8 rounded-full bg-[#F0B41D] text-[#121212] flex items-center justify-center text-xs font-extrabold shrink-0 mt-1 shadow-xs">คุณ</div>
-      <div class="bg-[#F0B41D] text-[#121212] font-medium rounded-2xl rounded-tr-xs p-3.5 max-w-md shadow-xs text-sm leading-relaxed font-body">
+      <div class="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs font-bold font-heading shrink-0 mt-1 shadow-xs">คุณ</div>
+      <div class="bg-emerald-600 text-white font-medium rounded-2xl rounded-tr-xs p-3.5 max-w-md shadow-xs text-sm leading-relaxed font-body">
         ${escapeHtml(message)}
       </div>
     `;
   } else {
     msgDiv.innerHTML = `
-      <div class="w-8 h-8 rounded-full bg-[#e8f7ee] border border-[#4CC689]/40 flex items-center justify-center text-sm shrink-0 mt-1 shadow-xs">🌱</div>
+      <div class="w-8 h-8 rounded-full bg-emerald-100 border border-emerald-200 flex items-center justify-center text-sm shrink-0 mt-1 shadow-xs">🌱</div>
       <div class="bg-white border border-slate-200 rounded-2xl rounded-tl-xs p-4 max-w-md shadow-xs text-sm text-slate-800 leading-relaxed font-body whitespace-pre-line">
         ${escapeHtml(message)}
       </div>
@@ -551,7 +551,7 @@ function showAiTyping() {
   typingDiv.id = "aiTypingIndicator";
   typingDiv.className = "flex items-start gap-3";
   typingDiv.innerHTML = `
-    <div class="w-8 h-8 rounded-full bg-[#e8f7ee] border border-[#4CC689]/40 flex items-center justify-center text-sm shrink-0 mt-1 shadow-xs">🌱</div>
+    <div class="w-8 h-8 rounded-full bg-emerald-100 border border-emerald-200 flex items-center justify-center text-sm shrink-0 mt-1 shadow-xs">🌱</div>
     <div class="bg-white border border-slate-200 rounded-2xl rounded-tl-xs px-4 py-3 shadow-xs flex items-center gap-1.5">
       <span class="typing-dot"></span>
       <span class="typing-dot"></span>
@@ -575,8 +575,8 @@ function resetAiChat() {
 
   container.innerHTML = `
     <div class="flex items-start gap-3">
-      <div class="w-8 h-8 rounded-full bg-[#e8f7ee] border border-[#4CC689]/40 flex items-center justify-center text-sm shrink-0 mt-1 shadow-xs">🌱</div>
-      <div class="bg-white border border-slate-200 rounded-2xl rounded-tl-xs p-4 max-w-md shadow-xs text-sm text-slate-700 leading-relaxed space-y-2">
+      <div class="w-8 h-8 rounded-full bg-emerald-100 border border-emerald-200 flex items-center justify-center text-sm shrink-0 mt-1 shadow-xs">🌱</div>
+      <div class="bg-white border border-slate-200 rounded-2xl rounded-tl-xs p-4 max-w-md shadow-xs text-sm text-slate-700 leading-relaxed space-y-2 font-body">
         <p>เริ่มต้นบทสนทนาใหม่แล้วครับ 😊 มีอะไรที่อยากแชร์หรืออยากให้ใจดีรับฟัง พิมพ์บอกได้เสมอเลยนะครับ</p>
       </div>
     </div>
@@ -666,11 +666,11 @@ function initMoodChart() {
       datasets: [{
         label: "ระดับสุขภาวะใจ (1 = เครียดมาก, 5 = สดใส)",
         data: defaultData,
-        borderColor: "#F0B41D",
-        backgroundColor: "rgba(240, 180, 29, 0.12)",
+        borderColor: "#10B981",
+        backgroundColor: "rgba(16, 185, 129, 0.12)",
         fill: true,
         tension: 0.4,
-        pointBackgroundColor: "#F0B41D",
+        pointBackgroundColor: "#10B981",
         pointBorderColor: "#FFFFFF",
         pointBorderWidth: 2,
         pointRadius: 6,
@@ -687,7 +687,7 @@ function initMoodChart() {
         tooltip: {
           backgroundColor: "#0f172a",
           titleColor: "#ffffff",
-          bodyColor: "#F0B41D",
+          bodyColor: "#34d399",
           callbacks: {
             label: function(context) {
               const val = context.raw;
@@ -949,17 +949,17 @@ function selectLoungeDrink(drinkName, tagDesc) {
     if (b.innerText.includes(drinkName.split(" ")[1])) {
       b.classList.add("active-drink");
       b.classList.remove("border-slate-200", "bg-white");
-      let check = b.querySelector(".text-[#d99b06]");
+      let check = b.querySelector(".drink-check-icon");
       if (!check) {
         const span = document.createElement("span");
-        span.className = "text-[#d99b06] font-bold text-xs";
+        span.className = "drink-check-icon text-emerald-600 font-bold text-xs";
         span.innerText = "✓";
         b.appendChild(span);
       }
     } else {
       b.classList.remove("active-drink");
       b.classList.add("border-slate-200", "bg-white");
-      let check = b.querySelector(".text-[#d99b06]");
+      let check = b.querySelector(".drink-check-icon") || b.querySelector(".text-[#d99b06]");
       if (check) check.remove();
     }
   });
@@ -1004,7 +1004,7 @@ function handleSendLoungeMessage(event) {
         particleCount: 50,
         spread: 70,
         origin: { y: 0.5 },
-        colors: ['#F0B41D', '#4CC689', '#EC693B']
+        colors: ['#10B981', '#14B8A6', '#F59E0B']
       });
     }
   } else {
@@ -1033,7 +1033,7 @@ function handleTreatDrink(messageId) {
       particleCount: 25,
       spread: 55,
       origin: { y: 0.6 },
-      colors: ['#F0B41D', '#EC693B', '#4CC689']
+      colors: ['#10B981', '#F59E0B', '#EC4899']
     });
   }
 }
@@ -1069,23 +1069,23 @@ function renderLoungeMessages() {
   }
 
   container.innerHTML = filtered.map(item => `
-    <div class="p-4 rounded-2xl ${item.isDrinkOnMe ? 'bg-gradient-to-r from-amber-50/90 via-orange-50/40 to-white border border-amber-300 shadow-xs' : 'bg-white border border-slate-200/90 shadow-2xs'} hover:border-amber-300 transition-all flex flex-col justify-between">
+    <div class="p-4 rounded-3xl ${item.isDrinkOnMe ? 'bg-gradient-to-r from-amber-50/90 via-emerald-50/30 to-white border border-amber-300 shadow-xs' : 'bg-white border border-slate-200/90 shadow-2xs'} hover:border-emerald-300 transition-all flex flex-col justify-between">
       <div class="flex items-start justify-between gap-3 mb-2.5">
         <div class="flex items-center gap-2.5">
-          <div class="w-9 h-9 rounded-xl bg-amber-50 border border-amber-200/60 flex items-center justify-center text-lg shrink-0">
+          <div class="w-9 h-9 rounded-2xl bg-amber-50 border border-amber-200/60 flex items-center justify-center text-lg shrink-0">
             ${item.avatar || '☕'}
           </div>
           <div>
             <div class="flex items-center gap-2">
-              <span class="font-bold text-xs text-slate-900">${escapeHtml(item.user)}</span>
-              ${item.isDrinkOnMe ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#F0B41D] text-[#121212] shadow-xs">🌟 ส่งใจให้ทุกคน</span>' : ''}
+              <span class="font-bold text-xs text-slate-900 font-heading">${escapeHtml(item.user)}</span>
+              ${item.isDrinkOnMe ? '<span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-400 text-amber-950 shadow-xs font-heading">🌟 ส่งใจให้ทุกคน</span>' : ''}
             </div>
-            <span class="text-[10px] text-slate-400">${item.time}</span>
+            <span class="text-[10px] text-slate-400 font-body">${item.time}</span>
           </div>
         </div>
 
         <!-- Drink Badge -->
-        <span class="text-[11px] px-2.5 py-1 rounded-xl bg-amber-50 text-amber-800 border border-amber-200/80 font-medium flex items-center gap-1 shrink-0">
+        <span class="text-[11px] px-2.5 py-1 rounded-full bg-amber-50 text-amber-800 border border-amber-200/80 font-medium flex items-center gap-1 shrink-0 font-body">
           ${item.drink}
         </span>
       </div>
@@ -1094,12 +1094,12 @@ function renderLoungeMessages() {
         ${escapeHtml(item.content)}
       </p>
 
-      <div class="pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs">
+      <div class="pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs font-body">
         <span class="text-[11px] text-slate-500">
-          ☕ ส่งกำลังใจแล้ว: <strong class="text-amber-700 font-bold">${item.treatedCount || 0} แก้ว</strong>
+          ☕ ส่งกำลังใจแล้ว: <strong class="text-amber-800 font-bold font-heading">${item.treatedCount || 0} แก้ว</strong>
         </span>
 
-        <button onclick="handleTreatDrink('${item.id}')" class="px-3 py-1.5 rounded-xl bg-amber-50 hover:bg-[#F0B41D] text-amber-900 hover:text-[#121212] border border-amber-300 font-bold text-xs transition-all flex items-center gap-1.5 active:scale-95 shadow-2xs">
+        <button onclick="handleTreatDrink('${item.id}')" class="px-3.5 py-1.5 rounded-full bg-amber-50 hover:bg-emerald-600 text-amber-900 hover:text-white border border-amber-300 hover:border-emerald-600 font-bold text-xs transition-all flex items-center gap-1.5 active:scale-95 shadow-2xs font-heading">
           <span>☕ ส่งแก้วนี้แทนใจ</span>
         </button>
       </div>

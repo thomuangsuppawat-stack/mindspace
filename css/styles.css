@@ -1,9 +1,9 @@
 /* =========================================
-   MindSpace (ฮีลใจ) - Figma Design System (White Main Theme)
-   - Base Theme: Clean Modern White (#FFFFFF / #F8FAFC)
-   - Signature Gold Accent: #F0B41D
-   - Brand Tri-Color Accents: #4CC689 (Green), #29A6E7 (Blue), #EC693B (Orange)
-   - Typography: 'Montserrat', 'Noto Sans Thai', 'Prompt', sans-serif
+   MindSpace (ฮีลใจ) - Healing White Theme + Modern Typography
+   - Base Theme: Calming Empathetic White & Emerald Mint (#FFFFFF / #F8FAF9 / #F0FDF4)
+   - Primary Healing Brand: Emerald (#10B981 / #059669 / #047857)
+   - Calming Soft Accents: Teal (#0D9488), Warm Peach/Amber (#F59E0B), Soft Sky (#0284C7), Caring Rose (#F43F5E)
+   - UI Front Typography: 'Montserrat' (Headings, Stats, Pills) + 'Noto Sans Thai' (Body & Reading)
    ========================================= */
 
 /* Smooth scroll */
@@ -12,16 +12,10 @@ html {
 }
 
 body {
-  background-color: #ffffff !important;
-  color: #1e293b !important;
+  background-color: #ffffff;
+  color: #1e293b;
   font-family: 'Montserrat', 'Noto Sans Thai', 'Prompt', sans-serif;
 }
-
-/* Brand Tri-Color Accents from Figma */
-.blue { color: #29A6E7; }
-.green { color: #4CC689; }
-.orange { color: #EC693B; }
-.gold { color: #F0B41D; }
 
 /* Custom Sleek Scrollbar */
 ::-webkit-scrollbar {
@@ -30,7 +24,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: #f8fafc;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -39,7 +33,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #F0B41D;
+  background: #10B981;
 }
 
 /* Hide scrollbar utility */
@@ -51,97 +45,163 @@ body {
   scrollbar-width: none;
 }
 
-/* Signature Figma Action Button (#F0B41D Gold) */
-.btn-figma-primary {
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+/* ================= MODERN BUTTONS ================= */
+.btn-primary, .btn-figma-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  background-color: #F0B41D !important;
-  color: #121212 !important;
-  font-weight: 800;
-  font-size: 15px;
-  padding: 13px 30px;
-  border-radius: 26px;
-  box-shadow: 0 4px 14px rgba(240, 180, 29, 0.35);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(135deg, #10B981 0%, #059669 100%) !important;
+  color: #ffffff !important;
+  font-family: 'Montserrat', 'Noto Sans Thai', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 12px 26px;
+  border-radius: 9999px;
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.28);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
   border: none;
   cursor: pointer;
 }
 
-.btn-figma-primary:hover {
-  background-color: #f5be2d !important;
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 24px rgba(240, 180, 29, 0.5);
+.btn-primary:hover, .btn-figma-primary:hover {
+  background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(16, 185, 129, 0.38);
 }
 
-.btn-figma-outline {
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #ECFDF5;
+  color: #065F46 !important;
+  font-family: 'Montserrat', 'Noto Sans Thai', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  padding: 11px 24px;
+  border-radius: 9999px;
+  border: 1px solid #A7F3D0;
+  transition: all 0.25s;
+}
+
+.btn-secondary:hover {
+  background-color: #D1FAE5;
+  color: #047857 !important;
+  transform: translateY(-1.5px);
+}
+
+.btn-outline, .btn-figma-outline {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   background-color: #ffffff;
-  color: #1e293b !important;
+  color: #334155 !important;
+  font-family: 'Montserrat', 'Noto Sans Thai', sans-serif;
   font-weight: 600;
   font-size: 14px;
-  padding: 10px 24px;
-  border-radius: 22px;
+  padding: 11px 24px;
+  border-radius: 9999px;
   border: 1px solid #e2e8f0;
-  transition: all 0.3s;
+  transition: all 0.25s;
 }
 
-.btn-figma-outline:hover {
-  border-color: #F0B41D;
-  color: #121212 !important;
-  background-color: #fffdf5;
+.btn-outline:hover, .btn-figma-outline:hover {
+  border-color: #10B981;
+  color: #059669 !important;
+  background-color: #f0fdf4;
+  transform: translateY(-1.5px);
 }
 
-/* Figma Card Style (Clean White Theme) */
-.figma-card {
+/* ================= CARDS & ELEVATION ================= */
+.heal-card, .figma-card {
   background-color: #ffffff;
   border: 1px solid #e2e8f0;
   border-radius: 24px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.figma-card:hover {
+.heal-card:hover, .figma-card:hover {
   border-color: #cbd5e1;
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
 }
 
-/* Avatar Option selection */
+/* ================= FORM CONTROLS & SELECTION ================= */
 .avatar-opt.active-avatar {
-  border-color: #F0B41D !important;
-  background-color: #fff9e6 !important;
+  border-color: #10B981 !important;
+  background-color: #ECFDF5 !important;
   transform: scale(1.08);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
 }
 
-/* Mood Button selection */
 .mood-btn.active-mood {
-  border-color: #F0B41D !important;
-  background-color: #fff9e6 !important;
+  border-color: #10B981 !important;
+  background-color: #ECFDF5 !important;
   transform: translateY(-2px);
-  box-shadow: 0 4px 14px rgba(240, 180, 29, 0.25);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.2);
 }
 
-/* Factor chip active */
 .factor-chip.active-factor {
-  background-color: #F0B41D !important;
-  color: #121212 !important;
+  background-color: #D1FAE5 !important;
+  color: #065F46 !important;
+  border-color: #10B981 !important;
   font-weight: 700;
 }
 
-/* Filter chip active in Figma Style */
 .filter-chip.active-filter {
-  background-color: #F0B41D !important;
-  color: #121212 !important;
+  background-color: #059669 !important;
+  color: #ffffff !important;
   font-weight: 700;
-  box-shadow: 0 4px 12px rgba(240, 180, 29, 0.25);
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.28);
 }
 
-/* Heart pop animation */
+/* ================= SOUL POUR SPACE (ห้องเทความในใจ) ================= */
+.bar-tab.active-bar-tab {
+  background-color: #059669 !important;
+  color: #ffffff !important;
+  font-weight: 700;
+  box-shadow: 0 4px 14px rgba(5, 150, 105, 0.3);
+}
+
+.drink-choice.active-drink {
+  border-color: #10B981 !important;
+  background-color: #ECFDF5 !important;
+  box-shadow: 0 0 12px rgba(16, 185, 129, 0.18);
+}
+
+.pour-care-badge {
+  background: linear-gradient(135deg, #F59E0B, #EC693B);
+  color: #ffffff;
+  box-shadow: 0 2px 10px rgba(245, 158, 11, 0.3);
+  animation: pulseSoft 2.5s infinite ease-in-out;
+}
+
+/* Clinking sound animation */
+@keyframes clinkGlass {
+  0% { transform: rotate(0deg) scale(1); }
+  25% { transform: rotate(-15deg) scale(1.2); }
+  50% { transform: rotate(15deg) scale(1.2); }
+  75% { transform: rotate(-5deg) scale(1.1); }
+  100% { transform: rotate(0deg) scale(1); }
+}
+
+.clink-animation {
+  animation: clinkGlass 0.5s ease-in-out;
+}
+
+/* ================= ANIMATIONS ================= */
 @keyframes heartPulse {
   0% { transform: scale(1); }
   50% { transform: scale(1.35); }
@@ -156,7 +216,7 @@ body {
 .typing-dot {
   width: 6px;
   height: 6px;
-  background-color: #F0B41D;
+  background-color: #10B981;
   border-radius: 50%;
   display: inline-block;
   animation: bounceDot 1.4s infinite ease-in-out both;
@@ -170,35 +230,18 @@ body {
   40% { transform: scale(1.0); }
 }
 
-/* Soul Pour Space (ห้องเทความในใจ) Styles */
-.bar-tab.active-bar-tab {
-  background-color: #F0B41D !important;
-  color: #121212 !important;
-  font-weight: 800;
-  box-shadow: 0 4px 14px rgba(240, 180, 29, 0.3);
+/* Breathing animation states */
+.breathe-inhale {
+  transform: scale(1.35) !important;
+  transition: transform 4s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
-.drink-choice.active-drink {
-  border-color: #F0B41D !important;
-  background-color: #fff9e6 !important;
-  box-shadow: 0 0 12px rgba(240, 180, 29, 0.2);
+.breathe-hold {
+  transform: scale(1.35) !important;
+  transition: transform 7s linear !important;
 }
 
-.pour-care-badge {
-  background: linear-gradient(135deg, #F0B41D, #EC693B);
-  color: #121212;
-  box-shadow: 0 2px 10px rgba(240, 180, 29, 0.3);
-  animation: pulseSoft 2.5s infinite ease-in-out;
-}
-
-@keyframes clinkGlass {
-  0% { transform: rotate(0deg) scale(1); }
-  25% { transform: rotate(-15deg) scale(1.2); }
-  50% { transform: rotate(15deg) scale(1.2); }
-  75% { transform: rotate(-5deg) scale(1.1); }
-  100% { transform: rotate(0deg) scale(1); }
-}
-
-.clink-animation {
-  animation: clinkGlass 0.5s ease-in-out;
+.breathe-exhale {
+  transform: scale(1.0) !important;
+  transition: transform 8s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
