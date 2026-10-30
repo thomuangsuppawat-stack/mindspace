@@ -47,6 +47,54 @@ const DEFAULT_VENTS = [
   }
 ];
 
+// Drink On Me Lounge Initial Messages
+const DEFAULT_LOUNGE_MESSAGES = [
+  {
+    id: "lounge_1",
+    user: "บาร์เทนเดอร์ใจดี",
+    avatar: "🍸",
+    drink: "🍵 ชาคาโมมายล์อุ่น",
+    table: "all",
+    content: "ยินดีต้อนรับสู่ Drink on Me Lounge ครับทุกคน คืนนี้ใครแบกอะไรมา วางไว้หน้าเคาน์เตอร์ได้เลยนะ สั่งเครื่องดื่มแล้วชนแก้วกันครับ 🥂",
+    treatedCount: 38,
+    isDrinkOnMe: true,
+    time: "20 นาทีที่แล้ว"
+  },
+  {
+    id: "lounge_2",
+    user: "ส้มจี๊ดหมดแรง",
+    avatar: "🐱",
+    drink: "☕ ลาเต้ฟองนุ่ม",
+    table: "burnout",
+    content: "สัปดาห์นี้ทำโปรเจกต์ไม่ได้นอนเลย พลังงานติดลบมาก แวะมาสั่งลาเต้ฟองนุ่มฮีลใจหน่อย ใครเหนื่อยเหมือนกัน ชนแก้วกันนะ ☕🥺",
+    treatedCount: 24,
+    isDrinkOnMe: false,
+    time: "15 นาทีที่แล้ว"
+  },
+  {
+    id: "lounge_3",
+    user: "นกฮูกนอนดึก",
+    avatar: "🦉",
+    drink: "🍷 ไวน์แดงไร้แอลกอฮอล์",
+    table: "midnight",
+    content: "ตีหนึ่งแล้วยังคิดมากเรื่องอนาคตอยู่เลย การเติบโตเป็นผู้ใหญ่มันไม่ง่ายเลยจริงๆ ขอแก้วนี้ Drink on Me ให้ทุกคนที่ยังนอนไม่หลับคืนนี้นะครับ 🍷✨",
+    treatedCount: 52,
+    isDrinkOnMe: true,
+    time: "8 นาทีที่แล้ว"
+  },
+  {
+    id: "lounge_4",
+    user: "หัวใจดวงเล็ก",
+    avatar: "🐰",
+    drink: "🥛 นมอุ่นผสมน้ำผึ้ง",
+    table: "heartbreak",
+    content: "เพิ่งแยกย้ายกับคนที่คิดว่าจะอยู่ด้วยกันไปตลอด... ข้างในมันโหวงมากเลย ขอนั่งตรงมุมเงียบๆ สักพักนะ",
+    treatedCount: 45,
+    isDrinkOnMe: false,
+    time: "3 นาทีที่แล้ว"
+  }
+];
+
 // App State
 let vents = [];
 let activeFilter = "all";
@@ -59,6 +107,14 @@ let audioContext = null;
 let isAudioPlaying = false;
 let noiseNode = null;
 let gainNode = null;
+
+// Drink On Me Lounge State
+let loungeMessages = [];
+let activeLoungeTable = "all";
+let selectedLoungeDrink = "🍵 ชาคาโมมายล์อุ่น";
+let totalDrinksTreatedCount = 486;
+let isLoungeMusicPlaying = false;
+let loungeMusicInterval = null;
 
 // ================= LIFECYCLE & INITIALIZATION =================
 document.addEventListener("DOMContentLoaded", () => {
@@ -80,7 +136,21 @@ document.addEventListener("DOMContentLoaded", () => {
     saveVentsToStorage();
   }
 
+  // Load Lounge Messages
+  const storedLounge = localStorage.getItem("mindspace_lounge_messages");
+  if (storedLounge) {
+    try {
+      loungeMessages = JSON.parse(storedLounge);
+    } catch (e) {
+      loungeMessages = [...DEFAULT_LOUNGE_MESSAGES];
+    }
+  } else {
+    loungeMessages = [...DEFAULT_LOUNGE_MESSAGES];
+    localStorage.setItem("mindspace_lounge_messages", JSON.stringify(loungeMessages));
+  }
+
   renderVents();
+  renderLoungeMessages();
   setupTextareaCounter();
   initMoodChart();
   setupMobileMenu();
@@ -838,6 +908,297 @@ function startCalmAmbientSound() {
   } catch (err) {
     console.warn("Web Audio not supported or blocked by browser policy:", err);
   }
+}
+
+// ================= DRINK ON ME LOUNGE CONTROLS =================
+function switchBarTable(table) {
+  activeLoungeTable = table;
+  const tabs = document.querySelectorAll("#loungeTableTabs .bar-tab");
+  tabs.forEach(t => {
+    if ((table === "all" && t.innerText.includes("โต๊ะบาร์รวม")) ||
+        (table === "burnout" && t.innerText.includes("คนหมดไฟ")) ||
+        (table === "midnight" && t.innerText.includes("ดึกดื่น")) ||
+        (table === "heartbreak" && t.innerText.includes("พักใจ"))) {
+      t.classList.add("active-bar-tab");
+      t.classList.remove("bg-slate-800/80", "text-slate-300");
+    } else {
+      t.classList.remove("active-bar-tab");
+      t.classList.add("bg-slate-800/80", "text-slate-300");
+    }
+  });
+  renderLoungeMessages();
+}
+
+function selectLoungeDrink(drinkName, tagDesc) {
+  selectedLoungeDrink = drinkName;
+  const badge = document.getElementById("loungeCurrentDrinkBadge");
+  if (badge) {
+    const parts = drinkName.split(" ");
+    badge.innerText = `${parts[0]} ${parts[1] || ''}`;
+  }
+
+  const buttons = document.querySelectorAll("#drinkMenuChoices .drink-choice");
+  buttons.forEach(b => {
+    if (b.innerText.includes(drinkName.split(" ")[1])) {
+      b.classList.add("active-drink");
+      b.classList.remove("border-slate-700/80", "bg-slate-900/40");
+      let check = b.querySelector(".text-amber-400");
+      if (!check) {
+        const span = document.createElement("span");
+        span.className = "text-amber-400 text-xs";
+        span.innerText = "✓";
+        b.appendChild(span);
+      }
+    } else {
+      b.classList.remove("active-drink");
+      b.classList.add("border-slate-700/80", "bg-slate-900/40");
+      let check = b.querySelector(".text-amber-400");
+      if (check) check.remove();
+    }
+  });
+}
+
+function handleSendLoungeMessage(event) {
+  event.preventDefault();
+  const input = document.getElementById("loungeMsgInput");
+  const content = input.value.trim();
+  if (!content) return;
+
+  const isDrinkOnMe = document.getElementById("treatAllCheckbox").checked;
+
+  const userAvatars = ["🐱", "🐰", "🦉", "🌻", "🦊", "🐶"];
+  const randomAvatar = userAvatars[Math.floor(Math.random() * userAvatars.length)];
+
+  const newMsg = {
+    id: "lounge_" + Date.now(),
+    user: "นักเดินทางพักใจ",
+    avatar: randomAvatar,
+    drink: selectedLoungeDrink,
+    table: activeLoungeTable === "all" ? "all" : activeLoungeTable,
+    content: content,
+    treatedCount: isDrinkOnMe ? 12 : 1,
+    isDrinkOnMe: isDrinkOnMe,
+    time: "เมื่อสักครู่"
+  };
+
+  loungeMessages.unshift(newMsg);
+  localStorage.setItem("mindspace_lounge_messages", JSON.stringify(loungeMessages));
+  renderLoungeMessages();
+
+  input.value = "";
+  document.getElementById("treatAllCheckbox").checked = false;
+
+  // Clinking sound effect & toast
+  playClinkSound();
+  if (isDrinkOnMe) {
+    showDrinkToast(`🌟 คุณประกาศ "Drink on Me!" เลี้ยงเครื่องดื่มทุกคนที่โต๊ะแล้ว! 🥂`);
+    if (window.confetti) {
+      confetti({
+        particleCount: 50,
+        spread: 70,
+        origin: { y: 0.5 },
+        colors: ['#F59E0B', '#F43F5E', '#FDE68A']
+      });
+    }
+  } else {
+    showDrinkToast(`🍸 เสิร์ฟ ${selectedLoungeDrink} วางบนโต๊ะบาร์แล้ว`);
+  }
+}
+
+function handleTreatDrink(messageId) {
+  const msg = loungeMessages.find(m => m.id === messageId);
+  if (!msg) return;
+
+  msg.treatedCount = (msg.treatedCount || 0) + 1;
+  totalDrinksTreatedCount += 1;
+  const totalEl = document.getElementById("totalDrinksTreated");
+  if (totalEl) totalEl.innerText = `${totalDrinksTreatedCount} แก้ว`;
+
+  localStorage.setItem("mindspace_lounge_messages", JSON.stringify(loungeMessages));
+  renderLoungeMessages();
+
+  // Glass clinking audio & feedback
+  playClinkSound();
+  showDrinkToast(`🥂 Drink on Me! คุณได้เลี้ยงเครื่องดื่มให้ "${msg.user}" แล้ว 💖`);
+
+  if (window.confetti) {
+    confetti({
+      particleCount: 20,
+      spread: 50,
+      origin: { y: 0.6 },
+      colors: ['#F59E0B', '#EC4899', '#FBBF24']
+    });
+  }
+}
+
+function showDrinkToast(text) {
+  const toast = document.getElementById("drinkToast");
+  const toastText = document.getElementById("drinkToastText");
+  if (!toast || !toastText) return;
+
+  toastText.innerText = text;
+  toast.classList.remove("hidden");
+  setTimeout(() => {
+    toast.classList.add("hidden");
+  }, 3500);
+}
+
+function renderLoungeMessages() {
+  const container = document.getElementById("loungeMessagesStream");
+  if (!container) return;
+
+  const filtered = activeLoungeTable === "all"
+    ? loungeMessages
+    : loungeMessages.filter(m => m.table === activeLoungeTable || m.table === "all");
+
+  if (filtered.length === 0) {
+    container.innerHTML = `
+      <div class="py-16 text-center text-slate-500">
+        <span class="text-3xl block mb-2">🕯️</span>
+        <p class="text-sm">โต๊ะนี้ยังว่างอยู่ นั่งลงเป็นคนแรกแล้วส่งเสียงคุยกันได้เลยนะ</p>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = filtered.map(item => `
+    <div class="p-4 rounded-2xl ${item.isDrinkOnMe ? 'bg-gradient-to-r from-amber-500/15 via-rose-500/10 to-slate-900/90 border border-amber-400/50' : 'bg-slate-900/70 border border-slate-700/60'} hover:border-amber-400/40 transition-all flex flex-col justify-between">
+      <div class="flex items-start justify-between gap-3 mb-2.5">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-lg shrink-0">
+            ${item.avatar || '🍸'}
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-bold text-xs text-slate-100">${escapeHtml(item.user)}</span>
+              ${item.isDrinkOnMe ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold drink-on-me-badge">🌟 Drink on Me!</span>' : ''}
+            </div>
+            <span class="text-[10px] text-slate-400">${item.time}</span>
+          </div>
+        </div>
+
+        <!-- Drink Badge -->
+        <span class="text-[11px] px-2.5 py-1 rounded-xl bg-slate-800 text-amber-300 border border-amber-400/30 flex items-center gap-1 shrink-0">
+          ${item.drink}
+        </span>
+      </div>
+
+      <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-body whitespace-pre-line mb-3">
+        ${escapeHtml(item.content)}
+      </p>
+
+      <div class="pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-xs">
+        <span class="text-[11px] text-slate-400">
+          🥂 เลี้ยงแล้ว: <strong class="text-amber-300 font-semibold">${item.treatedCount || 0} แก้ว</strong>
+        </span>
+
+        <button onclick="handleTreatDrink('${item.id}')" class="px-3.5 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500 text-amber-300 hover:text-slate-950 border border-amber-400/40 font-semibold text-xs transition-all flex items-center gap-1.5 active:scale-95">
+          <span>🍻 Drink on Me!</span>
+        </button>
+      </div>
+    </div>
+  `).join("");
+}
+
+// Procedural Glass Clinking Sound Synthesizer
+function playClinkSound() {
+  try {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    const ctx = audioContext || new AudioContext();
+    if (ctx.state === "suspended") ctx.resume();
+
+    // High harmonic bell/glass resonance
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = "sine";
+    osc.frequency.setValueAtTime(1800, ctx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(2400, ctx.currentTime + 0.08);
+
+    gain.gain.setValueAtTime(0.2, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.6);
+
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + 0.6);
+  } catch (e) {}
+}
+
+// Procedural Cozy Bar Ambient Lo-Fi Jazz Synthesizer
+function toggleLoungeAmbientMusic() {
+  const btnLabel = document.getElementById("loungeMusicLabel");
+  const btnIcon = document.getElementById("loungeMusicIcon");
+
+  if (isLoungeMusicPlaying) {
+    if (loungeMusicInterval) clearInterval(loungeMusicInterval);
+    isLoungeMusicPlaying = false;
+    btnLabel.innerText = "เปิดดนตรีบาร์ Lo-Fi อบอุ่น";
+    if (window.lucide) {
+      btnIcon.setAttribute("data-lucide", "music");
+      window.lucide.createIcons();
+    }
+  } else {
+    isLoungeMusicPlaying = true;
+    btnLabel.innerText = "หยุดดนตรีบาร์";
+    if (window.lucide) {
+      btnIcon.setAttribute("data-lucide", "volume-x");
+      window.lucide.createIcons();
+    }
+    startLoungeLoFiChords();
+  }
+}
+
+function startLoungeLoFiChords() {
+  const AudioContext = window.AudioContext || window.webkitAudioContext;
+  if (!audioContext) audioContext = new AudioContext();
+  if (audioContext.state === "suspended") audioContext.resume();
+
+  // Cozy Jazzy chord progressions (Fmaj7, Dm9, Gm7, C7b9)
+  const chords = [
+    [174.61, 220.00, 261.63, 329.63], // Fmaj7
+    [146.83, 220.00, 261.63, 329.63], // Dm9
+    [196.00, 233.08, 293.66, 349.23], // Gm7
+    [130.81, 196.00, 246.94, 311.13]  // C7b9
+  ];
+
+  let chordIndex = 0;
+
+  const playChord = () => {
+    if (!isLoungeMusicPlaying) return;
+    const currentNotes = chords[chordIndex];
+    chordIndex = (chordIndex + 1) % chords.length;
+
+    currentNotes.forEach((freq, i) => {
+      setTimeout(() => {
+        if (!isLoungeMusicPlaying) return;
+        try {
+          const osc = audioContext.createOscillator();
+          const gain = audioContext.createGain();
+          const filter = audioContext.createBiquadFilter();
+
+          osc.type = "triangle";
+          osc.frequency.setValueAtTime(freq, audioContext.currentTime);
+
+          filter.type = "lowpass";
+          filter.frequency.setValueAtTime(800, audioContext.currentTime);
+
+          gain.gain.setValueAtTime(0.001, audioContext.currentTime);
+          gain.gain.linearRampToValueAtTime(0.04, audioContext.currentTime + 0.3);
+          gain.gain.exponentialRampToValueAtTime(0.0001, audioContext.currentTime + 3.2);
+
+          osc.connect(filter);
+          filter.connect(gain);
+          gain.connect(audioContext.destination);
+
+          osc.start();
+          osc.stop(audioContext.currentTime + 3.3);
+        } catch (e) {}
+      }, i * 60);
+    });
+  };
+
+  playChord();
+  loungeMusicInterval = setInterval(playChord, 3500);
 }
 
 // ================= MODAL CONTROLS =================

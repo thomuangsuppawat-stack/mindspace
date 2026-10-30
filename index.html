@@ -98,6 +98,10 @@
           <i data-lucide="message-square-heart" class="w-4 h-4 text-emerald-600"></i>
           <span>กำแพงฮีลใจ</span>
         </a>
+        <a href="#drink-on-me" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-amber-600 hover:bg-amber-50/80 transition-all flex items-center gap-2">
+          <i data-lucide="wine" class="w-4 h-4 text-amber-500"></i>
+          <span>บาร์ Drink on Me</span>
+        </a>
         <a href="#ai-companion" class="nav-btn px-3.5 py-2 rounded-xl text-sm font-medium text-slate-600 hover:text-emerald-700 hover:bg-emerald-50/80 transition-all flex items-center gap-2">
           <i data-lucide="sparkles" class="w-4 h-4 text-teal-600"></i>
           <span>น้องใจดี (AI)</span>
@@ -141,6 +145,7 @@
     <!-- Mobile Drawer -->
     <div id="mobileMenu" class="md:hidden hidden border-t border-slate-100 bg-white/95 px-4 pt-2 pb-4 space-y-1 shadow-lg">
       <a href="#vent-wall" class="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-emerald-50">กำแพงฮีลใจ (Vent Wall)</a>
+      <a href="#drink-on-me" class="block px-3 py-2.5 rounded-lg text-sm font-medium text-amber-700 hover:bg-amber-50">🍸 บาร์พักใจ (Drink on Me Lounge)</a>
       <a href="#ai-companion" class="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-emerald-50">น้องใจดี AI ผู้รับฟัง</a>
       <a href="#mood-tracker" class="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-emerald-50">เช็กอินอารมณ์ประจำวัน</a>
       <a href="#breathe-space" class="block px-3 py-2.5 rounded-lg text-sm font-medium text-slate-700 hover:bg-emerald-50">ฝึกหายใจผ่อนคลาย (4-7-8)</a>
@@ -305,6 +310,198 @@
           <div id="ventCardsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <!-- Dynamically Rendered via JS -->
           </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= SECTION: DRINK ON ME LOUNGE (บาร์พักใจแลกเปลี่ยนความรู้สึก) ================= -->
+  <section id="drink-on-me" class="py-20 bg-gradient-to-b from-slate-900 via-[#131b2e] to-slate-900 text-slate-100 scroll-mt-18 relative overflow-hidden">
+    <!-- Ambient Neon Bar Background Lights -->
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-32 -right-32 w-96 h-96 bg-rose-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Lounge Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-amber-500/15 border border-amber-500/30 text-amber-300 text-xs font-semibold mb-3">
+            <span>🍸 DRINK ON ME LOUNGE</span>
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-ping"></span>
+            <span>บาร์พักใจเปิดตลอดคืน</span>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            เหนื่อยไหมคืนนี้? <span class="bg-gradient-to-r from-amber-300 via-rose-300 to-amber-200 bg-clip-text text-transparent">สั่งเครื่องดื่มแล้วมาคุยกัน</span>
+          </h2>
+          <p class="text-slate-400 text-sm mt-2 max-w-2xl font-body">
+            พื้นที่แลกเปลี่ยนและพูดคุยระบายฟีลนั่งหน้าบาร์ยามค่ำคืน สั่งเครื่องดื่มจำลอง ระบายสิ่งที่อยู่ในใจ และกด <strong>"Drink on Me! (เลี้ยงเครื่องดื่ม)"</strong> ส่งต่อความอบอุ่นให้เพื่อนร่วมโต๊ะ
+          </p>
+        </div>
+
+        <!-- Ambient Sound Controls -->
+        <div class="flex items-center gap-2">
+          <button id="loungeMusicBtn" onclick="toggleLoungeAmbientMusic()" class="px-4 py-2.5 rounded-2xl bg-white/10 hover:bg-white/15 border border-white/10 text-amber-200 text-xs font-semibold transition-all flex items-center gap-2 shadow-lg backdrop-blur-xs">
+            <i data-lucide="music" id="loungeMusicIcon" class="w-4 h-4 text-amber-400"></i>
+            <span id="loungeMusicLabel">เปิดดนตรีบาร์ Lo-Fi อบอุ่น</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Bar Table Category Tabs -->
+      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-3 mb-6" id="loungeTableTabs">
+        <button onclick="switchBarTable('all')" class="bar-tab active-bar-tab shrink-0 px-4 py-2 rounded-2xl text-xs font-semibold bg-amber-500 text-slate-950 flex items-center gap-1.5 shadow-md">
+          <span>🍸 โต๊ะบาร์รวม (Open Bar)</span>
+        </button>
+        <button onclick="switchBarTable('burnout')" class="bar-tab shrink-0 px-4 py-2 rounded-2xl text-xs font-semibold bg-slate-800/80 hover:bg-slate-700 text-slate-300 flex items-center gap-1.5">
+          <span>🕯️ โต๊ะคนหมดไฟ & การงาน</span>
+        </button>
+        <button onclick="switchBarTable('midnight')" class="bar-tab shrink-0 px-4 py-2 rounded-2xl text-xs font-semibold bg-slate-800/80 hover:bg-slate-700 text-slate-300 flex items-center gap-1.5">
+          <span>🌙 โต๊ะดึกดื่นนอนไม่หลับ</span>
+        </button>
+        <button onclick="switchBarTable('heartbreak')" class="bar-tab shrink-0 px-4 py-2 rounded-2xl text-xs font-semibold bg-slate-800/80 hover:bg-slate-700 text-slate-300 flex items-center gap-1.5">
+          <span>💔 โต๊ะพักใจ & ความรัก</span>
+        </button>
+      </div>
+
+      <!-- Main Lounge Frame (Grid: Left is Chat Feed, Right is Bar Menu & Order) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Chat Feed & Discussion (8 cols on lg) -->
+        <div class="lg:col-span-8 bg-slate-800/60 backdrop-blur-md rounded-3xl border border-slate-700/60 p-5 sm:p-6 shadow-2xl flex flex-col h-[600px]">
+          
+          <!-- Lounge Room Top Bar -->
+          <div class="pb-3 border-b border-slate-700/60 flex items-center justify-between text-xs text-slate-400 mb-4">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span id="loungeOnlineCount" class="font-medium text-slate-200">28 คนกำลังนั่งพักอยู่ที่บาร์นี้</span>
+            </div>
+            <span class="text-[11px] text-amber-300/80">🍹 ทุกคนสามารถกดเลี้ยงเครื่องดื่มให้กันได้</span>
+          </div>
+
+          <!-- Messages Stream Container -->
+          <div id="loungeMessagesStream" class="flex-1 overflow-y-auto space-y-4 pr-1">
+            <!-- Dynamically populated via JS -->
+          </div>
+
+          <!-- Quick Toast Alert when someone treats drink -->
+          <div id="drinkToast" class="hidden my-2 py-2 px-3 rounded-xl bg-gradient-to-r from-amber-500/20 to-rose-500/20 border border-amber-400/40 text-amber-200 text-xs flex items-center justify-between animate-bounce">
+            <span id="drinkToastText">🥂 มีคนเลี้ยงเครื่องดื่ม "Drink on Me!" ให้เพื่อนร่วมโต๊ะ!</span>
+            <span class="text-sm">✨</span>
+          </div>
+
+          <!-- Chat Input inside Lounge -->
+          <form id="loungeChatForm" onsubmit="handleSendLoungeMessage(event)" class="pt-3 border-t border-slate-700/60 flex items-center gap-2">
+            <div class="relative flex-1">
+              <input type="text" id="loungeMsgInput" required placeholder="นั่งลงที่เคาน์เตอร์บาร์แล้วพิมพ์เรื่องที่อยากแชร์..." class="w-full px-4 py-3 rounded-2xl bg-slate-900/80 border border-slate-700 focus:outline-none focus:border-amber-400 text-sm text-slate-100 placeholder:text-slate-500 font-body">
+              <span id="loungeCurrentDrinkBadge" class="absolute right-3 top-1/2 -translate-y-1/2 text-xs bg-slate-800 text-amber-300 border border-amber-400/30 px-2 py-0.5 rounded-lg flex items-center gap-1">
+                🍵 ชาคาโมมายล์
+              </span>
+            </div>
+            <button type="submit" class="px-5 py-3 rounded-2xl bg-gradient-to-r from-amber-500 to-rose-500 hover:from-amber-600 hover:to-rose-600 text-slate-950 font-bold text-xs sm:text-sm shadow-md transition-all flex items-center gap-1.5 shrink-0">
+              <span>ส่งเสียง</span>
+              <i data-lucide="send" class="w-4 h-4"></i>
+            </button>
+          </form>
+
+        </div>
+
+        <!-- Right Bar Menu & Order Section (4 cols on lg) -->
+        <div class="lg:col-span-4 space-y-5">
+          
+          <!-- Drink Selector Card -->
+          <div class="bg-slate-800/60 backdrop-blur-md rounded-3xl border border-slate-700/60 p-5 sm:p-6 shadow-xl">
+            <div class="flex items-center justify-between mb-4">
+              <h3 class="font-bold text-white text-base flex items-center gap-2">
+                <i data-lucide="glass-water" class="w-4 h-4 text-amber-400"></i>
+                <span>เมนูเครื่องดื่มของคุณคืนนี้</span>
+              </h3>
+              <span class="text-[10px] bg-amber-400/20 text-amber-300 px-2 py-0.5 rounded-full font-semibold">Free on house</span>
+            </div>
+
+            <p class="text-xs text-slate-400 mb-4 leading-relaxed">
+              เลือกเครื่องดื่มเพื่อสะท้อนอารมณ์ของคุณ เมื่อคุณแชร์เรื่องราว เครื่องดื่มนี้จะแสดงอยู่ข้างชื่อของคุณ
+            </p>
+
+            <!-- Drink Choices List -->
+            <div class="space-y-2" id="drinkMenuChoices">
+              
+              <button type="button" onclick="selectLoungeDrink('🍵 ชาคาโมมายล์อุ่น', 'ผ่อนคลายกล้ามเนื้อ หลับสบาย')" class="drink-choice active-drink w-full p-2.5 rounded-2xl bg-slate-900/90 border-2 border-amber-400 text-left flex items-center justify-between transition-all">
+                <div class="flex items-center gap-2.5">
+                  <span class="text-xl">🍵</span>
+                  <div>
+                    <span class="text-xs font-bold text-white block">ชาคาโมมายล์อุ่น</span>
+                    <span class="text-[10px] text-slate-400">สำหรับคนที่อยากปล่อยวางและพักผ่อน</span>
+                  </div>
+                </div>
+                <span class="text-amber-400 text-xs">✓</span>
+              </button>
+
+              <button type="button" onclick="selectLoungeDrink('☕ ลาเต้ฟองนุ่ม', 'เติมความอุ่นใจ')" class="drink-choice w-full p-2.5 rounded-2xl bg-slate-900/40 border border-slate-700/80 hover:border-slate-600 text-left flex items-center justify-between transition-all">
+                <div class="flex items-center gap-2.5">
+                  <span class="text-xl">☕</span>
+                  <div>
+                    <span class="text-xs font-bold text-white block">ลาเต้ฟองนุ่ม</span>
+                    <span class="text-[10px] text-slate-400">สำหรับคนหมดไฟ เติมพลังให้ใจ</span>
+                  </div>
+                </div>
+              </button>
+
+              <button type="button" onclick="selectLoungeDrink('🍹 ม็อกเทลยูซุโซดา', 'สดชื่น ซ่า โล่งใจ')" class="drink-choice w-full p-2.5 rounded-2xl bg-slate-900/40 border border-slate-700/80 hover:border-slate-600 text-left flex items-center justify-between transition-all">
+                <div class="flex items-center gap-2.5">
+                  <span class="text-xl">🍹</span>
+                  <div>
+                    <span class="text-xs font-bold text-white block">ม็อกเทลยูซุโซดา</span>
+                    <span class="text-[10px] text-slate-400">สำหรับคนอึดอัด อยากระบายให้หมด</span>
+                  </div>
+                </div>
+              </button>
+
+              <button type="button" onclick="selectLoungeDrink('🥛 นมอุ่นผสมน้ำผึ้ง', 'โอบกอดใจ')" class="drink-choice w-full p-2.5 rounded-2xl bg-slate-900/40 border border-slate-700/80 hover:border-slate-600 text-left flex items-center justify-between transition-all">
+                <div class="flex items-center gap-2.5">
+                  <span class="text-xl">🥛</span>
+                  <div>
+                    <span class="text-xs font-bold text-white block">นมอุ่นผสมน้ำผึ้ง</span>
+                    <span class="text-[10px] text-slate-400">สำหรับคนที่ต้องการอ้อมกอดอุ่นๆ</span>
+                  </div>
+                </div>
+              </button>
+
+              <button type="button" onclick="selectLoungeDrink('🍷 ไวน์แดงไร้แอลกอฮอล์', 'ดนตรีเคล้าอารมณ์')" class="drink-choice w-full p-2.5 rounded-2xl bg-slate-900/40 border border-slate-700/80 hover:border-slate-600 text-left flex items-center justify-between transition-all">
+                <div class="flex items-center gap-2.5">
+                  <span class="text-xl">🍷</span>
+                  <div>
+                    <span class="text-xs font-bold text-white block">ไวน์แดงไร้แอลกอฮอล์</span>
+                    <span class="text-[10px] text-slate-400">สำหรับคนเหงา นั่งฟังเพลงยามดึก</span>
+                  </div>
+                </div>
+              </button>
+
+            </div>
+
+            <!-- "Drink on Me" treat toggle -->
+            <div class="mt-4 pt-4 border-t border-slate-700/60">
+              <label class="flex items-center gap-2.5 cursor-pointer text-xs text-amber-200">
+                <input type="checkbox" id="treatAllCheckbox" class="w-4 h-4 rounded text-amber-500 focus:ring-amber-400 bg-slate-900 border-slate-700">
+                <span>🌟 แก้วนี้ Drink on Me! (ขอเลี้ยงเพื่อนทุกคนในห้อง)</span>
+              </label>
+            </div>
+
+          </div>
+
+          <!-- Total Drinks Treated Counter Card -->
+          <div class="bg-gradient-to-r from-amber-500/10 via-rose-500/10 to-amber-500/10 border border-amber-500/20 rounded-3xl p-5 flex items-center gap-4">
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/20 text-amber-300 flex items-center justify-center text-2xl shrink-0">
+              🥂
+            </div>
+            <div>
+              <div class="text-xl font-extrabold text-white" id="totalDrinksTreated">486 แก้ว</div>
+              <p class="text-xs text-slate-400 mt-0.5">เครื่องดื่มที่ถูกส่งเลี้ยงส่งกำลังใจให้กันในบาร์นี้</p>
+            </div>
+          </div>
+
         </div>
 
       </div>
