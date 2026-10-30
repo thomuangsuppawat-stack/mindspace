@@ -2750,6 +2750,7 @@ let currentPairPartner = null;
 let pairChatHistory = [];
 let isPartnerTyping = false;
 let pairSearchTimeout = null;
+let pairRouletteInterval = null;
 
 function openSoulMatchModal() {
   const modal = document.getElementById("soulMatchModal");
@@ -2776,6 +2777,10 @@ function closeSoulMatchModal() {
   if (pairSearchTimeout) {
     clearTimeout(pairSearchTimeout);
     pairSearchTimeout = null;
+  }
+  if (pairRouletteInterval) {
+    clearInterval(pairRouletteInterval);
+    pairRouletteInterval = null;
   }
 
   const modal = document.getElementById("soulMatchModal");
@@ -2890,7 +2895,99 @@ function cancelSoulMatchSearch() {
     clearTimeout(pairSearchTimeout);
     pairSearchTimeout = null;
   }
+  if (pairRouletteInterval) {
+    clearInterval(pairRouletteInterval);
+    pairRouletteInterval = null;
+  }
   openSoulMatchModal();
+}
+
+// 🎲 ระบบสุ่มโต๊ะพักใจด่วน (Instant Table Roulette & Blind Match)
+function quickRandomTable() {
+  if (pairSearchTimeout) {
+    clearTimeout(pairSearchTimeout);
+    pairSearchTimeout = null;
+  }
+  if (pairRouletteInterval) {
+    clearInterval(pairRouletteInterval);
+    pairRouletteInterval = null;
+  }
+
+  openSoulMatchModal();
+
+  const stepSetup = document.getElementById("soulMatchStepSetup");
+  const stepSearching = document.getElementById("soulMatchStepSearching");
+  const statusText = document.getElementById("searchRadarStatusText");
+  const subText = document.getElementById("searchRadarSubtext");
+
+  if (stepSetup) stepSetup.classList.add("hidden");
+  if (stepSearching) stepSearching.classList.remove("hidden");
+
+  const drinks = [
+    "🍵 ชาคาโมมายล์อุ่น",
+    "☕ ลาเต้ฟองนุ่ม",
+    "🍹 ม็อกเทลยูซุโซดา",
+    "🥛 นมอุ่นผสมน้ำผึ้ง",
+    "🍷 ไวน์แดงไร้แอลกอฮอล์"
+  ];
+
+  const topics = [
+    "🕯️ มุมคนหมดไฟ & แบกงาน",
+    "🌙 มุมดึกดื่นนอนไม่หลับ",
+    "💔 มุมพักใจ & ปลดล็อกความเศร้า",
+    "🐾 เคมี MBTI สัตว์ฮีลใจ",
+    "🍃 พื้นที่ปลอดภัย รับฟังทุกความรู้สึก"
+  ];
+
+  const partner = SOUL_MATCH_PARTNERS[Math.floor(Math.random() * SOUL_MATCH_PARTNERS.length)];
+  const randomDrink = drinks[Math.floor(Math.random() * drinks.length)];
+  const randomTableNum = `🎲 โต๊ะสุ่มพิเศษ #${Math.floor(Math.random() * 20) + 1}`;
+
+  let tick = 0;
+  playClinkSound();
+
+  // Fast Roulette Wheel / Dice Spin Animation with Sound Ticks
+  pairRouletteInterval = setInterval(() => {
+    tick++;
+    const tempPartner = SOUL_MATCH_PARTNERS[tick % SOUL_MATCH_PARTNERS.length];
+    const tempDrink = drinks[tick % drinks.length];
+    const tempTable = Math.floor(Math.random() * 20) + 1;
+    const tempTopic = topics[tick % topics.length];
+
+    if (statusText) {
+      statusText.innerHTML = `<span class="dice-spin text-2xl mr-1.5 inline-block">🎲</span> กำลังสุ่มโต๊ะพักใจ #${tempTable}...`;
+    }
+    if (subText) {
+      subText.innerHTML = `ตรวจพบคู่หู <strong class="text-amber-600">${tempPartner.avatar} ${tempPartner.name}</strong> • ${tempTopic} • เสิร์ฟ ${tempDrink}`;
+    }
+    if (tick % 2 === 0) {
+      playClinkSound();
+    }
+  }, 180);
+
+  pairSearchTimeout = setTimeout(() => {
+    if (pairRouletteInterval) {
+      clearInterval(pairRouletteInterval);
+      pairRouletteInterval = null;
+    }
+
+    const randomGreetings = [
+      `ยินดีด้วยครับ! 🎲 สุ่มโต๊ะหมุนมาเจอกับเราพอดี (${partner.name}) คืนนี้มีเรื่องอะไรในใจ มานั่งคุยจิบเครื่องดื่มด้วยกันนะ!`,
+      `โชคชะตาพาเรามาเจอกันที่โต๊ะสุ่มนี้พอดีเลย! เราชื่อ ${partner.name} คืนนี้มีอะไรอยากระบายหรืออยากให้เรารับฟัง เล่าได้เต็มที่เลยนะ 🎲✨`,
+      `เย้! 🎲 ลูกเต๋าพาคุณมานั่งที่โต๊ะนี้กับเรา (${partner.name}) วันนี้เหนื่อยไหม สั่ง ${randomDrink} มาไว้ให้แล้ว มาคุยกันนะ!`
+    ];
+    const greeting = randomGreetings[Math.floor(Math.random() * randomGreetings.length)];
+
+    setupPairTableSession(
+      partner,
+      greeting,
+      randomDrink,
+      partner.drink,
+      randomTableNum
+    );
+
+    showDrinkToast(`🎲 สุ่มสำเร็จ! ได้นั่ง ${randomTableNum} กับ "${partner.name}"`);
+  }, 1500);
 }
 
 function openDirectPairTable(loungeMessageId) {
