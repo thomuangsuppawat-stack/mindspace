@@ -361,19 +361,49 @@
         </div>
       </div>
 
+      <!-- 1-on-1 Soul Matching Highlight Banner (ไม่ใช่แค่ส่งแก้ว แต่จับคู่นั่งคุยกัน) -->
+      <div class="mb-6 p-4 sm:p-5 rounded-3xl bg-gradient-to-r from-amber-50 via-emerald-50/60 to-white border border-amber-200/90 shadow-2xs flex flex-col md:flex-row items-center justify-between gap-4">
+        <div class="flex items-center gap-3.5">
+          <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-400 to-orange-500 text-white flex items-center justify-center text-2xl shadow-md shrink-0">
+            🤝
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h4 class="text-sm sm:text-base font-extrabold text-slate-900 font-heading">
+                ระบบจับคู่โต๊ะพักใจ 1-on-1 (Soul Pair Match)
+              </h4>
+              <span class="px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 text-[10px] font-bold font-heading">จับคู่ผู้รับฟัง & ผู้ระบาย</span>
+            </div>
+            <p class="text-xs text-slate-600 font-body mt-0.5">
+              ไม่ใช่แค่ส่งแก้วไปเฉยๆ — นั่งลงคุยกับเพื่อนร่วมทาง 1 ต่อ 1 เพื่อระบายและรับฟังซึ่งกันและกันอย่างอบอุ่นในห้องส่วนตัว
+            </p>
+          </div>
+        </div>
+        <button onclick="openSoulMatchModal()" class="shrink-0 btn-primary px-5 py-2.5 rounded-full text-xs sm:text-sm font-bold font-heading flex items-center gap-2 shadow-md hover:-translate-y-0.5">
+          <span>🤝 เริ่มจับคู่หาเพื่อนพักใจ</span>
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </button>
+      </div>
+
       <!-- Bar Table Category Tabs (Modern White Pill Style) -->
-      <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-3 mb-6" id="loungeTableTabs">
-        <button onclick="switchBarTable('all')" class="bar-tab active-bar-tab shrink-0 px-4 py-2 rounded-full text-xs font-bold bg-emerald-600 text-white flex items-center gap-1.5 shadow-sm font-heading">
-          <span>☕ โต๊ะเทใจรวม</span>
-        </button>
-        <button onclick="switchBarTable('burnout')" class="bar-tab shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-white hover:bg-slate-50 text-slate-600 border border-slate-200 flex items-center gap-1.5 transition-all font-heading">
-          <span>🕯️ มุมคนหมดไฟ & แบกงาน</span>
-        </button>
-        <button onclick="switchBarTable('midnight')" class="bar-tab shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-white hover:bg-slate-50 text-slate-600 border border-slate-200 flex items-center gap-1.5 transition-all font-heading">
-          <span>🌙 มุมดึกดื่นนอนไม่หลับ</span>
-        </button>
-        <button onclick="switchBarTable('heartbreak')" class="bar-tab shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-white hover:bg-slate-50 text-slate-600 border border-slate-200 flex items-center gap-1.5 transition-all font-heading">
-          <span>💔 มุมพักใจ & ปลดล็อกความเศร้า</span>
+      <div class="flex items-center justify-between flex-wrap gap-2 pb-3 mb-6">
+        <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1" id="loungeTableTabs">
+          <button onclick="switchBarTable('all')" class="bar-tab active-bar-tab shrink-0 px-4 py-2 rounded-full text-xs font-bold bg-emerald-600 text-white flex items-center gap-1.5 shadow-sm font-heading">
+            <span>☕ โต๊ะเทใจรวม</span>
+          </button>
+          <button onclick="switchBarTable('burnout')" class="bar-tab shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-white hover:bg-slate-50 text-slate-600 border border-slate-200 flex items-center gap-1.5 transition-all font-heading">
+            <span>🕯️ มุมคนหมดไฟ & แบกงาน</span>
+          </button>
+          <button onclick="switchBarTable('midnight')" class="bar-tab shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-white hover:bg-slate-50 text-slate-600 border border-slate-200 flex items-center gap-1.5 transition-all font-heading">
+            <span>🌙 มุมดึกดื่นนอนไม่หลับ</span>
+          </button>
+          <button onclick="switchBarTable('heartbreak')" class="bar-tab shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-white hover:bg-slate-50 text-slate-600 border border-slate-200 flex items-center gap-1.5 transition-all font-heading">
+            <span>💔 มุมพักใจ & ปลดล็อกความเศร้า</span>
+          </button>
+        </div>
+
+        <button onclick="openSoulMatchModal()" class="shrink-0 px-4 py-2 rounded-full text-xs font-bold bg-amber-500 hover:bg-amber-600 text-white flex items-center gap-1.5 shadow-xs font-heading hover:-translate-y-0.5 transition-all">
+          <span>🤝 โต๊ะส่วนตัว 1-on-1</span>
         </button>
       </div>
 
@@ -1448,11 +1478,11 @@
               <div class="text-[10px] text-teal-700 mt-1 font-body">อ้อมกอด & หัวใจ</div>
             </div>
 
-            <!-- Metric 3: Drinks Treated -->
+            <!-- Metric 3: Drinks Treated & Peer Matches -->
             <div class="stats-card-accent p-4 rounded-2xl text-center">
               <div class="text-2xl font-extrabold text-amber-500 font-heading" id="userStatDrinksTreated">4 แก้ว</div>
-              <div class="text-xs font-bold text-slate-800 mt-0.5 font-heading">แก้วกำลังใจ</div>
-              <div class="text-[10px] text-amber-700 mt-1 font-body">ในห้องเทความในใจ</div>
+              <div class="text-xs font-bold text-slate-800 mt-0.5 font-heading">แก้ว & โต๊ะพักใจ</div>
+              <div class="text-[10px] text-amber-700 mt-1 font-body" id="userStatPeerMatches">🤝 โต๊ะ 1-on-1: 1 ครั้ง</div>
             </div>
 
             <!-- Metric 4: Breathing Zen -->
@@ -1520,6 +1550,246 @@
         <button onclick="closeProfileStatsModal()" class="btn-primary px-6 py-2 rounded-full text-xs font-bold font-heading">
           เรียบร้อย
         </button>
+      </div>
+
+  <!-- ================= SOUL MATCH 1-ON-1 MODAL (ระบบจับคู่โต๊ะพักใจ 2 คน) ================= -->
+  <div id="soulMatchModal" class="fixed inset-0 z-50 hidden bg-slate-950/75 backdrop-blur-xs flex items-center justify-center p-3 sm:p-4">
+    <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[92vh] overflow-hidden flex flex-col shadow-2xl border border-amber-200/80 animate-in fade-in duration-200">
+      
+      <!-- Modal Header -->
+      <div class="p-5 sm:p-6 bg-gradient-to-r from-amber-600 via-orange-600 to-amber-700 text-white flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-2xl bg-white/20 border border-white/30 flex items-center justify-center text-2xl shadow-sm shrink-0">
+            🤝
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 class="text-base sm:text-lg font-extrabold font-heading text-white">โต๊ะพักใจ 1-on-1 (Soul Pair Match)</h3>
+              <span class="px-2 py-0.5 rounded-full bg-white/20 text-amber-100 text-[10px] font-bold font-heading">เชื่อมใจสองคน</span>
+            </div>
+            <p class="text-xs text-amber-100 font-body">ไม่ใช่แค่ส่งแก้วเฉยๆ — แวะนั่งคุย รับฟัง และระบายความในใจกับเพื่อนร่วมทาง</p>
+          </div>
+        </div>
+        <button onclick="closeSoulMatchModal()" class="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-all">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- ============ PHASE 1: PREFERENCES & SETUP ============ -->
+      <div id="soulMatchStepSetup" class="p-6 overflow-y-auto space-y-6">
+        
+        <!-- Step 1: Role Selection -->
+        <div>
+          <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2.5 font-heading">
+            1. คืนนี้คุณอยากให้โต๊ะนี้เป็นพื้นที่แบบไหน? (Your Role)
+          </label>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+            <button type="button" onclick="setSoulMatchRole('listen')" id="matchRole_listen" class="match-role-btn active-role p-3.5 rounded-2xl border-2 border-amber-400 bg-amber-50/60 text-left transition-all">
+              <span class="text-2xl block mb-1">🎧</span>
+              <span class="text-xs font-bold text-slate-900 block font-heading">อยากเป็นผู้รับฟัง</span>
+              <span class="text-[10px] text-slate-500 block font-body mt-0.5">พร้อมโอบกอดและให้กำลังใจเพื่อน</span>
+            </button>
+            <button type="button" onclick="setSoulMatchRole('vent')" id="matchRole_vent" class="match-role-btn p-3.5 rounded-2xl border-2 border-slate-200 bg-white hover:border-slate-300 text-left transition-all">
+              <span class="text-2xl block mb-1">🗣️</span>
+              <span class="text-xs font-bold text-slate-900 block font-heading">อยากมีคนรับฟัง</span>
+              <span class="text-[10px] text-slate-500 block font-body mt-0.5">มีเรื่องอัดอั้นในใจ อยากเล่าให้ฟัง</span>
+            </button>
+            <button type="button" onclick="setSoulMatchRole('mutual')" id="matchRole_mutual" class="match-role-btn p-3.5 rounded-2xl border-2 border-slate-200 bg-white hover:border-slate-300 text-left transition-all">
+              <span class="text-2xl block mb-1">☕</span>
+              <span class="text-xs font-bold text-slate-900 block font-heading">แลกเปลี่ยนกัน</span>
+              <span class="text-[10px] text-slate-500 block font-body mt-0.5">นั่งคุยสบายๆ ผลัดกันฟังผลัดกันเล่า</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: Topic Selection -->
+        <div>
+          <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2.5 font-heading">
+            2. หัวข้อหรือบรรยากาศที่อยากคุย (Topic)
+          </label>
+          <div class="flex flex-wrap gap-2" id="soulMatchTopicsContainer">
+            <button type="button" onclick="setSoulMatchTopic('burnout')" id="matchTopic_burnout" class="match-topic-btn active-topic px-3.5 py-2 rounded-full border border-emerald-500 bg-emerald-50 text-emerald-800 text-xs font-bold transition-all font-heading">
+              🕯️ หมดไฟ & เครียดเรื่องงาน/การเรียน
+            </button>
+            <button type="button" onclick="setSoulMatchTopic('midnight')" id="matchTopic_midnight" class="match-topic-btn px-3.5 py-2 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-slate-300 text-xs font-medium transition-all font-heading">
+              🌙 นอนไม่หลับ คิดมากยามดึก
+            </button>
+            <button type="button" onclick="setSoulMatchTopic('heartbreak')" id="matchTopic_heartbreak" class="match-topic-btn px-3.5 py-2 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-slate-300 text-xs font-medium transition-all font-heading">
+              💔 พักใจจากความสัมพันธ์ / แผลใจ
+            </button>
+            <button type="button" onclick="setSoulMatchTopic('mbti')" id="matchTopic_mbti" class="match-topic-btn px-3.5 py-2 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-slate-300 text-xs font-medium transition-all font-heading">
+              🐾 เคมี MBTI & สัตว์ฮีลใจ
+            </button>
+            <button type="button" onclick="setSoulMatchTopic('general')" id="matchTopic_general" class="match-topic-btn px-3.5 py-2 rounded-full border border-slate-200 bg-white text-slate-600 hover:border-slate-300 text-xs font-medium transition-all font-heading">
+              🍃 สัพเพเหระ คุยผ่อนคลาย
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3: Select Welcome Drink for Table -->
+        <div>
+          <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2.5 font-heading">
+            3. เลือกเครื่องดื่มประจำโต๊ะที่จะเสิร์ฟให้เพื่อน (Welcome Drink)
+          </label>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            <button type="button" onclick="setSoulMatchDrink('🍵 ชาคาโมมายล์อุ่น')" id="matchDrink_chamomile" class="match-drink-btn p-2.5 rounded-xl border border-amber-400 bg-amber-50 text-slate-800 text-xs font-bold flex items-center gap-2 transition-all font-heading">
+              <span>🍵</span>
+              <span class="truncate">ชาคาโมมายล์อุ่น</span>
+            </button>
+            <button type="button" onclick="setSoulMatchDrink('☕ ลาเต้ฟองนุ่ม')" id="matchDrink_latte" class="match-drink-btn p-2.5 rounded-xl border border-slate-200 bg-white hover:border-slate-300 text-slate-700 text-xs font-medium flex items-center gap-2 transition-all font-heading">
+              <span>☕</span>
+              <span class="truncate">ลาเต้ฟองนุ่ม</span>
+            </button>
+            <button type="button" onclick="setSoulMatchDrink('🍹 ม็อกเทลยูซุโซดา')" id="matchDrink_yuzu" class="match-drink-btn p-2.5 rounded-xl border border-slate-200 bg-white hover:border-slate-300 text-slate-700 text-xs font-medium flex items-center gap-2 transition-all font-heading">
+              <span>🍹</span>
+              <span class="truncate">ม็อกเทลยูซุโซดา</span>
+            </button>
+            <button type="button" onclick="setSoulMatchDrink('🥛 นมอุ่นผสมน้ำผึ้ง')" id="matchDrink_milk" class="match-drink-btn p-2.5 rounded-xl border border-slate-200 bg-white hover:border-slate-300 text-slate-700 text-xs font-medium flex items-center gap-2 transition-all font-heading">
+              <span>🥛</span>
+              <span class="truncate">นมอุ่นผสมน้ำผึ้ง</span>
+            </button>
+            <button type="button" onclick="setSoulMatchDrink('🍷 ไวน์แดงไร้แอลกอฮอล์')" id="matchDrink_wine" class="match-drink-btn p-2.5 rounded-xl border border-slate-200 bg-white hover:border-slate-300 text-slate-700 text-xs font-medium flex items-center gap-2 transition-all font-heading">
+              <span>🍷</span>
+              <span class="truncate">ไวน์แดงไร้แอลกอฮอล์</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Safe Space Notice -->
+        <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-center gap-3 text-xs text-slate-600 font-body">
+          <i data-lucide="shield-check" class="w-5 h-5 text-emerald-600 shrink-0"></i>
+          <span>พื้นที่นี้ปลอดภัย 100% ไม่เปิดเผยตัวตน สามารถกดออกจากโต๊ะได้ตลอดเวลา</span>
+        </div>
+
+        <!-- Launch Matching Button -->
+        <button type="button" onclick="startSoulMatchSearch()" class="w-full btn-primary py-3.5 rounded-full text-sm font-bold font-heading flex items-center justify-center gap-2 shadow-lg shadow-emerald-200">
+          <i data-lucide="sparkles" class="w-4 h-4"></i>
+          <span>เริ่มค้นหาเพื่อนร่วมโต๊ะพักใจ (Start Matching)</span>
+        </button>
+
+      </div>
+
+      <!-- ============ PHASE 2: SEARCHING RADAR ANIMATION ============ -->
+      <div id="soulMatchStepSearching" class="hidden p-10 flex flex-col items-center justify-center text-center space-y-6">
+        
+        <!-- Concentric Pulsing Radar -->
+        <div class="relative w-44 h-44 flex items-center justify-center my-4">
+          <div class="absolute inset-0 rounded-full border-2 border-emerald-300 bg-emerald-100/30 radar-wave-1"></div>
+          <div class="absolute inset-0 rounded-full border-2 border-amber-300 bg-amber-100/30 radar-wave-2"></div>
+          <div class="absolute inset-0 rounded-full border-2 border-teal-300 bg-teal-100/20 radar-wave-3"></div>
+          <div class="relative w-20 h-20 rounded-full bg-gradient-to-tr from-emerald-500 via-teal-500 to-amber-500 flex items-center justify-center text-white text-3xl shadow-lg shadow-emerald-200">
+            🤝
+          </div>
+        </div>
+
+        <div>
+          <h4 class="text-lg font-extrabold text-slate-900 font-heading mb-1" id="searchRadarStatusText">
+            กำลังปรับคลื่นความถี่ค้นหาเพื่อนพักใจ...
+          </h4>
+          <p class="text-xs text-slate-500 font-body max-w-sm mx-auto" id="searchRadarSubtext">
+            กำลังจับคู่กับเพื่อนที่ต้องการคุยในหัวข้อเดียวกันและมีเวลาว่างพร้อมรับฟัง
+          </p>
+        </div>
+
+        <!-- Live Queue Count Indicator -->
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold font-heading">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+          <span>เพื่อนร่วมห้องกำลังรอคิว 18 คน</span>
+        </div>
+
+        <button type="button" onclick="cancelSoulMatchSearch()" class="btn-outline px-6 py-2 rounded-full text-xs font-bold font-heading text-slate-600">
+          ยกเลิกการค้นหา
+        </button>
+
+      </div>
+
+      <!-- ============ PHASE 3: 1-ON-1 COZY PRIVATE TABLE ============ -->
+      <div id="soulMatchStepChat" class="hidden flex flex-col h-[580px] bg-[#FAFBFB]">
+        
+        <!-- Table Header Bar -->
+        <div class="px-5 py-3.5 bg-white border-b border-slate-200 flex items-center justify-between shadow-2xs">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-amber-50 border border-amber-200 flex items-center justify-center text-2xl shadow-2xs shrink-0" id="pairPartnerAvatar">
+              🐰
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="font-extrabold text-sm text-slate-900 font-heading" id="pairPartnerName">กระต่ายปุยเมฆ</span>
+                <span class="text-[10px] font-bold px-2 py-0.2 rounded-full bg-emerald-100 text-emerald-800 font-heading" id="pairPartnerBadge">INFP • ผู้เยียวยาใจ</span>
+              </div>
+              <div class="flex items-center gap-1.5 text-[11px] text-emerald-700 font-body">
+                <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                <span id="pairPartnerStatusText">กำลังนั่งอยู่ตรงข้ามคุณที่โต๊ะ</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-2">
+            <button onclick="clinkPairGlasses()" class="px-3 py-1.5 rounded-full bg-amber-50 hover:bg-amber-100 border border-amber-300 text-amber-900 font-bold text-xs flex items-center gap-1.5 transition-all active:scale-95 shadow-2xs font-heading">
+              <span>🥂 ชนแก้ว</span>
+            </button>
+            <button onclick="endPairSession()" class="px-3 py-1.5 rounded-full bg-slate-100 hover:bg-rose-50 text-slate-600 hover:text-rose-700 border border-slate-200 hover:border-rose-200 font-bold text-xs transition-all font-heading">
+              <span>ออกจากโต๊ะ</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Drinks On Table Bar -->
+        <div class="px-5 py-2 bg-gradient-to-r from-amber-50/70 via-emerald-50/50 to-white border-b border-slate-200/70 flex items-center justify-between text-xs font-body">
+          <div class="flex items-center gap-3 truncate">
+            <span class="text-slate-500 text-[11px]">เครื่องดื่มบนโต๊ะ:</span>
+            <span class="font-semibold text-slate-800 flex items-center gap-1" id="pairMyDrinkDisplay">
+              คุณ: 🍵 ชาคาโมมายล์อุ่น
+            </span>
+            <span class="text-slate-300">⇄</span>
+            <span class="font-semibold text-amber-900 flex items-center gap-1" id="pairPartnerDrinkDisplay">
+              เพื่อน: ☕ ลาเต้ฟองนุ่ม
+            </span>
+          </div>
+          <span class="text-[10px] text-emerald-700 bg-white px-2 py-0.5 rounded-full border border-emerald-200 font-bold shrink-0 font-heading" id="pairTableNum">
+            🕯️ โต๊ะ #12
+          </span>
+        </div>
+
+        <!-- Chat Messages Feed -->
+        <div id="pairChatMessages" class="flex-1 overflow-y-auto p-4 sm:p-5 space-y-3.5">
+          <!-- Dynamically populated via JS -->
+        </div>
+
+        <!-- Icebreaker suggestions chips -->
+        <div class="px-4 py-2 bg-white border-t border-slate-100 overflow-x-auto no-scrollbar flex items-center gap-1.5 shrink-0" id="pairIcebreakersBar">
+          <span class="text-[11px] text-slate-400 font-heading shrink-0 mr-1">ชวนคุย:</span>
+          <button onclick="sendPairIcebreaker('เหนื่อยกับเรื่องอะไรมา เล่าให้เราฟังได้นะ 🫂')" class="shrink-0 px-2.5 py-1 rounded-full bg-slate-100 hover:bg-emerald-50 text-slate-700 hover:text-emerald-800 text-[11px] transition-all border border-slate-200 font-body">
+            เหนื่อยกับเรื่องอะไรมา เล่าให้เราฟังได้นะ 🫂
+          </button>
+          <button onclick="sendPairIcebreaker('จิบเครื่องดื่มอุ่นๆ ก่อนนะ ไม่ต้องรีบเลย ☕')" class="shrink-0 px-2.5 py-1 rounded-full bg-slate-100 hover:bg-amber-50 text-slate-700 hover:text-amber-800 text-[11px] transition-all border border-slate-200 font-body">
+            จิบเครื่องดื่มอุ่นๆ ก่อนนะ ไม่ต้องรีบเลย ☕
+          </button>
+          <button onclick="sendPairIcebreaker('ขอบคุณที่แวะมานั่งคุยเป็นเพื่อนกันในคืนนี้นะ ✨')" class="shrink-0 px-2.5 py-1 rounded-full bg-slate-100 hover:bg-teal-50 text-slate-700 hover:text-teal-800 text-[11px] transition-all border border-slate-200 font-body">
+            ขอบคุณที่แวะมานั่งคุยเป็นเพื่อนกันนะ ✨
+          </button>
+        </div>
+
+        <!-- Chat Input Form -->
+        <form onsubmit="handleSendPairMessage(event)" class="p-3 bg-white border-t border-slate-200 flex items-center gap-2">
+          <!-- Quick Reaction Buttons -->
+          <div class="flex items-center gap-1">
+            <button type="button" onclick="sendPairReaction('🫂')" title="ส่งกอด" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-emerald-100 flex items-center justify-center text-base transition-all">
+              🫂
+            </button>
+            <button type="button" onclick="sendPairReaction('💖')" title="ส่งหัวใจ" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-rose-100 flex items-center justify-center text-base transition-all">
+              💖
+            </button>
+          </div>
+
+          <input type="text" id="pairMsgInput" required placeholder="พิมพ์คุยกับเพื่อนที่โต๊ะนี้... (พื้นที่รับฟังอย่างปลอดภัย)" class="flex-1 px-4 py-2.5 rounded-full bg-slate-50 border border-slate-200 focus:bg-white focus:outline-none focus:border-emerald-500 text-xs sm:text-sm text-slate-800 font-body transition-all">
+          
+          <button type="submit" class="btn-primary px-4 sm:px-5 py-2.5 rounded-full text-xs font-bold font-heading flex items-center gap-1.5 shadow-sm">
+            <span>ส่ง</span>
+            <i data-lucide="send" class="w-3.5 h-3.5"></i>
+          </button>
+        </form>
+
       </div>
 
     </div>

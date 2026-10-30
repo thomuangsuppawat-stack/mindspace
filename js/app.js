@@ -123,6 +123,7 @@ const DEFAULT_USERS = [
       ventsCreated: 2,
       hugsGiven: 14,
       drinksTreated: 4,
+      peerMatchesCompleted: 1,
       breatheSessions: 3,
       breatheMinutes: 6
     },
@@ -138,6 +139,7 @@ const DEFAULT_USERS = [
       { id: "badge_streak_3", name: "สม่ำเสมอเป็นเลิศ 🔥", icon: "🔥", desc: "เช็กอินอารมณ์ติดต่อกันครบ 3 วัน", unlocked: true },
       { id: "badge_hug_giver", name: "สายซัพพอร์ต 🫂", icon: "🫂", desc: "ส่งอ้อมกอดและพลังใจให้เพื่อน 10+ ครั้ง", unlocked: true },
       { id: "badge_pour_care", name: "เจ้ามือใจดี ☕", icon: "☕", desc: "ส่งแก้วกำลังใจในห้องเทความในใจ", unlocked: true },
+      { id: "badge_soul_match", name: "คู่หูพักใจ 🤝", icon: "🤝", desc: "จับคู่โต๊ะพักใจ 1-on-1 สำเร็จและแลกเปลี่ยนความรู้สึก", unlocked: true },
       { id: "badge_breathe_zen", name: "จิตสงบนิ่ง 🧘‍♂️", icon: "🧘‍♂️", desc: "ฝึกหายใจแบบ 4-7-8 สะสม 3 ครั้ง", unlocked: true },
       { id: "badge_mbti_animal", name: "สัตว์ฮีลใจประจำตัว 🐾", icon: "🐾", desc: "ค้นพบสัตว์ประจำใจและกราฟพลังใจ 6 มิติ", unlocked: true }
     ]
@@ -168,6 +170,7 @@ const DEFAULT_USERS = [
       ventsCreated: 1,
       hugsGiven: 4,
       drinksTreated: 1,
+      peerMatchesCompleted: 0,
       breatheSessions: 1,
       breatheMinutes: 2
     },
@@ -180,6 +183,7 @@ const DEFAULT_USERS = [
       { id: "badge_streak_3", name: "สม่ำเสมอเป็นเลิศ 🔥", icon: "🔥", desc: "เช็กอินอารมณ์ติดต่อกันครบ 3 วัน", unlocked: false },
       { id: "badge_hug_giver", name: "สายซัพพอร์ต 🫂", icon: "🫂", desc: "ส่งอ้อมกอดและพลังใจให้เพื่อน 10+ ครั้ง", unlocked: false },
       { id: "badge_pour_care", name: "เจ้ามือใจดี ☕", icon: "☕", desc: "ส่งแก้วกำลังใจในห้องเทความในใจ", unlocked: true },
+      { id: "badge_soul_match", name: "คู่หูพักใจ 🤝", icon: "🤝", desc: "จับคู่โต๊ะพักใจ 1-on-1 สำเร็จและแลกเปลี่ยนความรู้สึก", unlocked: false },
       { id: "badge_breathe_zen", name: "จิตสงบนิ่ง 🧘‍♂️", icon: "🧘‍♂️", desc: "ฝึกหายใจแบบ 4-7-8 สะสม 3 ครั้ง", unlocked: false },
       { id: "badge_mbti_animal", name: "สัตว์ฮีลใจประจำตัว 🐾", icon: "🐾", desc: "ค้นพบสัตว์ประจำใจและกราฟพลังใจ 6 มิติ", unlocked: true }
     ]
@@ -1254,14 +1258,20 @@ function renderLoungeMessages() {
         ${escapeHtml(item.content)}
       </p>
 
-      <div class="pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs font-body">
+      <div class="pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs font-body flex-wrap gap-2">
         <span class="text-[11px] text-slate-500">
           ☕ ส่งกำลังใจแล้ว: <strong class="text-amber-800 font-bold font-heading">${item.treatedCount || 0} แก้ว</strong>
         </span>
 
-        <button onclick="handleTreatDrink('${item.id}')" class="px-3.5 py-1.5 rounded-full bg-amber-50 hover:bg-emerald-600 text-amber-900 hover:text-white border border-amber-300 hover:border-emerald-600 font-bold text-xs transition-all flex items-center gap-1.5 active:scale-95 shadow-2xs font-heading">
-          <span>☕ ส่งแก้วนี้แทนใจ</span>
-        </button>
+        <div class="flex items-center gap-1.5">
+          <button onclick="openDirectPairTable('${item.id}')" class="px-3 py-1.5 rounded-full bg-emerald-50 hover:bg-emerald-600 text-emerald-800 hover:text-white border border-emerald-300 hover:border-emerald-600 font-bold text-xs transition-all flex items-center gap-1 active:scale-95 shadow-2xs font-heading">
+            <span class="text-xs">🤝</span>
+            <span>ชวนคุย 1-on-1</span>
+          </button>
+          <button onclick="handleTreatDrink('${item.id}')" class="px-3 py-1.5 rounded-full bg-amber-50 hover:bg-amber-500 text-amber-900 hover:text-white border border-amber-300 hover:border-amber-500 font-bold text-xs transition-all flex items-center gap-1 active:scale-95 shadow-2xs font-heading">
+            <span>☕ ส่งแก้ว</span>
+          </button>
+        </div>
       </div>
     </div>
   `).join("");
@@ -1410,6 +1420,18 @@ function initAuthSystem() {
         desc: "ค้นพบสัตว์ประจำใจและกราฟพลังใจ 6 มิติ",
         unlocked: Boolean(u.animalArchetype)
       });
+    }
+    if (!u.badges.some(b => b.id === 'badge_soul_match')) {
+      u.badges.push({
+        id: "badge_soul_match",
+        name: "คู่หูพักใจ 🤝",
+        icon: "🤝",
+        desc: "จับคู่โต๊ะพักใจ 1-on-1 สำเร็จและแลกเปลี่ยนความรู้สึก",
+        unlocked: u.id === 'user_cat'
+      });
+    }
+    if (u.stats && u.stats.peerMatchesCompleted === undefined) {
+      u.stats.peerMatchesCompleted = (u.id === 'user_cat') ? 1 : 0;
     }
     if (!u.animalArchetype) {
       if (u.id === 'user_cat') {
@@ -1745,6 +1767,7 @@ function openProfileStatsModal() {
   const streakEl = document.getElementById("userStatStreak");
   const hugsEl = document.getElementById("userStatHugsGiven");
   const drinksEl = document.getElementById("userStatDrinksTreated");
+  const peerMatchesEl = document.getElementById("userStatPeerMatches");
   const minsEl = document.getElementById("userStatBreatheMins");
   const sessionsEl = document.getElementById("userStatBreatheSessions");
 
@@ -1752,6 +1775,7 @@ function openProfileStatsModal() {
   if (streakEl) streakEl.innerText = `🔥 ต่อเนื่อง ${currentUser.stats.streakDays || 1} วัน`;
   if (hugsEl) hugsEl.innerText = `${currentUser.stats.hugsGiven || 0} ครั้ง`;
   if (drinksEl) drinksEl.innerText = `${currentUser.stats.drinksTreated || 0} แก้ว`;
+  if (peerMatchesEl) peerMatchesEl.innerText = `🤝 โต๊ะ 1-on-1: ${currentUser.stats.peerMatchesCompleted || 0} ครั้ง`;
   if (minsEl) minsEl.innerText = `${currentUser.stats.breatheMinutes || 0} นาที`;
   if (sessionsEl) sessionsEl.innerText = `สะสม ${currentUser.stats.breatheSessions || 0} ครั้ง`;
 
@@ -1854,6 +1878,9 @@ function checkBadgeUnlocks() {
         b.unlocked = true;
         unlockedNew = b;
       } else if (b.id === "badge_breathe_zen" && currentUser.stats.breatheSessions >= 3) {
+        b.unlocked = true;
+        unlockedNew = b;
+      } else if (b.id === "badge_soul_match" && currentUser.stats.peerMatchesCompleted >= 1) {
         b.unlocked = true;
         unlockedNew = b;
       }
@@ -2611,4 +2638,532 @@ function shareMbtiCard() {
     showDrinkToast("✨ สามารถแคปหน้าจอเพื่อแชร์การ์ดสัตว์ฮีลใจได้เลยนะ!");
   }
 }
+
+// =========================================================================
+// 1-ON-1 SOUL PAIR MATCHING & PRIVATE COZY TABLE SYSTEM
+// =========================================================================
+
+const SOUL_MATCH_PARTNERS = [
+  {
+    id: "partner_owl",
+    name: "นกฮูกนอนดึก",
+    avatar: "🦉",
+    mbti: "INTJ",
+    badge: "INTJ • นกฮูกนักปราชญ์",
+    role: "นักรับฟังผู้มองทะลุปัญหา & เพื่อนคุยยามดึก",
+    drink: "🍷 ไวน์แดงไร้แอลกอฮอล์",
+    topics: ["midnight", "burnout", "general", "mbti"],
+    initialMessage: "สวัสดีครับ ดีใจที่ได้มานั่งโต๊ะเดียวกันนะ คืนนี้มีอะไรในใจที่คิดมากอยู่หรือเปล่า วางความกังวลลงก่อน แล้วเล่าให้ฟังได้เลยนะ เราพร้อมรับฟังครับ 🍷",
+    replies: [
+      "เข้าใจเลยครับ ความรู้สึกที่ต้องแบกความคาดหวังหรือคิดเรื่องอนาคตจนนอนไม่หลับ มันหนักจริงๆ นะ แต่การที่คุณผ่านแต่ละวันมาได้ คุณเก่งมากแล้วนะ",
+      "เรื่องนี้ไม่ต้องรีบหาทางออกให้สมบูรณ์แบบในคืนนี้ก็ได้นะ พักให้ใจได้หายใจก่อน ค่อยๆ ก้าวไปทีละขั้น เราอยู่ตรงนี้เป็นเพื่อนคุยเสมอครับ",
+      "จริงด้วยครับ บางทีการได้พูดออกมา มันช่วยคลี่คลายปมในหัวได้เยอะเลย ขอบคุณที่ไว้ใจและเล่าให้ฟังนะ ดื่มอะไรอุ่นๆ ก่อนครับ ☕"
+    ]
+  },
+  {
+    id: "partner_rabbit",
+    name: "กระต่ายปุยเมฆ",
+    avatar: "🐰",
+    mbti: "INFP",
+    badge: "INFP • น้องกระต่ายช่างฝัน",
+    role: "ผู้เยียวยาใจ & นักรับฟังที่อ่อนโยน",
+    drink: "🥛 นมอุ่นผสมน้ำผึ้ง",
+    topics: ["heartbreak", "burnout", "general", "mbti"],
+    initialMessage: "สวัสดีนะ แวะมานั่งพักด้วยกันตรงนี้ก่อนนะ... คืนนี้หัวใจเป็นอย่างไรบ้าง เหนื่อยมากไหม มีเรื่องอะไรอยากระบาย เล่าให้เราฟังได้หมดเลยนะ เราจะไม่ตัดสินเธอเลย 🐰🤍",
+    replies: [
+      "กอดๆ เธอนะ 🫂 ความเจ็บปวดหรือความเหนื่อยนี้มันจริงและมีค่ามาก ไม่ต้องแกล้งทำเป็นเข้มแข็งตลอดเวลาก็ได้นะ ร้องไห้หรือบ่นออกมาได้เลย",
+      "เราเข้าใจความรู้สึกโหวงๆ ในใจเลยนะ ขอบคุณที่เข้มแข็งมาจนถึงตอนนี้นะ จำไว้ว่าเธอไม่ได้อยู่คนเดียว ยังมีเราและคนที่ห่วงใยเธอเสมอนะ",
+      "ฟังแล้วรู้สึกอบอุ่นใจจัง ดีใจที่คืนนี้เราได้มาเจอกันที่โต๊ะนี้นะ คืนนี้ขอให้ความเหนื่อยล้าค่อยๆ จางไปนะ ✨"
+    ]
+  },
+  {
+    id: "partner_cat",
+    name: "น้องส้มจี๊ด",
+    avatar: "🐱",
+    mbti: "ISFP",
+    badge: "ISFP • แมวน้อยศิลปิน",
+    role: "ศิลปินรักอิสระ & สายชิลล์ฮีลใจ",
+    drink: "☕ ลาเต้ฟองนุ่ม",
+    topics: ["burnout", "general", "mbti"],
+    initialMessage: "เหมียวว ยินดีที่ได้คุยกันนะ! สัปดาห์นี้งานหรือการเรียนตึงมากใช่ไหม แวะมาสั่งลาเต้ฟองนุ่มจิบด้วยกันก่อน มีเรื่องอึดอัดอะไร เล่ามาได้เลยนะ 🐱☕",
+    replies: [
+      "โอ้โห ฟังแล้วเหนื่อยแทนเลย! พักก่อนเถอะนะ อย่าเพิ่งไปคิดเรื่องพรุ่งนี้มากเกินไป ชีวิตคนเราไม่ได้เกิดมาเพื่อทำงานอย่างเดียวนะ ต้องมีความสุขด้วย!",
+      "บางทีการปล่อยจอยแล้วบอกตัวเองว่า 'ช่างมันบ้างก็ได้' มันช่วยให้โล่งขึ้นเยอะจริงๆ นะ ลองสูดหายใจลึกๆ ดูนะ",
+      "ดีขึ้นแล้วเนอะ คืนนี้จิบลลาเต้อุ่นๆ แล้วคืนนี้อย่านอนดึกเกินไปล่ะ สัญญากันนะ 🐱✨"
+    ]
+  },
+  {
+    id: "partner_golden",
+    name: "โกลเด้นใจดี",
+    avatar: "🐶",
+    mbti: "ENFJ",
+    badge: "ENFJ • โกลเด้นผู้โอบอ้อม",
+    role: "เพื่อนแท้ผู้ซื่อสัตย์ & ผู้ส่งพลังบวก",
+    drink: "🍵 ชาคาโมมายล์อุ่น",
+    topics: ["burnout", "heartbreak", "midnight", "general", "mbti"],
+    initialMessage: "โฮ่ง! สวัสดีครับบ แวะมานั่งพักใจด้วยกันนะ! วันนี้คุณเจอด่านยากอะไรมาบ้าง เล่าให้ฟังได้เลยครับ โกลเด้นตัวนี้พร้อมส่งพลังใจและอยู่ข้างๆ คุณเสมอ! 🐶💛",
+    replies: [
+      "คุณทำดีที่สุดแล้วจริงๆ นะ! อย่าลืมใจดีกับตัวเองให้มากๆ โลกใบนี้อาจจะใจร้ายบ้างบางวัน แต่คุณมีคุณค่าในตัวเองเสมอครับ!",
+      "กอดโตๆ ให้เลยครับ 🫂🫂 ฟังเรื่องที่คุณเจอมาแล้วรู้สึกเลยว่าคุณมีความอดทนและจิตใจดีมากๆ ภูมิใจในตัวเองได้เลยนะ!",
+      "เย้ ดีใจที่ได้คุยกันครับ! ถ้าวันไหนรู้สึกเหงาหรือหมดพลังอีก แวะมานั่งโต๊ะนี้ได้ตลอดเลยนะ สู้ๆ นะครับ! 🌟"
+    ]
+  },
+  {
+    id: "partner_otter",
+    name: "นากน้อยร่าเริง",
+    avatar: "🦦",
+    mbti: "ENFP",
+    badge: "ENFP • นากน้อยร่าเริง",
+    role: "แสงตะวันผู้เติมพลัง & ปลุกรอยยิ้ม",
+    drink: "🍹 ม็อกเทลยูซุโซดา",
+    topics: ["burnout", "midnight", "general", "mbti"],
+    initialMessage: "ฮายยยย! ดีใจจังที่ได้จับคู่กับเธอ! คืนนี้เป็นยังไงบ้างเหรอ อยากระบาย อยากเล่า หรือแค่อยากมีเพื่อนคุยเล่น บอกได้หมดเลยนะ เราพร้อมแชร์ความสดใสให้เต็มที่! 🦦🍹",
+    replies: [
+      "อื้มมม เข้าใจที่สุดเลย! บางวันมันก็หม่นจนอยากแปลงร่างเป็นก้อนหิน แต่รู้ไหมว่าพรุ่งนี้ก็เป็นวันใหม่แล้วนะ!",
+      "ฮ่าๆ ชอบมุมมองของเธอจัง! ขอบคุณที่เปิดใจเล่าให้เราฟังนะ คุยกับเธอแล้วรู้สึกสบายใจมากเลย",
+      "ชนแก้วม็อกเทลกันนนน 🥂 คืนนี้ทิ้งเรื่องเครียดไว้ที่โต๊ะนี้นะ แล้วพรุ่งนี้ไปลุยกันต่อ!"
+    ]
+  },
+  {
+    id: "partner_wolf",
+    name: "หมาป่าเดียวดาย",
+    avatar: "🐺",
+    mbti: "ISTP",
+    badge: "ISTP • หมาป่าเดียวดาย",
+    role: "ผู้รับฟังที่สุขุม & พื้นที่สงบนิ่ง",
+    drink: "🍷 ไวน์แดงไร้แอลกอฮอล์",
+    topics: ["midnight", "general", "burnout"],
+    initialMessage: "สวัสดี... ยินดีที่ได้นั่งโต๊ะเดียวกันนะ เราไม่ใช่คนพูดเก่ง แต่เราพร้อมรับฟังทุกเรื่องที่คุณอยากพูดอย่างเงียบๆ และจริงใจ ไม่ต้องเกรงใจนะ 🐺",
+    replies: [
+      "บางครั้ง โลกภายนอกมันวุ่นวายและเรียกร้องจากเรามากเกินไปจริงๆ การได้หยุดนิ่งและไม่ตอบสนองใครสักพักคือสิ่งที่จำเป็นนะ",
+      "เราอยู่ตรงนี้ข้างๆ ไม่ต้องรีบเล่า ค่อยๆ จิบเครื่องดื่มไปนะ ถ้าอยากเงียบด้วยกันเฉยๆ ก็ไม่เป็นไรเลย",
+      "ขอบคุณที่เล่าให้ฟังนะ คุณรับมือกับเรื่องพวกนี้ได้ดีมากแล้ว อย่าลืมให้เครดิตตัวเองด้วยล่ะ"
+    ]
+  }
+];
+
+// Soul Match State
+let soulMatchSelectedRole = "listen";
+let soulMatchSelectedTopic = "burnout";
+let soulMatchSelectedDrink = "🍵 ชาคาโมมายล์อุ่น";
+let currentPairPartner = null;
+let pairChatHistory = [];
+let isPartnerTyping = false;
+let pairSearchTimeout = null;
+
+function openSoulMatchModal() {
+  const modal = document.getElementById("soulMatchModal");
+  if (!modal) return;
+
+  const stepSetup = document.getElementById("soulMatchStepSetup");
+  const stepSearching = document.getElementById("soulMatchStepSearching");
+  const stepChat = document.getElementById("soulMatchStepChat");
+
+  if (stepSetup) stepSetup.classList.remove("hidden");
+  if (stepSearching) stepSearching.classList.add("hidden");
+  if (stepChat) stepChat.classList.add("hidden");
+
+  // Reset/sync selection buttons
+  setSoulMatchRole(soulMatchSelectedRole);
+  setSoulMatchTopic(soulMatchSelectedTopic);
+  setSoulMatchDrink(soulMatchSelectedDrink);
+
+  modal.classList.remove("hidden");
+  if (window.lucide) window.lucide.createIcons();
+}
+
+function closeSoulMatchModal() {
+  if (pairSearchTimeout) {
+    clearTimeout(pairSearchTimeout);
+    pairSearchTimeout = null;
+  }
+
+  const modal = document.getElementById("soulMatchModal");
+  if (modal) modal.classList.add("hidden");
+}
+
+function setSoulMatchRole(role) {
+  soulMatchSelectedRole = role;
+  const roles = ["listen", "vent", "mutual"];
+  roles.forEach(r => {
+    const btn = document.getElementById(`matchRole_${r}`);
+    if (btn) {
+      if (r === role) {
+        btn.classList.add("active-role", "border-amber-400", "bg-amber-50/60");
+        btn.classList.remove("border-slate-200", "bg-white");
+      } else {
+        btn.classList.remove("active-role", "border-amber-400", "bg-amber-50/60");
+        btn.classList.add("border-slate-200", "bg-white");
+      }
+    }
+  });
+}
+
+function setSoulMatchTopic(topic) {
+  soulMatchSelectedTopic = topic;
+  const topics = ["burnout", "midnight", "heartbreak", "mbti", "general"];
+  topics.forEach(t => {
+    const btn = document.getElementById(`matchTopic_${t}`);
+    if (btn) {
+      if (t === topic) {
+        btn.classList.add("active-topic", "border-emerald-500", "bg-emerald-50", "text-emerald-800", "font-bold");
+        btn.classList.remove("border-slate-200", "bg-white", "text-slate-600");
+      } else {
+        btn.classList.remove("active-topic", "border-emerald-500", "bg-emerald-50", "text-emerald-800", "font-bold");
+        btn.classList.add("border-slate-200", "bg-white", "text-slate-600");
+      }
+    }
+  });
+}
+
+function setSoulMatchDrink(drink) {
+  soulMatchSelectedDrink = drink;
+  const drinksMap = {
+    "🍵 ชาคาโมมายล์อุ่น": "matchDrink_chamomile",
+    "☕ ลาเต้ฟองนุ่ม": "matchDrink_latte",
+    "🍹 ม็อกเทลยูซุโซดา": "matchDrink_yuzu",
+    "🥛 นมอุ่นผสมน้ำผึ้ง": "matchDrink_milk",
+    "🍷 ไวน์แดงไร้แอลกอฮอล์": "matchDrink_wine"
+  };
+
+  Object.entries(drinksMap).forEach(([d, id]) => {
+    const btn = document.getElementById(id);
+    if (btn) {
+      if (d === drink) {
+        btn.classList.add("border-amber-400", "bg-amber-50", "font-bold");
+        btn.classList.remove("border-slate-200", "bg-white");
+      } else {
+        btn.classList.remove("border-amber-400", "bg-amber-50", "font-bold");
+        btn.classList.add("border-slate-200", "bg-white");
+      }
+    }
+  });
+}
+
+function startSoulMatchSearch() {
+  const stepSetup = document.getElementById("soulMatchStepSetup");
+  const stepSearching = document.getElementById("soulMatchStepSearching");
+  const statusText = document.getElementById("searchRadarStatusText");
+  const subText = document.getElementById("searchRadarSubtext");
+
+  if (stepSetup) stepSetup.classList.add("hidden");
+  if (stepSearching) stepSearching.classList.remove("hidden");
+
+  playClinkSound();
+
+  const topicTitles = {
+    burnout: "หมดไฟ & งาน/การเรียน",
+    midnight: "นอนไม่หลับ คิดมากยามดึก",
+    heartbreak: "พักใจจากความสัมพันธ์",
+    mbti: "เคมี MBTI สัตว์ฮีลใจ",
+    general: "สัพเพเหระ คุยผ่อนคลาย"
+  };
+
+  if (statusText) statusText.innerText = "กำลังปรับคลื่นความถี่ค้นหาเพื่อนพักใจ...";
+  if (subText) subText.innerText = `กำลังจับคู่ในหัวข้อ: "${topicTitles[soulMatchSelectedTopic] || 'เรื่องทั่วไป'}"`;
+
+  // Filter or pick best match partner
+  const candidates = SOUL_MATCH_PARTNERS.filter(p => p.topics.includes(soulMatchSelectedTopic));
+  const chosenPartner = candidates.length > 0 
+    ? candidates[Math.floor(Math.random() * candidates.length)]
+    : SOUL_MATCH_PARTNERS[Math.floor(Math.random() * SOUL_MATCH_PARTNERS.length)];
+
+  // Progress text after 1s
+  setTimeout(() => {
+    if (statusText) statusText.innerText = `พบเพื่อนที่พร้อมคุยแล้ว! กำลังจัดโต๊ะพักใจ...`;
+  }, 1000);
+
+  // Match ready after 1.8s
+  pairSearchTimeout = setTimeout(() => {
+    setupPairTableSession(
+      chosenPartner,
+      chosenPartner.initialMessage,
+      soulMatchSelectedDrink,
+      chosenPartner.drink,
+      `🕯️ โต๊ะ #${Math.floor(Math.random() * 20) + 1}`
+    );
+  }, 1800);
+}
+
+function cancelSoulMatchSearch() {
+  if (pairSearchTimeout) {
+    clearTimeout(pairSearchTimeout);
+    pairSearchTimeout = null;
+  }
+  openSoulMatchModal();
+}
+
+function openDirectPairTable(loungeMessageId) {
+  const msg = loungeMessages.find(m => m.id === loungeMessageId);
+  const matchedPartner = SOUL_MATCH_PARTNERS.find(p => p.avatar === (msg ? msg.avatar : '')) || {
+    id: "partner_direct_" + Date.now(),
+    name: msg ? msg.user : "เพื่อนร่วมห้องพักใจ",
+    avatar: msg ? msg.avatar : "☕",
+    mbti: "ISFP",
+    badge: "สมาชิกสายดูแลใจ",
+    role: "เพื่อนร่วมห้องเทความในใจ",
+    drink: msg ? msg.drink : "☕ ลาเต้ฟองนุ่ม",
+    topics: ["general"],
+    initialMessage: `สวัสดีครับ ขอบคุณที่แวะมานั่งโต๊ะเดียวกันนะ! เห็นข้อความของคุณแล้วดีใจมากเลยที่แวะมาชวนคุย คืนนี้มีอะไรในใจ มาแลกเปลี่ยนกันนะ ☕✨`,
+    replies: [
+      "ขอบคุณที่ทักมาชวนคุยกันนะ การได้มีเพื่อนคุยมันทำให้คืนนี้ไม่เหงาเลยจริงๆ",
+      "เข้าใจความรู้สึกเลยนะ ดีใจที่เราได้มาแชร์ความในใจด้วยกันที่โต๊ะนี้",
+      "ชนแก้วส่งพลังใจกันนะ! ขอให้คืนนี้เป็นคืนที่หลับสบายและคลายความกังวลนะ 🥂"
+    ]
+  };
+
+  const modal = document.getElementById("soulMatchModal");
+  if (!modal) return;
+
+  const stepSetup = document.getElementById("soulMatchStepSetup");
+  const stepSearching = document.getElementById("soulMatchStepSearching");
+
+  if (stepSetup) stepSetup.classList.add("hidden");
+  if (stepSearching) stepSearching.classList.add("hidden");
+
+  modal.classList.remove("hidden");
+
+  setupPairTableSession(
+    matchedPartner,
+    `สวัสดีครับ! ขอบคุณที่แวะมาชวนเรานั่งคุยที่โต๊ะนี้นะ ดีใจมากที่มีเพื่อนมานั่งรับฟังกัน คืนนี้มีอะไรเล่าให้เราฟังได้หมดเลยนะ ☕✨`,
+    soulMatchSelectedDrink,
+    matchedPartner.drink,
+    `🕯️ โต๊ะส่วนตัว #${Math.floor(Math.random() * 15) + 1}`
+  );
+}
+
+function setupPairTableSession(partner, initialGreeting, myDrink, partnerDrink, tableNum) {
+  currentPairPartner = partner;
+  pairChatHistory = [
+    {
+      sender: "partner",
+      text: initialGreeting,
+      time: "เมื่อสักครู่"
+    }
+  ];
+
+  const stepSetup = document.getElementById("soulMatchStepSetup");
+  const stepSearching = document.getElementById("soulMatchStepSearching");
+  const stepChat = document.getElementById("soulMatchStepChat");
+
+  if (stepSetup) stepSetup.classList.add("hidden");
+  if (stepSearching) stepSearching.classList.add("hidden");
+  if (stepChat) stepChat.classList.remove("hidden");
+
+  // Populate UI
+  const avatarEl = document.getElementById("pairPartnerAvatar");
+  const nameEl = document.getElementById("pairPartnerName");
+  const badgeEl = document.getElementById("pairPartnerBadge");
+  const statusEl = document.getElementById("pairPartnerStatusText");
+  const myDrinkEl = document.getElementById("pairMyDrinkDisplay");
+  const partnerDrinkEl = document.getElementById("pairPartnerDrinkDisplay");
+  const tableNumEl = document.getElementById("pairTableNum");
+
+  if (avatarEl) avatarEl.innerText = partner.avatar || "🐰";
+  if (nameEl) nameEl.innerText = partner.name || "เพื่อนร่วมทาง";
+  if (badgeEl) badgeEl.innerText = partner.badge || "สมาชิกสายดูแลใจ";
+  if (statusEl) statusEl.innerText = "กำลังนั่งอยู่ตรงข้ามคุณที่โต๊ะ";
+  if (myDrinkEl) myDrinkEl.innerHTML = `คุณ: ${myDrink}`;
+  if (partnerDrinkEl) partnerDrinkEl.innerHTML = `เพื่อน: ${partnerDrink}`;
+  if (tableNumEl) tableNumEl.innerText = tableNum;
+
+  renderPairChatMessages();
+  playClinkSound();
+
+  if (window.confetti) {
+    confetti({ particleCount: 50, spread: 70, origin: { y: 0.5 }, colors: ['#F59E0B', '#10B981', '#38BDF8'] });
+  }
+
+  showDrinkToast(`✨ จับคู่โต๊ะพักใจกับ "${partner.name}" สำเร็จแล้ว!`);
+  if (window.lucide) window.lucide.createIcons();
+}
+
+function renderPairChatMessages() {
+  const container = document.getElementById("pairChatMessages");
+  if (!container) return;
+
+  const userAvatar = (currentUser && currentUser.avatarEmoji) ? currentUser.avatarEmoji : "🐱";
+  const partnerAvatar = currentPairPartner ? (currentPairPartner.avatar || "🐰") : "🐰";
+
+  let html = pairChatHistory.map(item => {
+    const isUser = item.sender === "user";
+    const isSystem = item.sender === "system";
+
+    if (isSystem) {
+      return `
+        <div class="flex justify-center my-2">
+          <span class="px-3 py-1 rounded-full bg-amber-100/90 border border-amber-200 text-amber-900 text-[11px] font-heading shadow-2xs">
+            ${item.text}
+          </span>
+        </div>
+      `;
+    }
+
+    return `
+      <div class="flex items-start gap-2.5 ${isUser ? 'flex-row-reverse' : ''}">
+        <div class="w-8 h-8 rounded-full ${isUser ? 'bg-emerald-100 text-emerald-900' : 'bg-amber-100 text-amber-900'} flex items-center justify-center text-sm shrink-0 shadow-2xs">
+          ${isUser ? userAvatar : partnerAvatar}
+        </div>
+        <div class="max-w-[80%] sm:max-w-[70%]">
+          <div class="p-3 text-xs sm:text-sm font-body leading-relaxed ${isUser ? 'pair-bubble-user' : 'pair-bubble-partner'}">
+            ${escapeHtml(item.text)}
+          </div>
+          <span class="text-[10px] text-slate-400 mt-1 block ${isUser ? 'text-right' : 'text-left'} font-body">${item.time}</span>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  if (isPartnerTyping) {
+    html += `
+      <div class="flex items-start gap-2.5">
+        <div class="w-8 h-8 rounded-full bg-amber-100 text-amber-900 flex items-center justify-center text-sm shrink-0 shadow-2xs">
+          ${partnerAvatar}
+        </div>
+        <div class="p-3 bg-white border border-slate-200 rounded-2xl rounded-tl-xs shadow-2xs flex items-center gap-1.5">
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+          <span class="typing-dot"></span>
+          <span class="text-[11px] text-slate-400 font-body ml-1">${currentPairPartner ? currentPairPartner.name : 'เพื่อน'} กำลังพิมพ์...</span>
+        </div>
+      </div>
+    `;
+  }
+
+  container.innerHTML = html;
+  container.scrollTop = container.scrollHeight;
+}
+
+function handleSendPairMessage(event) {
+  event.preventDefault();
+  const input = document.getElementById("pairMsgInput");
+  if (!input) return;
+
+  const text = input.value.trim();
+  if (!text) return;
+
+  pairChatHistory.push({
+    sender: "user",
+    text: text,
+    time: "เมื่อสักครู่"
+  });
+
+  input.value = "";
+  renderPairChatMessages();
+
+  triggerPartnerAutoReply(text);
+}
+
+function triggerPartnerAutoReply(userText) {
+  if (!currentPairPartner) return;
+
+  isPartnerTyping = true;
+  renderPairChatMessages();
+
+  setTimeout(() => {
+    isPartnerTyping = false;
+
+    let reply = "";
+    const replies = currentPairPartner.replies || [
+      "เราเข้าใจความรู้สึกเลยนะ ขอบคุณที่เล่าให้เราฟังนะ ค่อยๆ หายใจเข้าลึกๆ",
+      "ไม่ต้องกังวลนะ คืนนี้เราอยู่ตรงนี้เป็นเพื่อนคุยเสมอ มีอะไรระบายออกมาได้เลย",
+      "คุณทำดีที่สุดแล้วนะ อย่าลืมใจดีกับตัวเองให้มากๆ ด้วยล่ะ ✨"
+    ];
+
+    if (userText.includes("ขอบคุณ") || userText.includes("ดีใจ")) {
+      reply = `ยินดีมากๆ เลยครับบ ดีใจที่ได้มานั่งคุยแลกเปลี่ยนกันในคืนนี้นะ 🤍✨`;
+    } else if (userText.includes("เหนื่อย") || userText.includes("งาน") || userText.includes("เรียน")) {
+      reply = `ฟังแล้วรู้สึกได้เลยว่าเหนื่อยมากจริงๆ แบกมาเยอะเลยนะ วางเรื่องงานไว้หน้าโต๊ะนี้ก่อน จิบเครื่องดื่มอุ่นๆ ให้หัวใจได้พักผ่อนนะ ☕`;
+    } else if (userText.includes("เศร้า") || userText.includes("ร้องไห้") || userText.includes("เหงา")) {
+      reply = `กอดแน่นๆ นะ 🫂 อนุญาตให้ตัวเองอ่อนแอได้เลย ไม่ต้องเก่งตลอดเวลาหรอก เราพร้อมนั่งอยู่ข้างๆ เธอเสมอ`;
+    } else {
+      reply = replies[Math.floor(Math.random() * replies.length)];
+    }
+
+    pairChatHistory.push({
+      sender: "partner",
+      text: reply,
+      time: "เมื่อสักครู่"
+    });
+
+    renderPairChatMessages();
+    playClinkSound();
+  }, 1600);
+}
+
+function sendPairReaction(emoji) {
+  pairChatHistory.push({
+    sender: "user",
+    text: `ส่ง ${emoji} ให้เพื่อนร่วมโต๊ะ`,
+    time: "เมื่อสักครู่"
+  });
+  renderPairChatMessages();
+
+  isPartnerTyping = true;
+  renderPairChatMessages();
+
+  setTimeout(() => {
+    isPartnerTyping = false;
+    pairChatHistory.push({
+      sender: "partner",
+      text: `ได้รับ ${emoji} แล้วนะ! อบอุ่นหัวใจมากเลย ขอบคุณนะ 🤍`,
+      time: "เมื่อสักครู่"
+    });
+    renderPairChatMessages();
+    playClinkSound();
+  }, 1200);
+}
+
+function sendPairIcebreaker(promptText) {
+  const input = document.getElementById("pairMsgInput");
+  if (input) {
+    input.value = promptText;
+    input.focus();
+  }
+}
+
+function clinkPairGlasses() {
+  playClinkSound();
+
+  const partnerName = currentPairPartner ? currentPairPartner.name : "เพื่อนร่วมโต๊ะ";
+  pairChatHistory.push({
+    sender: "system",
+    text: `🥂 คุณและ ${partnerName} ได้ชนแก้วกำลังใจให้กัน!`
+  });
+  renderPairChatMessages();
+
+  if (currentUser) {
+    currentUser.stats.drinksTreated = (currentUser.stats.drinksTreated || 0) + 1;
+    saveUsersToStorage();
+  }
+
+  isPartnerTyping = true;
+  renderPairChatMessages();
+
+  setTimeout(() => {
+    isPartnerTyping = false;
+    pairChatHistory.push({
+      sender: "partner",
+      text: `ชนแก้วครับบ 🥂 ขอบคุณสำหรับเครื่องดื่มและความรู้สึกดีๆ ที่ส่งมาให้นะ! ดื่มแล้วชื่นใจเลย`,
+      time: "เมื่อสักครู่"
+    });
+    renderPairChatMessages();
+  }, 1100);
+}
+
+function endPairSession() {
+  if (currentUser) {
+    currentUser.stats.peerMatchesCompleted = (currentUser.stats.peerMatchesCompleted || 0) + 1;
+    saveUsersToStorage();
+    checkBadgeUnlocks();
+  }
+
+  closeSoulMatchModal();
+  showDrinkToast(`✨ ขอบคุณที่ร่วมพูดคุยในโต๊ะพักใจ 1-on-1 คืนนี้ขอให้หัวใจของคุณเบาสบายขึ้นนะ`);
+
+  if (window.confetti) {
+    confetti({ particleCount: 60, spread: 80, origin: { y: 0.6 }, colors: ['#10B981', '#F59E0B', '#38BDF8'] });
+  }
+}
+
 
