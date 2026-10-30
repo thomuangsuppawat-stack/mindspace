@@ -303,17 +303,17 @@ function renderVents() {
   }
 
   container.innerHTML = filtered.map(item => `
-    <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200/80 shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+    <div class="bg-white rounded-3xl p-5 sm:p-6 border border-slate-200 shadow-sm hover:shadow-md hover:border-slate-300 transition-all flex flex-col justify-between">
       <div>
         <div class="flex items-center justify-between mb-3">
           <div class="flex items-center gap-2.5">
-            <span class="text-lg">${item.avatar.split(" ")[0]}</span>
+            <span class="text-xl">${item.avatar.split(" ")[0]}</span>
             <div>
-              <span class="text-xs font-bold text-slate-800 block">${item.avatar}</span>
+              <span class="text-xs font-bold text-slate-900 block">${item.avatar}</span>
               <span class="text-[10px] text-slate-400">${item.createdAt}</span>
             </div>
           </div>
-          <span class="text-[11px] px-2.5 py-0.5 rounded-full font-medium ${getTagStyle(item.tag)}">
+          <span class="text-[11px] px-3 py-1 rounded-full font-semibold ${getTagStyle(item.tag)}">
             #${item.tag}
           </span>
         </div>
@@ -327,13 +327,13 @@ function renderVents() {
         <span class="text-[11px] text-slate-400">ส่งต่อกำลังใจ:</span>
         <div class="flex items-center gap-2">
           <!-- Hug Button -->
-          <button onclick="handleReact('${item.id}', 'hug')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold ${item.userInteractions?.hugged ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-50 hover:bg-emerald-50 text-slate-600'} transition-all">
+          <button onclick="handleReact('${item.id}', 'hug')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold ${item.userInteractions?.hugged ? 'bg-[#4CC689]/20 text-[#1f7c4e] border border-[#4CC689]' : 'bg-slate-100 hover:bg-slate-200 text-slate-600 border border-slate-200'} transition-all">
             <span>🫂</span>
             <span id="hugCount_${item.id}">${item.hugs}</span>
           </button>
           
           <!-- Send Love Button -->
-          <button onclick="handleReact('${item.id}', 'love')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold ${item.userInteractions?.loved ? 'bg-rose-100 text-rose-800' : 'bg-slate-50 hover:bg-rose-50 text-slate-600'} transition-all">
+          <button onclick="handleReact('${item.id}', 'love')" class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold ${item.userInteractions?.loved ? 'bg-[#EC693B]/20 text-[#b53c15] border border-[#EC693B]' : 'bg-slate-100 hover:bg-slate-200 text-slate-600 border border-slate-200'} transition-all">
             <span>💖</span>
             <span id="loveCount_${item.id}">${item.loves}</span>
           </button>
@@ -385,17 +385,17 @@ function triggerHeartFloat() {
       particleCount: 15,
       spread: 45,
       origin: { y: 0.8 },
-      colors: ['#F43F5E', '#FB7185', '#FDA4AF']
+      colors: ['#F0B41D', '#4CC689', '#EC693B']
     });
   }
 }
 
 function getTagStyle(tag) {
-  if (tag.includes("หมดไฟ")) return "bg-rose-50 text-rose-700";
-  if (tag.includes("เรียน")) return "bg-sky-50 text-sky-700";
-  if (tag.includes("ความสัมพันธ์")) return "bg-purple-50 text-purple-700";
-  if (tag.includes("กำลังใจ")) return "bg-emerald-50 text-emerald-700";
-  return "bg-amber-50 text-amber-700";
+  if (tag.includes("หมดไฟ")) return "bg-[#EC693B]/10 text-[#c94b21] border border-[#EC693B]/30";
+  if (tag.includes("เรียน")) return "bg-[#29A6E7]/10 text-[#1b7db5] border border-[#29A6E7]/30";
+  if (tag.includes("ความสัมพันธ์")) return "bg-[#4CC689]/10 text-[#248556] border border-[#4CC689]/30";
+  if (tag.includes("กำลังใจ")) return "bg-[#F0B41D]/15 text-[#9a6a00] border border-[#F0B41D]/30";
+  return "bg-[#F0B41D]/15 text-[#9a6a00] border border-[#F0B41D]/30";
 }
 
 function escapeHtml(text) {
@@ -525,15 +525,15 @@ function appendChatMessage(sender, message) {
 
   if (sender === "user") {
     msgDiv.innerHTML = `
-      <div class="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs font-bold shrink-0 mt-1">คุณ</div>
-      <div class="bg-emerald-600 text-white rounded-2xl rounded-tr-xs p-3.5 max-w-md shadow-xs text-sm leading-relaxed font-body">
+      <div class="w-8 h-8 rounded-full bg-[#F0B41D] text-[#121212] flex items-center justify-center text-xs font-extrabold shrink-0 mt-1 shadow-xs">คุณ</div>
+      <div class="bg-[#F0B41D] text-[#121212] font-medium rounded-2xl rounded-tr-xs p-3.5 max-w-md shadow-xs text-sm leading-relaxed font-body">
         ${escapeHtml(message)}
       </div>
     `;
   } else {
     msgDiv.innerHTML = `
-      <div class="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center text-sm shrink-0 mt-1">🌱</div>
-      <div class="bg-white border border-slate-100 rounded-2xl rounded-tl-xs p-4 max-w-md shadow-xs text-sm text-slate-700 leading-relaxed font-body whitespace-pre-line">
+      <div class="w-8 h-8 rounded-full bg-[#e8f7ee] border border-[#4CC689]/40 flex items-center justify-center text-sm shrink-0 mt-1 shadow-xs">🌱</div>
+      <div class="bg-white border border-slate-200 rounded-2xl rounded-tl-xs p-4 max-w-md shadow-xs text-sm text-slate-800 leading-relaxed font-body whitespace-pre-line">
         ${escapeHtml(message)}
       </div>
     `;
@@ -551,8 +551,8 @@ function showAiTyping() {
   typingDiv.id = "aiTypingIndicator";
   typingDiv.className = "flex items-start gap-3";
   typingDiv.innerHTML = `
-    <div class="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center text-sm shrink-0 mt-1">🌱</div>
-    <div class="bg-white border border-slate-100 rounded-2xl rounded-tl-xs px-4 py-3 shadow-xs flex items-center gap-1.5">
+    <div class="w-8 h-8 rounded-full bg-[#e8f7ee] border border-[#4CC689]/40 flex items-center justify-center text-sm shrink-0 mt-1 shadow-xs">🌱</div>
+    <div class="bg-white border border-slate-200 rounded-2xl rounded-tl-xs px-4 py-3 shadow-xs flex items-center gap-1.5">
       <span class="typing-dot"></span>
       <span class="typing-dot"></span>
       <span class="typing-dot"></span>
@@ -575,8 +575,8 @@ function resetAiChat() {
 
   container.innerHTML = `
     <div class="flex items-start gap-3">
-      <div class="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center text-sm shrink-0 mt-1">🌱</div>
-      <div class="bg-white border border-slate-100 rounded-2xl rounded-tl-xs p-4 max-w-md shadow-xs text-sm text-slate-700 leading-relaxed space-y-2">
+      <div class="w-8 h-8 rounded-full bg-[#e8f7ee] border border-[#4CC689]/40 flex items-center justify-center text-sm shrink-0 mt-1 shadow-xs">🌱</div>
+      <div class="bg-white border border-slate-200 rounded-2xl rounded-tl-xs p-4 max-w-md shadow-xs text-sm text-slate-700 leading-relaxed space-y-2">
         <p>เริ่มต้นบทสนทนาใหม่แล้วครับ 😊 มีอะไรที่อยากแชร์หรืออยากให้ใจดีรับฟัง พิมพ์บอกได้เสมอเลยนะครับ</p>
       </div>
     </div>
@@ -666,11 +666,11 @@ function initMoodChart() {
       datasets: [{
         label: "ระดับสุขภาวะใจ (1 = เครียดมาก, 5 = สดใส)",
         data: defaultData,
-        borderColor: "#10B981",
-        backgroundColor: "rgba(16, 185, 129, 0.12)",
+        borderColor: "#F0B41D",
+        backgroundColor: "rgba(240, 180, 29, 0.12)",
         fill: true,
         tension: 0.4,
-        pointBackgroundColor: "#059669",
+        pointBackgroundColor: "#F0B41D",
         pointBorderColor: "#FFFFFF",
         pointBorderWidth: 2,
         pointRadius: 6,
@@ -685,6 +685,9 @@ function initMoodChart() {
           display: false
         },
         tooltip: {
+          backgroundColor: "#0f172a",
+          titleColor: "#ffffff",
+          bodyColor: "#F0B41D",
           callbacks: {
             label: function(context) {
               const val = context.raw;
@@ -705,6 +708,7 @@ function initMoodChart() {
           min: 1,
           max: 5,
           ticks: {
+            color: "#64748b",
             stepSize: 1,
             callback: function(val) {
               const labels = { 1: "😫 เครียด", 2: "😔 เหนื่อย", 3: "😐 เฉยๆ", 4: "😊 สบายใจ", 5: "🥳 สดใส" };
@@ -716,6 +720,9 @@ function initMoodChart() {
           }
         },
         x: {
+          ticks: {
+            color: "#64748b"
+          },
           grid: {
             display: false
           }
@@ -910,20 +917,20 @@ function startCalmAmbientSound() {
   }
 }
 
-// ================= DRINK ON ME LOUNGE CONTROLS =================
+// ================= SOUL POUR ROOM (ห้องเทความในใจ) CONTROLS =================
 function switchBarTable(table) {
   activeLoungeTable = table;
   const tabs = document.querySelectorAll("#loungeTableTabs .bar-tab");
   tabs.forEach(t => {
-    if ((table === "all" && t.innerText.includes("โต๊ะบาร์รวม")) ||
+    if ((table === "all" && (t.innerText.includes("โต๊ะเทใจรวม") || t.innerText.includes("โต๊ะบาร์รวม"))) ||
         (table === "burnout" && t.innerText.includes("คนหมดไฟ")) ||
         (table === "midnight" && t.innerText.includes("ดึกดื่น")) ||
         (table === "heartbreak" && t.innerText.includes("พักใจ"))) {
       t.classList.add("active-bar-tab");
-      t.classList.remove("bg-slate-800/80", "text-slate-300");
+      t.classList.remove("bg-white", "text-slate-600", "border-slate-200");
     } else {
       t.classList.remove("active-bar-tab");
-      t.classList.add("bg-slate-800/80", "text-slate-300");
+      t.classList.add("bg-white", "text-slate-600", "border-slate-200");
     }
   });
   renderLoungeMessages();
@@ -941,18 +948,18 @@ function selectLoungeDrink(drinkName, tagDesc) {
   buttons.forEach(b => {
     if (b.innerText.includes(drinkName.split(" ")[1])) {
       b.classList.add("active-drink");
-      b.classList.remove("border-slate-700/80", "bg-slate-900/40");
-      let check = b.querySelector(".text-amber-400");
+      b.classList.remove("border-slate-200", "bg-white");
+      let check = b.querySelector(".text-[#d99b06]");
       if (!check) {
         const span = document.createElement("span");
-        span.className = "text-amber-400 text-xs";
+        span.className = "text-[#d99b06] font-bold text-xs";
         span.innerText = "✓";
         b.appendChild(span);
       }
     } else {
       b.classList.remove("active-drink");
-      b.classList.add("border-slate-700/80", "bg-slate-900/40");
-      let check = b.querySelector(".text-amber-400");
+      b.classList.add("border-slate-200", "bg-white");
+      let check = b.querySelector(".text-[#d99b06]");
       if (check) check.remove();
     }
   });
@@ -971,7 +978,7 @@ function handleSendLoungeMessage(event) {
 
   const newMsg = {
     id: "lounge_" + Date.now(),
-    user: "นักเดินทางพักใจ",
+    user: "เพื่อนร่วมทาง",
     avatar: randomAvatar,
     drink: selectedLoungeDrink,
     table: activeLoungeTable === "all" ? "all" : activeLoungeTable,
@@ -991,17 +998,17 @@ function handleSendLoungeMessage(event) {
   // Clinking sound effect & toast
   playClinkSound();
   if (isDrinkOnMe) {
-    showDrinkToast(`🌟 คุณประกาศ "Drink on Me!" เลี้ยงเครื่องดื่มทุกคนที่โต๊ะแล้ว! 🥂`);
+    showDrinkToast(`🌟 คุณส่งเครื่องดื่มฮีลใจเลี้ยงทุกคนในห้องแล้ว! ขอบคุณที่แบ่งปันความอบอุ่นนะ ☕✨`);
     if (window.confetti) {
       confetti({
         particleCount: 50,
         spread: 70,
         origin: { y: 0.5 },
-        colors: ['#F59E0B', '#F43F5E', '#FDE68A']
+        colors: ['#F0B41D', '#4CC689', '#EC693B']
       });
     }
   } else {
-    showDrinkToast(`🍸 เสิร์ฟ ${selectedLoungeDrink} วางบนโต๊ะบาร์แล้ว`);
+    showDrinkToast(`☕ เสิร์ฟ ${selectedLoungeDrink} ไว้บนโต๊ะพักใจแล้วนะ`);
   }
 }
 
@@ -1019,14 +1026,14 @@ function handleTreatDrink(messageId) {
 
   // Glass clinking audio & feedback
   playClinkSound();
-  showDrinkToast(`🥂 Drink on Me! คุณได้เลี้ยงเครื่องดื่มให้ "${msg.user}" แล้ว 💖`);
+  showDrinkToast(`☕ คุณได้ส่งแก้วกำลังใจให้ "${msg.user}" เรียบร้อยแล้ว 💖`);
 
   if (window.confetti) {
     confetti({
-      particleCount: 20,
-      spread: 50,
+      particleCount: 25,
+      spread: 55,
       origin: { y: 0.6 },
-      colors: ['#F59E0B', '#EC4899', '#FBBF24']
+      colors: ['#F0B41D', '#EC693B', '#4CC689']
     });
   }
 }
@@ -1053,47 +1060,47 @@ function renderLoungeMessages() {
 
   if (filtered.length === 0) {
     container.innerHTML = `
-      <div class="py-16 text-center text-slate-500">
+      <div class="py-16 text-center text-slate-400">
         <span class="text-3xl block mb-2">🕯️</span>
-        <p class="text-sm">โต๊ะนี้ยังว่างอยู่ นั่งลงเป็นคนแรกแล้วส่งเสียงคุยกันได้เลยนะ</p>
+        <p class="text-sm">มุมนี้ยังว่างอยู่ นั่งลงเป็นคนแรกแล้วเทความในใจได้เลยนะ</p>
       </div>
     `;
     return;
   }
 
   container.innerHTML = filtered.map(item => `
-    <div class="p-4 rounded-2xl ${item.isDrinkOnMe ? 'bg-gradient-to-r from-amber-500/15 via-rose-500/10 to-slate-900/90 border border-amber-400/50' : 'bg-slate-900/70 border border-slate-700/60'} hover:border-amber-400/40 transition-all flex flex-col justify-between">
+    <div class="p-4 rounded-2xl ${item.isDrinkOnMe ? 'bg-gradient-to-r from-amber-50/90 via-orange-50/40 to-white border border-amber-300 shadow-xs' : 'bg-white border border-slate-200/90 shadow-2xs'} hover:border-amber-300 transition-all flex flex-col justify-between">
       <div class="flex items-start justify-between gap-3 mb-2.5">
         <div class="flex items-center gap-2.5">
-          <div class="w-9 h-9 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-lg shrink-0">
-            ${item.avatar || '🍸'}
+          <div class="w-9 h-9 rounded-xl bg-amber-50 border border-amber-200/60 flex items-center justify-center text-lg shrink-0">
+            ${item.avatar || '☕'}
           </div>
           <div>
             <div class="flex items-center gap-2">
-              <span class="font-bold text-xs text-slate-100">${escapeHtml(item.user)}</span>
-              ${item.isDrinkOnMe ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold drink-on-me-badge">🌟 Drink on Me!</span>' : ''}
+              <span class="font-bold text-xs text-slate-900">${escapeHtml(item.user)}</span>
+              ${item.isDrinkOnMe ? '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-[#F0B41D] text-[#121212] shadow-xs">🌟 ส่งใจให้ทุกคน</span>' : ''}
             </div>
             <span class="text-[10px] text-slate-400">${item.time}</span>
           </div>
         </div>
 
         <!-- Drink Badge -->
-        <span class="text-[11px] px-2.5 py-1 rounded-xl bg-slate-800 text-amber-300 border border-amber-400/30 flex items-center gap-1 shrink-0">
+        <span class="text-[11px] px-2.5 py-1 rounded-xl bg-amber-50 text-amber-800 border border-amber-200/80 font-medium flex items-center gap-1 shrink-0">
           ${item.drink}
         </span>
       </div>
 
-      <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-body whitespace-pre-line mb-3">
+      <p class="text-xs sm:text-sm text-slate-700 leading-relaxed font-body whitespace-pre-line mb-3">
         ${escapeHtml(item.content)}
       </p>
 
-      <div class="pt-2.5 border-t border-slate-800/80 flex items-center justify-between text-xs">
-        <span class="text-[11px] text-slate-400">
-          🥂 เลี้ยงแล้ว: <strong class="text-amber-300 font-semibold">${item.treatedCount || 0} แก้ว</strong>
+      <div class="pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs">
+        <span class="text-[11px] text-slate-500">
+          ☕ ส่งกำลังใจแล้ว: <strong class="text-amber-700 font-bold">${item.treatedCount || 0} แก้ว</strong>
         </span>
 
-        <button onclick="handleTreatDrink('${item.id}')" class="px-3.5 py-1.5 rounded-xl bg-amber-500/20 hover:bg-amber-500 text-amber-300 hover:text-slate-950 border border-amber-400/40 font-semibold text-xs transition-all flex items-center gap-1.5 active:scale-95">
-          <span>🍻 Drink on Me!</span>
+        <button onclick="handleTreatDrink('${item.id}')" class="px-3 py-1.5 rounded-xl bg-amber-50 hover:bg-[#F0B41D] text-amber-900 hover:text-[#121212] border border-amber-300 font-bold text-xs transition-all flex items-center gap-1.5 active:scale-95 shadow-2xs">
+          <span>☕ ส่งแก้วนี้แทนใจ</span>
         </button>
       </div>
     </div>
