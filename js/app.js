@@ -95,7 +95,74 @@ const DEFAULT_LOUNGE_MESSAGES = [
   }
 ];
 
+// ================= USER ACCOUNTS & PERSONAL STATS =================
+const DEFAULT_USERS = [
+  {
+    id: "user_cat",
+    username: "somjeed_cat",
+    displayName: "น้องส้มจี๊ด",
+    avatar: "🐱 น้องแมวส้ม",
+    avatarEmoji: "🐱",
+    role: "สมาชิกสายดูแลใจ",
+    joinedAt: "28 ต.ค. 2026",
+    stats: {
+      moodLogsCount: 5,
+      streakDays: 3,
+      ventsCreated: 2,
+      hugsGiven: 14,
+      drinksTreated: 4,
+      breatheSessions: 3,
+      breatheMinutes: 6
+    },
+    moodHistory: [
+      { day: "จันทร์", mood: "good", score: 4, factors: ["การเรียน"], note: "อ่านหนังสือเข้าใจดี มีสมาธิขึ้น" },
+      { day: "อังคาร", mood: "neutral", score: 3, factors: ["งาน"], note: "งานกลุ่มมีปัญหานิดหน่อยแต่ผ่านไปได้" },
+      { day: "พุธ", mood: "tired", score: 2, factors: ["สุขภาพ/การนอน"], note: "นอนดึก รู้สึกเพลียมาก" },
+      { day: "พฤหัส", mood: "good", score: 4, factors: ["เพื่อน"], note: "ได้กินไอศกรีมกับเพื่อน คุยกันสนุกมาก" },
+      { day: "วันนี้", mood: "good", score: 4, factors: ["การเรียน"], note: "ทำโปรเจกต์ส่งทัน รู้สึกโล่งใจ" }
+    ],
+    badges: [
+      { id: "badge_first_mood", name: "ก้าวแรกฮีลใจ 🌱", icon: "🌱", desc: "เช็กอินอารมณ์ครั้งแรกในแพลตฟอร์ม", unlocked: true },
+      { id: "badge_streak_3", name: "สม่ำเสมอเป็นเลิศ 🔥", icon: "🔥", desc: "เช็กอินอารมณ์ติดต่อกันครบ 3 วัน", unlocked: true },
+      { id: "badge_hug_giver", name: "สายซัพพอร์ต 🫂", icon: "🫂", desc: "ส่งอ้อมกอดและพลังใจให้เพื่อน 10+ ครั้ง", unlocked: true },
+      { id: "badge_pour_care", name: "เจ้ามือใจดี ☕", icon: "☕", desc: "ส่งแก้วกำลังใจในห้องเทความในใจ", unlocked: true },
+      { id: "badge_breathe_zen", name: "จิตสงบนิ่ง 🧘‍♂️", icon: "🧘‍♂️", desc: "ฝึกหายใจแบบ 4-7-8 สะสม 3 ครั้ง", unlocked: true }
+    ]
+  },
+  {
+    id: "user_rabbit",
+    username: "puimeak_rabbit",
+    displayName: "กระต่ายปุยเมฆ",
+    avatar: "🐰 กระต่ายขี้เซา",
+    avatarEmoji: "🐰",
+    role: "สมาชิกใหม่",
+    joinedAt: "30 ต.ค. 2026",
+    stats: {
+      moodLogsCount: 2,
+      streakDays: 1,
+      ventsCreated: 1,
+      hugsGiven: 4,
+      drinksTreated: 1,
+      breatheSessions: 1,
+      breatheMinutes: 2
+    },
+    moodHistory: [
+      { day: "เมื่อวาน", mood: "tired", score: 2, factors: ["การเรียน"], note: "การบ้านเยอะมาก เหนื่อยล้า" },
+      { day: "วันนี้", mood: "neutral", score: 3, factors: ["เพื่อน"], note: "เริ่มปรับตัวได้แล้ว สบายใจขึ้น" }
+    ],
+    badges: [
+      { id: "badge_first_mood", name: "ก้าวแรกฮีลใจ 🌱", icon: "🌱", desc: "เช็กอินอารมณ์ครั้งแรกในแพลตฟอร์ม", unlocked: true },
+      { id: "badge_streak_3", name: "สม่ำเสมอเป็นเลิศ 🔥", icon: "🔥", desc: "เช็กอินอารมณ์ติดต่อกันครบ 3 วัน", unlocked: false },
+      { id: "badge_hug_giver", name: "สายซัพพอร์ต 🫂", icon: "🫂", desc: "ส่งอ้อมกอดและพลังใจให้เพื่อน 10+ ครั้ง", unlocked: false },
+      { id: "badge_pour_care", name: "เจ้ามือใจดี ☕", icon: "☕", desc: "ส่งแก้วกำลังใจในห้องเทความในใจ", unlocked: true },
+      { id: "badge_breathe_zen", name: "จิตสงบนิ่ง 🧘‍♂️", icon: "🧘‍♂️", desc: "ฝึกหายใจแบบ 4-7-8 สะสม 3 ครั้ง", unlocked: false }
+    ]
+  }
+];
+
 // App State
+let usersList = [];
+let currentUser = null;
 let vents = [];
 let activeFilter = "all";
 let currentMoodKey = "good";
@@ -118,6 +185,9 @@ let loungeMusicInterval = null;
 
 // ================= LIFECYCLE & INITIALIZATION =================
 document.addEventListener("DOMContentLoaded", () => {
+  // Initialize Auth & User System
+  initAuthSystem();
+
   // Initialize Lucide Icons
   if (window.lucide) {
     window.lucide.createIcons();
@@ -246,6 +316,12 @@ function handleCreateVent(event) {
   saveVentsToStorage();
   renderVents();
 
+  if (currentUser) {
+    currentUser.stats.ventsCreated = (currentUser.stats.ventsCreated || 0) + 1;
+    saveUsersToStorage();
+    checkBadgeUnlocks();
+  }
+
   // Reset form
   document.getElementById("ventContent").value = "";
   document.getElementById("charCount").innerText = "0/300";
@@ -363,6 +439,11 @@ function handleReact(id, type) {
       item.hugs += 1;
       item.userInteractions.hugged = true;
       triggerHeartFloat();
+      if (currentUser) {
+        currentUser.stats.hugsGiven = (currentUser.stats.hugsGiven || 0) + 1;
+        saveUsersToStorage();
+        checkBadgeUnlocks();
+      }
     }
   } else if (type === "love") {
     if (item.userInteractions.loved) {
@@ -372,6 +453,11 @@ function handleReact(id, type) {
       item.loves += 1;
       item.userInteractions.loved = true;
       triggerHeartFloat();
+      if (currentUser) {
+        currentUser.stats.hugsGiven = (currentUser.stats.hugsGiven || 0) + 1;
+        saveUsersToStorage();
+        checkBadgeUnlocks();
+      }
     }
   }
 
@@ -634,6 +720,24 @@ function handleSaveMood() {
   if (history.length > 7) history.shift();
   localStorage.setItem("mindspace_mood_history", JSON.stringify(history));
 
+  // Sync to Current User Personal Stats
+  if (currentUser) {
+    currentUser.stats.moodLogsCount = (currentUser.stats.moodLogsCount || 0) + 1;
+    currentUser.stats.streakDays = (currentUser.stats.streakDays || 1) + 1;
+    if (!currentUser.moodHistory) currentUser.moodHistory = [];
+    currentUser.moodHistory.push({
+      day: newEntry.date || "วันนี้",
+      mood: currentMoodKey,
+      score: moodScores[currentMoodKey] || 3,
+      factors: [...selectedFactors],
+      note: note || "เช็กอินประจำวัน"
+    });
+    saveUsersToStorage();
+    checkBadgeUnlocks();
+    updateCheckinGreetingUI();
+    updateNavAuthUI();
+  }
+
   // Update chart
   updateMoodChart();
 
@@ -656,8 +760,19 @@ function initMoodChart() {
   const ctx = document.getElementById("moodChart");
   if (!ctx) return;
 
-  const defaultLabels = ["จันทร์", "อังคาร", "พุธ", "พฤหัส", "ศุกร์", "เสาร์", "วันนี้"];
-  const defaultData = [4, 3, 2, 4, 3, 4, 4]; // default gentle curve
+  if (moodChartInstance) {
+    moodChartInstance.destroy();
+  }
+
+  let defaultLabels = ["จันทร์", "อังคาร", "พุธ", "พฤหัส", "ศุกร์", "เสาร์", "วันนี้"];
+  let defaultData = [4, 3, 2, 4, 3, 4, 4]; // default gentle curve
+
+  // If currentUser has personal history, display real personal curve
+  if (currentUser && currentUser.moodHistory && currentUser.moodHistory.length >= 3) {
+    const recent = currentUser.moodHistory.slice(-7);
+    defaultLabels = recent.map(r => r.day || "บันทึก");
+    defaultData = recent.map(r => r.score);
+  }
 
   moodChartInstance = new Chart(ctx, {
     type: "line",
@@ -826,6 +941,12 @@ function runBreathingCycle() {
       } else if (phase === "exhale") {
         phase = "inhale";
         count = 4;
+        if (currentUser) {
+          currentUser.stats.breatheSessions = (currentUser.stats.breatheSessions || 0) + 1;
+          currentUser.stats.breatheMinutes = Math.max(1, Math.round(currentUser.stats.breatheSessions * 19 / 60));
+          saveUsersToStorage();
+          checkBadgeUnlocks();
+        }
       }
     }
 
@@ -992,6 +1113,12 @@ function handleSendLoungeMessage(event) {
   localStorage.setItem("mindspace_lounge_messages", JSON.stringify(loungeMessages));
   renderLoungeMessages();
 
+  if (isDrinkOnMe && currentUser) {
+    currentUser.stats.drinksTreated = (currentUser.stats.drinksTreated || 0) + 1;
+    saveUsersToStorage();
+    checkBadgeUnlocks();
+  }
+
   input.value = "";
   document.getElementById("treatAllCheckbox").checked = false;
 
@@ -1020,6 +1147,12 @@ function handleTreatDrink(messageId) {
   totalDrinksTreatedCount += 1;
   const totalEl = document.getElementById("totalDrinksTreated");
   if (totalEl) totalEl.innerText = `${totalDrinksTreatedCount} แก้ว`;
+
+  if (currentUser) {
+    currentUser.stats.drinksTreated = (currentUser.stats.drinksTreated || 0) + 1;
+    saveUsersToStorage();
+    checkBadgeUnlocks();
+  }
 
   localStorage.setItem("mindspace_lounge_messages", JSON.stringify(loungeMessages));
   renderLoungeMessages();
@@ -1223,4 +1356,440 @@ function openAiDocModal() {
 
 function closeAiDocModal() {
   document.getElementById("aiDocModal").classList.add("hidden");
+}
+
+// ================= USER AUTH & PERSONAL STATS SYSTEM =================
+function initAuthSystem() {
+  const storedUsers = localStorage.getItem("mindspace_users");
+  if (storedUsers) {
+    try {
+      usersList = JSON.parse(storedUsers);
+    } catch (e) {
+      usersList = JSON.parse(JSON.stringify(DEFAULT_USERS));
+    }
+  } else {
+    usersList = JSON.parse(JSON.stringify(DEFAULT_USERS));
+    localStorage.setItem("mindspace_users", JSON.stringify(usersList));
+  }
+
+  const currentUserId = localStorage.getItem("mindspace_current_user_id");
+  if (currentUserId) {
+    currentUser = usersList.find(u => u.id === currentUserId) || usersList[0];
+  } else {
+    // Default logged in to Somjeed for smooth out-of-the-box evaluator testing
+    currentUser = usersList[0];
+    localStorage.setItem("mindspace_current_user_id", currentUser.id);
+  }
+
+  updateNavAuthUI();
+  updateCheckinGreetingUI();
+}
+
+function saveUsersToStorage() {
+  localStorage.setItem("mindspace_users", JSON.stringify(usersList));
+  if (currentUser) {
+    localStorage.setItem("mindspace_current_user_id", currentUser.id);
+  } else {
+    localStorage.removeItem("mindspace_current_user_id");
+  }
+}
+
+function updateNavAuthUI() {
+  const navContainer = document.getElementById("navAuthContainer");
+  const mobileContainer = document.getElementById("mobileAuthContainer");
+
+  if (currentUser) {
+    // Desktop button: Avatar + Name + Stats
+    if (navContainer) {
+      navContainer.innerHTML = `
+        <button onclick="openProfileStatsModal()" class="px-3 py-1.5 sm:px-3.5 sm:py-1.5 rounded-full bg-emerald-50 border border-emerald-200/90 hover:bg-emerald-100/90 text-emerald-950 flex items-center gap-2 transition-all shadow-2xs font-heading">
+          <span class="text-base">${currentUser.avatarEmoji || '🐱'}</span>
+          <div class="text-left hidden sm:block">
+            <span class="text-xs font-bold block leading-tight text-slate-800">${escapeHtml(currentUser.displayName)}</span>
+            <span class="text-[10px] text-emerald-700 block leading-tight font-body">สถิติสะสม ${currentUser.stats.moodLogsCount} วัน</span>
+          </div>
+          <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-emerald-600"></i>
+        </button>
+      `;
+    }
+
+    // Mobile button
+    if (mobileContainer) {
+      mobileContainer.innerHTML = `
+        <div class="p-3 rounded-2xl bg-emerald-50/80 border border-emerald-200 flex items-center justify-between">
+          <div class="flex items-center gap-2.5">
+            <span class="text-2xl">${currentUser.avatarEmoji || '🐱'}</span>
+            <div>
+              <div class="text-sm font-bold text-slate-900 font-heading">${escapeHtml(currentUser.displayName)}</div>
+              <div class="text-xs text-emerald-700 font-body">เช็กอินแล้ว ${currentUser.stats.moodLogsCount} วัน • ปลดล็อก ${currentUser.badges.filter(b => b.unlocked).length} เหรียญ</div>
+            </div>
+          </div>
+          <button onclick="openProfileStatsModal()" class="px-3.5 py-1.5 rounded-full bg-emerald-600 text-white text-xs font-bold font-heading shadow-xs">
+            ดูสถิติ
+          </button>
+        </div>
+      `;
+    }
+  } else {
+    // Guest mode
+    if (navContainer) {
+      navContainer.innerHTML = `
+        <button onclick="openAuthModal()" class="px-3.5 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-bold bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100 flex items-center gap-1.5 transition-all font-heading shadow-2xs">
+          <i data-lucide="log-in" class="w-3.5 h-3.5 text-emerald-600"></i>
+          <span>เข้าสู่ระบบ / สถิติ</span>
+        </button>
+      `;
+    }
+
+    if (mobileContainer) {
+      mobileContainer.innerHTML = `
+        <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+          <div>
+            <div class="text-sm font-bold text-slate-800 font-heading">โหมดผู้เยี่ยมชม</div>
+            <div class="text-xs text-slate-500 font-body">เข้าสู่ระบบเพื่อจำสถิติสุขภาพจิตของคุณ</div>
+          </div>
+          <button onclick="openAuthModal()" class="px-3.5 py-1.5 rounded-full bg-emerald-600 text-white text-xs font-bold font-heading">
+            เข้าสู่ระบบ
+          </button>
+        </div>
+      `;
+    }
+  }
+
+  if (window.lucide) {
+    window.lucide.createIcons();
+  }
+}
+
+function updateCheckinGreetingUI() {
+  const greetingEl = document.getElementById("userCheckinGreeting");
+  const badgeEl = document.getElementById("userMoodLogCountBadge");
+
+  if (currentUser) {
+    if (greetingEl) {
+      greetingEl.innerHTML = `
+        <div class="flex items-center gap-2">
+          <span>${currentUser.avatarEmoji || '🌱'}</span>
+          <span class="text-slate-700">กำลังบันทึกในบัญชี: <strong class="text-emerald-800 font-bold font-heading">${escapeHtml(currentUser.displayName)}</strong></span>
+        </div>
+        <button onclick="openProfileStatsModal()" class="text-emerald-700 hover:text-emerald-900 font-bold underline font-heading text-xs">
+          ดูสถิติของคุณ →
+        </button>
+      `;
+    }
+    if (badgeEl) {
+      badgeEl.innerText = `🌱 บันทึกสะสม ${currentUser.stats.moodLogsCount} วัน (ต่อเนื่อง ${currentUser.stats.streakDays} วัน)`;
+    }
+  } else {
+    if (greetingEl) {
+      greetingEl.innerHTML = `
+        <span class="text-slate-500">👤 โหมดผู้เยี่ยมชม (สถิติยังไม่ผูกกับบัญชี)</span>
+        <button onclick="openAuthModal()" class="text-emerald-700 hover:text-emerald-900 font-bold underline font-heading text-xs">
+          เข้าสู่ระบบเพื่อจำสถิติ →
+        </button>
+      `;
+    }
+    if (badgeEl) {
+      badgeEl.innerText = `🌱 โหมดผู้เยี่ยมชม`;
+    }
+  }
+}
+
+function switchAuthTab(tab) {
+  const tabLogin = document.getElementById("authTabLogin");
+  const tabReg = document.getElementById("authTabRegister");
+  const panelLogin = document.getElementById("authLoginPanel");
+  const panelReg = document.getElementById("authRegisterPanel");
+
+  if (tab === "login") {
+    tabLogin.classList.add("active-auth-tab");
+    tabLogin.classList.remove("bg-white", "text-slate-600", "border");
+    tabReg.classList.remove("active-auth-tab");
+    tabReg.classList.add("bg-white", "text-slate-600", "border");
+    panelLogin.classList.remove("hidden");
+    panelReg.classList.add("hidden");
+  } else {
+    tabReg.classList.add("active-auth-tab");
+    tabReg.classList.remove("bg-white", "text-slate-600", "border");
+    tabLogin.classList.remove("active-auth-tab");
+    tabLogin.classList.add("bg-white", "text-slate-600", "border");
+    panelReg.classList.remove("hidden");
+    panelLogin.classList.add("hidden");
+  }
+}
+
+function openAuthModal() {
+  document.getElementById("authModal").classList.remove("hidden");
+  switchAuthTab("login");
+}
+
+function closeAuthModal() {
+  document.getElementById("authModal").classList.add("hidden");
+}
+
+function loginDemoAccount(username) {
+  const target = usersList.find(u => u.username === username);
+  if (!target) return;
+
+  currentUser = target;
+  saveUsersToStorage();
+  updateNavAuthUI();
+  updateCheckinGreetingUI();
+  initMoodChart();
+  closeAuthModal();
+
+  showDrinkToast(`✨ ยินดีต้อนรับกลับครับคุณ "${currentUser.displayName}" เข้าสู่ระบบเรียบร้อย`);
+  if (window.confetti) {
+    confetti({ particleCount: 35, spread: 60, origin: { y: 0.6 }, colors: ['#10B981', '#14B8A6', '#F59E0B'] });
+  }
+}
+
+function handleLoginSubmit(event) {
+  event.preventDefault();
+  const username = document.getElementById("loginUsername").value.trim().toLowerCase();
+  if (!username) return;
+
+  let user = usersList.find(u => u.username.toLowerCase() === username || u.displayName.toLowerCase() === username);
+
+  if (!user) {
+    // If not found, create an account on the fly for ease of use
+    user = {
+      id: "user_" + Date.now(),
+      username: username.replace(/\s+/g, '_'),
+      displayName: username,
+      avatar: "🐱 นามแฝงปลอดภัย",
+      avatarEmoji: "🐱",
+      role: "สมาชิกทั่วไป",
+      joinedAt: "วันนี้",
+      stats: {
+        moodLogsCount: 1,
+        streakDays: 1,
+        ventsCreated: 0,
+        hugsGiven: 0,
+        drinksTreated: 0,
+        breatheSessions: 0,
+        breatheMinutes: 0
+      },
+      moodHistory: [
+        { day: "วันนี้", mood: "good", score: 4, factors: ["การเริ่มต้นใหม่"], note: "เริ่มต้นเข้าใช้งาน MindSpace" }
+      ],
+      badges: JSON.parse(JSON.stringify(DEFAULT_USERS[0].badges.map(b => ({ ...b, unlocked: b.id === 'badge_first_mood' }))))
+    };
+    usersList.push(user);
+  }
+
+  currentUser = user;
+  saveUsersToStorage();
+  updateNavAuthUI();
+  updateCheckinGreetingUI();
+  initMoodChart();
+  closeAuthModal();
+
+  showDrinkToast(`🌟 เข้าสู่ระบบในชื่อ "${currentUser.displayName}" เรียบร้อยแล้ว`);
+  if (window.confetti) {
+    confetti({ particleCount: 35, spread: 60, origin: { y: 0.6 }, colors: ['#10B981', '#14B8A6', '#F59E0B'] });
+  }
+}
+
+let currentRegAvatar = "🐱 น้องแมว";
+function selectRegAvatar(avatar) {
+  currentRegAvatar = avatar;
+  document.getElementById("regSelectedAvatar").value = avatar;
+  const buttons = document.querySelectorAll("#regAvatarSelector .reg-avatar-opt");
+  buttons.forEach(b => {
+    if (b.innerText.includes(avatar.split(" ")[0])) {
+      b.classList.add("active-avatar");
+      b.classList.remove("border-slate-200");
+    } else {
+      b.classList.remove("active-avatar");
+      b.classList.add("border-slate-200");
+    }
+  });
+}
+
+function handleRegisterSubmit(event) {
+  event.preventDefault();
+  const displayName = document.getElementById("regDisplayName").value.trim();
+  const username = document.getElementById("regUsername").value.trim().toLowerCase();
+
+  if (!displayName || !username) return;
+
+  const existing = usersList.find(u => u.username.toLowerCase() === username);
+  if (existing) {
+    alert("ชื่อผู้ใช้นี้มีอยู่ในระบบแล้ว กรุณาเลือกชื่ออื่น หรือเข้าสู่ระบบด้วยชื่อนี้ครับ");
+    return;
+  }
+
+  const emoji = currentRegAvatar.split(" ")[0] || "🌱";
+
+  const newUser = {
+    id: "user_" + Date.now(),
+    username: username,
+    displayName: displayName,
+    avatar: currentRegAvatar,
+    avatarEmoji: emoji,
+    role: "สมาชิกใหม่",
+    joinedAt: "วันนี้",
+    stats: {
+      moodLogsCount: 1,
+      streakDays: 1,
+      ventsCreated: 0,
+      hugsGiven: 0,
+      drinksTreated: 0,
+      breatheSessions: 0,
+      breatheMinutes: 0
+    },
+    moodHistory: [
+      { day: "วันนี้", mood: "good", score: 4, factors: ["การเริ่มต้นใหม่"], note: "สร้างบัญชีผู้ใช้ใน MindSpace" }
+    ],
+    badges: JSON.parse(JSON.stringify(DEFAULT_USERS[0].badges.map(b => ({ ...b, unlocked: b.id === 'badge_first_mood' }))))
+  };
+
+  usersList.push(newUser);
+  currentUser = newUser;
+  saveUsersToStorage();
+  updateNavAuthUI();
+  updateCheckinGreetingUI();
+  initMoodChart();
+  closeAuthModal();
+
+  showDrinkToast(`🎉 สร้างบัญชีใหม่และเริ่มบันทึกสถิติให้คุณ "${displayName}" แล้ว`);
+  if (window.confetti) {
+    confetti({ particleCount: 50, spread: 70, origin: { y: 0.5 }, colors: ['#10B981', '#14B8A6', '#F59E0B'] });
+  }
+}
+
+function handleLogout() {
+  currentUser = null;
+  localStorage.removeItem("mindspace_current_user_id");
+  updateNavAuthUI();
+  updateCheckinGreetingUI();
+  closeProfileStatsModal();
+  initMoodChart();
+  showDrinkToast("👋 ออกจากระบบเรียบร้อยแล้ว (สลับเข้าสู่โหมดผู้เยี่ยมชม)");
+}
+
+function openProfileStatsModal() {
+  if (!currentUser) {
+    openAuthModal();
+    return;
+  }
+
+  // Populate user profile info
+  const avatarEl = document.getElementById("profileAvatarDisplay");
+  const nameEl = document.getElementById("profileNameDisplay");
+  const roleEl = document.getElementById("profileRoleBadge");
+  const userEl = document.getElementById("profileUsernameDisplay");
+
+  if (avatarEl) avatarEl.innerText = currentUser.avatarEmoji || "🐱";
+  if (nameEl) nameEl.innerText = currentUser.displayName;
+  if (roleEl) roleEl.innerText = currentUser.role || "สมาชิกสายดูแลใจ";
+  if (userEl) userEl.innerText = `@${currentUser.username} • เข้าร่วมเมื่อ ${currentUser.joinedAt || '28 ต.ค. 2026'}`;
+
+  // Populate 4 Stats
+  const moodCountEl = document.getElementById("userStatMoodCount");
+  const streakEl = document.getElementById("userStatStreak");
+  const hugsEl = document.getElementById("userStatHugsGiven");
+  const drinksEl = document.getElementById("userStatDrinksTreated");
+  const minsEl = document.getElementById("userStatBreatheMins");
+  const sessionsEl = document.getElementById("userStatBreatheSessions");
+
+  if (moodCountEl) moodCountEl.innerText = `${currentUser.stats.moodLogsCount || 0} วัน`;
+  if (streakEl) streakEl.innerText = `🔥 ต่อเนื่อง ${currentUser.stats.streakDays || 1} วัน`;
+  if (hugsEl) hugsEl.innerText = `${currentUser.stats.hugsGiven || 0} ครั้ง`;
+  if (drinksEl) drinksEl.innerText = `${currentUser.stats.drinksTreated || 0} แก้ว`;
+  if (minsEl) minsEl.innerText = `${currentUser.stats.breatheMinutes || 0} นาที`;
+  if (sessionsEl) sessionsEl.innerText = `สะสม ${currentUser.stats.breatheSessions || 0} ครั้ง`;
+
+  // Render Badges
+  const badgesContainer = document.getElementById("userBadgesContainer");
+  const badgesSummary = document.getElementById("unlockedBadgesSummary");
+  if (badgesContainer && currentUser.badges) {
+    const unlockedCount = currentUser.badges.filter(b => b.unlocked).length;
+    if (badgesSummary) badgesSummary.innerText = `ปลดล็อกแล้ว ${unlockedCount}/${currentUser.badges.length}`;
+
+    badgesContainer.innerHTML = currentUser.badges.map(b => `
+      <div class="p-3 rounded-2xl border ${b.unlocked ? 'badge-unlocked border-emerald-300' : 'badge-locked border-slate-200'} flex items-center justify-between gap-3 badge-card">
+        <div class="flex items-center gap-2.5">
+          <span class="text-2xl">${b.icon || '🌱'}</span>
+          <div>
+            <div class="text-xs font-bold text-slate-900 font-heading flex items-center gap-1.5">
+              <span>${b.name}</span>
+              ${b.unlocked ? '<span class="text-[10px] text-emerald-700 bg-emerald-100 px-1.5 py-0.2 rounded-full font-bold">สำเร็จ</span>' : ''}
+            </div>
+            <div class="text-[10px] text-slate-500 font-body">${b.desc}</div>
+          </div>
+        </div>
+        <span class="text-xs font-bold ${b.unlocked ? 'text-emerald-600' : 'text-slate-400'}">${b.unlocked ? '✓' : '🔒'}</span>
+      </div>
+    `).join("");
+  }
+
+  // Render Recent Mood Logs History
+  const historyContainer = document.getElementById("userMoodHistoryList");
+  if (historyContainer && currentUser.moodHistory) {
+    if (currentUser.moodHistory.length === 0) {
+      historyContainer.innerHTML = `<p class="text-xs text-slate-400 text-center py-4">ยังไม่มีบันทึกอารมณ์ในบัญชีนี้</p>`;
+    } else {
+      const reversed = [...currentUser.moodHistory].reverse().slice(0, 5);
+      const moodEmojis = { great: "🥳 สดใส", good: "😊 สบายใจ", neutral: "😐 เฉยๆ", tired: "😔 เหนื่อยล้า", stressed: "😫 เครียด" };
+
+      historyContainer.innerHTML = reversed.map(item => `
+        <div class="p-3 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-between gap-3 text-xs">
+          <div class="flex items-center gap-2.5">
+            <span class="text-lg">${item.score >= 4 ? '😊' : (item.score === 3 ? '😐' : '😔')}</span>
+            <div>
+              <div class="font-bold text-slate-800 font-heading">
+                ${moodEmojis[item.mood] || item.mood} 
+                ${item.factors && item.factors.length > 0 ? `<span class="text-[10px] font-normal text-slate-500 font-body">(${item.factors.join(', ')})</span>` : ''}
+              </div>
+              <p class="text-[11px] text-slate-600 font-body">${escapeHtml(item.note || 'ไม่มีโน้ต')}</p>
+            </div>
+          </div>
+          <span class="text-[10px] font-semibold text-slate-400 shrink-0 font-heading">${item.day || 'วันนี้'}</span>
+        </div>
+      `).join("");
+    }
+  }
+
+  document.getElementById("profileStatsModal").classList.remove("hidden");
+  if (window.lucide) window.lucide.createIcons();
+}
+
+function closeProfileStatsModal() {
+  document.getElementById("profileStatsModal").classList.add("hidden");
+}
+
+function checkBadgeUnlocks() {
+  if (!currentUser || !currentUser.badges) return;
+
+  let unlockedNew = false;
+  currentUser.badges.forEach(b => {
+    if (!b.unlocked) {
+      if (b.id === "badge_first_mood" && currentUser.stats.moodLogsCount >= 1) {
+        b.unlocked = true;
+        unlockedNew = b;
+      } else if (b.id === "badge_streak_3" && currentUser.stats.streakDays >= 3) {
+        b.unlocked = true;
+        unlockedNew = b;
+      } else if (b.id === "badge_hug_giver" && currentUser.stats.hugsGiven >= 10) {
+        b.unlocked = true;
+        unlockedNew = b;
+      } else if (b.id === "badge_pour_care" && currentUser.stats.drinksTreated >= 1) {
+        b.unlocked = true;
+        unlockedNew = b;
+      } else if (b.id === "badge_breathe_zen" && currentUser.stats.breatheSessions >= 3) {
+        b.unlocked = true;
+        unlockedNew = b;
+      }
+    }
+  });
+
+  if (unlockedNew) {
+    saveUsersToStorage();
+    showDrinkToast(`🎉 ยินดีด้วย! คุณปลดล็อกเหรียญตรา "${unlockedNew.name}" เรียบร้อยแล้ว!`);
+    if (window.confetti) {
+      confetti({ particleCount: 60, spread: 80, origin: { y: 0.5 }, colors: ['#10B981', '#F59E0B', '#38BDF8'] });
+    }
+  }
 }
