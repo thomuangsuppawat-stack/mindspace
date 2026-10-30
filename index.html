@@ -115,6 +115,10 @@
           <i data-lucide="smile" class="w-4 h-4 text-emerald-500"></i>
           <span>เช็กอินอารมณ์</span>
         </a>
+        <a href="#mbti-test" class="px-3.5 py-2 rounded-full text-xs lg:text-sm font-semibold text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 transition-all flex items-center gap-1.5">
+          <i data-lucide="compass" class="w-4 h-4 text-emerald-500"></i>
+          <span>MBTI สัตว์ฮีลใจ</span>
+        </a>
         <a href="#breathe-space" class="px-3.5 py-2 rounded-full text-xs lg:text-sm font-semibold text-slate-600 hover:text-teal-700 hover:bg-teal-50 transition-all flex items-center gap-1.5">
           <i data-lucide="wind" class="w-4 h-4 text-teal-500"></i>
           <span>ฝึกหายใจ</span>
@@ -157,6 +161,7 @@
       <a href="#heart-unwind" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-amber-800 bg-amber-50">☕ ห้องเทความในใจ (Soul Pour Room)</a>
       <a href="#ai-companion" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-teal-50">น้องใจดี AI ผู้รับฟัง</a>
       <a href="#mood-tracker" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-emerald-50">เช็กอินอารมณ์ประจำวัน</a>
+      <a href="#mbti-test" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-emerald-800 bg-emerald-50/70 font-semibold">🐾 MBTI สัตว์ฮีลใจ & กราฟพลังใจ</a>
       <a href="#breathe-space" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-teal-50">ฝึกหายใจผ่อนคลาย (4-7-8)</a>
       <a href="#directory" class="block px-3 py-2.5 rounded-xl text-sm font-medium text-slate-700 hover:bg-rose-50">สายด่วนสุขภาพจิต</a>
     </div>
@@ -730,6 +735,207 @@
     </div>
   </section>
 
+  <!-- ================= SECTION: MBTI HEALING ANIMAL & SKILLS RADAR GRAPH ================= -->
+  <section id="mbti-test" class="py-16 bg-white border-b border-emerald-100/60 scroll-mt-20 relative overflow-hidden">
+    <!-- Ambient subtle background decorative blurs -->
+    <div class="absolute top-1/4 right-0 w-80 h-80 bg-emerald-100/30 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+    <div class="absolute bottom-10 left-0 w-80 h-80 bg-teal-100/30 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold mb-3 shadow-2xs font-heading">
+          <i data-lucide="compass" class="w-3.5 h-3.5 text-emerald-600"></i>
+          <span>MBTI & Animal Archetype Assessment</span>
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 font-heading">
+          ค้นพบ <span class="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-500 bg-clip-text text-transparent">"สัตว์ฮีลใจประจำตัว"</span> พร้อมกราฟความถนัด 6 มิติ
+        </h2>
+        <p class="text-slate-600 text-sm mt-2 font-body leading-relaxed">
+          เพราะทุกคนมีจุดเด่นและวิธีฟื้นฟูจิตใจที่ไม่เหมือนกัน ค้นหาว่าบุคลิกภาพ MBTI ของคุณตรงกับสัตว์ตัวไหน และดูจุดแข็งทางอารมณ์ของคุณผ่านเรดาร์ชาร์ต
+        </p>
+
+        <!-- Mode Toggle Tabs -->
+        <div class="inline-flex p-1.5 rounded-full bg-slate-100/80 border border-slate-200/90 mt-6 shadow-2xs">
+          <button id="btnMbtiTabQuiz" onclick="switchMbtiMode('quiz')" class="mbti-mode-tab active px-5 py-2 rounded-full text-xs sm:text-sm font-bold font-heading transition-all">
+            📝 ทำแบบประเมิน 6 ข้อ
+          </button>
+          <button id="btnMbtiTabSelector" onclick="switchMbtiMode('explore')" class="mbti-mode-tab px-5 py-2 rounded-full text-xs sm:text-sm font-bold font-heading transition-all">
+            🐾 สำรวจสัตว์ครบ 16 ชนิด
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick 16 MBTI Animal Selector Bar -->
+      <div id="mbtiExplorerPills" class="hidden mb-8 pb-2 overflow-x-auto no-scrollbar">
+        <div class="flex items-center justify-start lg:justify-center gap-2 min-w-max px-2" id="mbtiPillsContainer">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+
+      <!-- Main Interaction Container -->
+      <div class="bg-[#F8FAF9] border border-emerald-100 rounded-3xl p-6 sm:p-8 md:p-10 shadow-xs relative">
+        
+        <!-- ============ 1. QUIZ STEPPER VIEW ============ -->
+        <div id="mbtiQuizView" class="max-w-2xl mx-auto">
+          <!-- Stepper Progress Header -->
+          <div class="mb-8">
+            <div class="flex items-center justify-between text-xs font-bold font-heading text-slate-500 mb-2">
+              <span id="mbtiStepLabel" class="text-emerald-700 font-extrabold flex items-center gap-1.5">
+                <i data-lucide="sparkles" class="w-4 h-4 text-emerald-600"></i>
+                ข้อที่ 1 จาก 6
+              </span>
+              <span id="mbtiStepPercent" class="text-slate-400">16%</span>
+            </div>
+            <div class="w-full bg-slate-200/80 h-2.5 rounded-full overflow-hidden">
+              <div id="mbtiProgressBar" class="bg-gradient-to-r from-emerald-500 to-teal-500 h-full rounded-full transition-all duration-300" style="width: 16.66%;"></div>
+            </div>
+          </div>
+
+          <!-- Dynamic Question Card -->
+          <div id="mbtiQuestionCard" class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200 shadow-2xs">
+            <!-- Question Category -->
+            <div class="inline-block px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-[11px] font-bold font-heading mb-3" id="mbtiQuestionCategory">
+              ⚡ การชาร์จพลังใจ (Energy Style)
+            </div>
+            <!-- Question Title -->
+            <h3 class="text-lg sm:text-xl font-extrabold text-slate-900 font-heading leading-snug mb-6" id="mbtiQuestionText">
+              เมื่อคุณรู้สึกเหนื่อยล้าหรือใจหมดพลัง คุณมักชาร์จแบตให้ตัวเองอย่างไร?
+            </h3>
+
+            <!-- Options Container -->
+            <div class="space-y-3.5" id="mbtiOptionsContainer">
+              <!-- Dynamically populated options -->
+            </div>
+
+            <!-- Quiz Navigation Controls -->
+            <div class="flex items-center justify-between mt-8 pt-5 border-t border-slate-100">
+              <button id="btnMbtiPrev" onclick="prevMbtiQuestion()" class="btn-outline px-5 py-2.5 rounded-full text-xs font-bold font-heading disabled:opacity-40 disabled:cursor-not-allowed">
+                ← ข้อก่อนหน้า
+              </button>
+              <div class="text-[11px] text-slate-400 font-body">คลิกคำตอบเพื่อไปข้อถัดไปอัตโนมัติ</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ 2. RESULT & RADAR CHART VIEW ============ -->
+        <div id="mbtiResultView" class="hidden">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+            
+            <!-- Left Card: Matched Animal Archetype (5 cols) -->
+            <div class="lg:col-span-5 bg-white rounded-3xl p-6 sm:p-7 border border-emerald-200/80 shadow-xs flex flex-col justify-between">
+              <div>
+                <!-- Top Archetype Badge -->
+                <div class="flex items-center justify-between gap-2 mb-4">
+                  <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 text-xs font-extrabold font-heading" id="resultMbtiBadge">
+                    INFP • The Dreamer
+                  </div>
+                  <span class="text-xs text-slate-400 font-heading">สัตว์ฮีลใจประจำตัว</span>
+                </div>
+
+                <!-- Animal Emoji Halo + Name -->
+                <div class="flex items-center gap-4 mb-4">
+                  <div class="w-20 h-20 rounded-3xl bg-gradient-to-tr from-emerald-50 to-teal-50 border border-emerald-200 flex items-center justify-center text-4xl shadow-sm shrink-0" id="resultAnimalEmoji">
+                    🐰
+                  </div>
+                  <div>
+                    <h3 class="text-2xl font-extrabold text-slate-900 font-heading" id="resultAnimalName">
+                      น้องกระต่ายช่างฝัน
+                    </h3>
+                    <p class="text-xs font-bold text-emerald-700 font-heading mt-0.5" id="resultAnimalRole">
+                      ผู้เยียวยาใจ & นักรับฟังที่อ่อนโยน
+                    </p>
+                  </div>
+                </div>
+
+                <!-- Archetype Description -->
+                <p class="text-xs sm:text-sm text-slate-600 font-body leading-relaxed mb-5" id="resultAnimalDesc">
+                  คุณเป็นผู้รับฟังที่อบอุ่น เข้าใจความรู้สึกของผู้อื่นได้ลึกซึ้งโดยไม่ต้องใช้คำพูด มีจินตนาการกว้างไกล และมอบพื้นที่ปลอดภัยให้ทุกคนได้อย่างจริงใจ
+                </p>
+
+                <!-- Core Strengths Tag List -->
+                <div class="mb-5">
+                  <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 font-heading">จุดเด่นทางใจของคุณ (Core Strengths)</div>
+                  <div class="flex flex-wrap gap-1.5" id="resultStrengthsTags">
+                    <!-- Populated via JS -->
+                  </div>
+                </div>
+
+                <!-- Healing Advice Box -->
+                <div class="p-4 rounded-2xl bg-gradient-to-br from-amber-50 to-orange-50/50 border border-amber-200/70 mb-5">
+                  <div class="text-xs font-bold text-amber-900 font-heading flex items-center gap-1.5 mb-1">
+                    <span>🌟 คำแนะนำฮีลใจสำหรับคุณ</span>
+                  </div>
+                  <p class="text-xs text-amber-800 font-body leading-relaxed" id="resultAnimalAdvice">
+                    อย่าลืมให้เวลาตัวเองได้อยู่เงียบๆ คนเดียวเพื่อเติมพลัง และจำไว้ว่าความอ่อนโยนของคุณคือพลังวิเศษ ไม่ใช่จุดอ่อน
+                  </p>
+                </div>
+              </div>
+
+              <!-- Action Buttons -->
+              <div class="space-y-2.5 pt-2 border-t border-slate-100">
+                <button onclick="saveAnimalToUserProfile()" class="w-full btn-primary py-3 rounded-full text-xs sm:text-sm font-bold font-heading flex items-center justify-center gap-2 shadow-md">
+                  <i data-lucide="check-circle" class="w-4 h-4"></i>
+                  <span>บันทึกเป็นสัตว์ประจำตัวลงในโปรไฟล์</span>
+                </button>
+                <div class="flex items-center gap-2">
+                  <button onclick="retakeMbtiQuiz()" class="w-1/2 btn-outline py-2.5 rounded-full text-xs font-bold font-heading flex items-center justify-center gap-1.5">
+                    <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+                    <span>ทำแบบทดสอบใหม่</span>
+                  </button>
+                  <button onclick="shareMbtiCard()" class="w-1/2 btn-outline py-2.5 rounded-full text-xs font-bold font-heading flex items-center justify-center gap-1.5">
+                    <i data-lucide="share-2" class="w-3.5 h-3.5 text-emerald-600"></i>
+                    <span>แชร์การ์ดพลังใจ</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Card: Interactive Skills Radar Chart (7 cols) -->
+            <div class="lg:col-span-7 bg-white rounded-3xl p-6 sm:p-7 border border-emerald-200/80 shadow-xs flex flex-col justify-between">
+              <div>
+                <!-- Radar Header -->
+                <div class="flex items-center justify-between mb-4">
+                  <div>
+                    <h4 class="text-base sm:text-lg font-extrabold text-slate-900 font-heading flex items-center gap-2">
+                      <span>กราฟวิเคราะห์ความถนัด 6 มิติ</span>
+                      <span class="text-[11px] bg-emerald-50 text-emerald-700 border border-emerald-200 px-2 py-0.5 rounded-full font-bold">Mental Wellness Radar</span>
+                    </h4>
+                    <p class="text-xs text-slate-500 font-body">แสดงจุดแข็งและความถนัดตามธรรมชาติของคุณและสัตว์ประจำตัว</p>
+                  </div>
+                  <div class="hidden sm:block text-right">
+                    <span class="text-xs font-extrabold text-emerald-600 font-heading" id="radarAverageScore">เฉลี่ย 83%</span>
+                  </div>
+                </div>
+
+                <!-- Radar Chart Canvas Container -->
+                <div class="relative w-full h-[280px] sm:h-[320px] mb-4">
+                  <canvas id="mbtiRadarChart"></canvas>
+                </div>
+
+                <!-- 6 Dimensions Breakdown Grid -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 sm:gap-3" id="radarDimensionsList">
+                  <!-- Populated via JS -->
+                </div>
+              </div>
+
+              <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400 font-body">
+                <span>💡 กราฟคำนวณตามคำตอบและลักษณะความถนัดเฉพาะตัว</span>
+                <a href="#mbtiExplorerPills" onclick="switchMbtiMode('explore')" class="text-emerald-700 font-bold hover:underline font-heading">
+                  ดูสัตว์ตัวอื่น →
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
   <!-- ================= SECTION 4: BREATHE & CALM (4-7-8 RELAXATION - Healing White Theme) ================= -->
   <section id="breathe-space" class="py-16 bg-[#F8FAF9] border-t border-b border-emerald-100/60 scroll-mt-20">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -1257,6 +1463,27 @@
             </div>
 
           </div>
+        </div>
+
+        <!-- User's Matched MBTI Healing Animal Banner -->
+        <div id="profileAnimalBanner" class="p-4 rounded-2xl bg-gradient-to-r from-emerald-50 via-teal-50 to-white border border-emerald-200/90 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div class="flex items-center gap-3.5">
+            <div class="w-12 h-12 rounded-2xl bg-white border border-emerald-200 flex items-center justify-center text-2xl shadow-2xs shrink-0" id="profileAnimalEmoji">
+              🐱
+            </div>
+            <div>
+              <div class="flex items-center gap-2">
+                <h5 class="text-sm font-extrabold text-slate-900 font-heading" id="profileAnimalName">น้องแมวส้มศิลปิน (ISFP)</h5>
+                <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold" id="profileAnimalTag">สัตว์ฮีลใจประจำตัว</span>
+              </div>
+              <p class="text-xs text-slate-600 font-body mt-0.5" id="profileAnimalDesc">
+                ถนัดด้านความคิดสร้างสรรค์ (94%) & ความเข้าอกเข้าใจ (92%)
+              </p>
+            </div>
+          </div>
+          <a href="#mbti-test" onclick="closeProfileStatsModal()" class="shrink-0 btn-outline px-4 py-1.5 rounded-full text-xs font-bold font-heading hover:border-emerald-500 text-emerald-700">
+            ดูกราฟพลังใจ 6 มิติ →
+          </a>
         </div>
 
         <!-- Achievement Badges (เหรียญตราความสำเร็จ) -->

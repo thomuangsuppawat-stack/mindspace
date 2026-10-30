@@ -105,6 +105,18 @@ const DEFAULT_USERS = [
     avatarEmoji: "🐱",
     role: "สมาชิกสายดูแลใจ",
     joinedAt: "28 ต.ค. 2026",
+    mbti: "ISFP",
+    animalArchetype: {
+      type: "ISFP",
+      emoji: "🐱",
+      name: "แมวน้อยศิลปิน",
+      badge: "ISFP • The Artist & Free Spirit",
+      role: "ศิลปินผู้รักอิสระ & สุนทรียภาพแห่งใจ",
+      desc: "คุณมีความอ่อนโยน มีเซนส์ด้านศิลปะและความงดงามสูงมาก อยู่กับความสงบ รักอิสระ และแสดงความจริงใจต่อทุกคนเสมอ",
+      strengths: ["ความคิดสร้างสรรค์ 94%", "ความเข้าอกเข้าใจ 92%", "ความสงบนิ่งผ่อนคลาย 90%"],
+      advice: "เมื่อรู้สึกกดดันจากความคาดหวัง ปลีกวิเวกไปทำในสิ่งที่รัก เช่น ฟังเพลง หรือดูแลต้นไม้เพื่อฟื้นพลังใจ",
+      scores: [92, 72, 94, 60, 90, 65]
+    },
     stats: {
       moodLogsCount: 5,
       streakDays: 3,
@@ -126,7 +138,8 @@ const DEFAULT_USERS = [
       { id: "badge_streak_3", name: "สม่ำเสมอเป็นเลิศ 🔥", icon: "🔥", desc: "เช็กอินอารมณ์ติดต่อกันครบ 3 วัน", unlocked: true },
       { id: "badge_hug_giver", name: "สายซัพพอร์ต 🫂", icon: "🫂", desc: "ส่งอ้อมกอดและพลังใจให้เพื่อน 10+ ครั้ง", unlocked: true },
       { id: "badge_pour_care", name: "เจ้ามือใจดี ☕", icon: "☕", desc: "ส่งแก้วกำลังใจในห้องเทความในใจ", unlocked: true },
-      { id: "badge_breathe_zen", name: "จิตสงบนิ่ง 🧘‍♂️", icon: "🧘‍♂️", desc: "ฝึกหายใจแบบ 4-7-8 สะสม 3 ครั้ง", unlocked: true }
+      { id: "badge_breathe_zen", name: "จิตสงบนิ่ง 🧘‍♂️", icon: "🧘‍♂️", desc: "ฝึกหายใจแบบ 4-7-8 สะสม 3 ครั้ง", unlocked: true },
+      { id: "badge_mbti_animal", name: "สัตว์ฮีลใจประจำตัว 🐾", icon: "🐾", desc: "ค้นพบสัตว์ประจำใจและกราฟพลังใจ 6 มิติ", unlocked: true }
     ]
   },
   {
@@ -137,6 +150,18 @@ const DEFAULT_USERS = [
     avatarEmoji: "🐰",
     role: "สมาชิกใหม่",
     joinedAt: "30 ต.ค. 2026",
+    mbti: "INFP",
+    animalArchetype: {
+      type: "INFP",
+      emoji: "🐰",
+      name: "น้องกระต่ายช่างฝัน",
+      badge: "INFP • The Dreamer & Healer",
+      role: "ผู้เยียวยาใจ & นักรับฟังที่อ่อนโยน",
+      desc: "คุณเป็นผู้รับฟังที่อบอุ่น เข้าใจความรู้สึกของผู้อื่นได้ลึกซึ้งโดยไม่ต้องใช้คำพูด มอบพื้นที่ปลอดภัยให้ทุกคน",
+      strengths: ["ความเข้าอกเข้าใจสูงลิ่ว 96%", "ความคิดสร้างสรรค์ 88%", "ความสงบในใจ 86%"],
+      advice: "อย่าลืมให้เวลาตัวเองได้อยู่เงียบๆ คนเดียวเพื่อเติมพลัง ความอ่อนโยนของคุณคือพลังวิเศษ ไม่ใช่จุดอ่อน",
+      scores: [96, 68, 88, 62, 86, 70]
+    },
     stats: {
       moodLogsCount: 2,
       streakDays: 1,
@@ -155,7 +180,8 @@ const DEFAULT_USERS = [
       { id: "badge_streak_3", name: "สม่ำเสมอเป็นเลิศ 🔥", icon: "🔥", desc: "เช็กอินอารมณ์ติดต่อกันครบ 3 วัน", unlocked: false },
       { id: "badge_hug_giver", name: "สายซัพพอร์ต 🫂", icon: "🫂", desc: "ส่งอ้อมกอดและพลังใจให้เพื่อน 10+ ครั้ง", unlocked: false },
       { id: "badge_pour_care", name: "เจ้ามือใจดี ☕", icon: "☕", desc: "ส่งแก้วกำลังใจในห้องเทความในใจ", unlocked: true },
-      { id: "badge_breathe_zen", name: "จิตสงบนิ่ง 🧘‍♂️", icon: "🧘‍♂️", desc: "ฝึกหายใจแบบ 4-7-8 สะสม 3 ครั้ง", unlocked: false }
+      { id: "badge_breathe_zen", name: "จิตสงบนิ่ง 🧘‍♂️", icon: "🧘‍♂️", desc: "ฝึกหายใจแบบ 4-7-8 สะสม 3 ครั้ง", unlocked: false },
+      { id: "badge_mbti_animal", name: "สัตว์ฮีลใจประจำตัว 🐾", icon: "🐾", desc: "ค้นพบสัตว์ประจำใจและกราฟพลังใจ 6 มิติ", unlocked: true }
     ]
   }
 ];
@@ -223,6 +249,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderLoungeMessages();
   setupTextareaCounter();
   initMoodChart();
+  initMbtiSystem();
   setupMobileMenu();
 });
 
@@ -1372,6 +1399,33 @@ function initAuthSystem() {
     localStorage.setItem("mindspace_users", JSON.stringify(usersList));
   }
 
+  // Ensure backwards compatibility for MBTI animal & badges
+  usersList.forEach(u => {
+    if (!u.badges) u.badges = [];
+    if (!u.badges.some(b => b.id === 'badge_mbti_animal')) {
+      u.badges.push({
+        id: "badge_mbti_animal",
+        name: "สัตว์ฮีลใจประจำตัว 🐾",
+        icon: "🐾",
+        desc: "ค้นพบสัตว์ประจำใจและกราฟพลังใจ 6 มิติ",
+        unlocked: Boolean(u.animalArchetype)
+      });
+    }
+    if (!u.animalArchetype) {
+      if (u.id === 'user_cat') {
+        u.mbti = "ISFP";
+        u.animalArchetype = DEFAULT_USERS[0].animalArchetype;
+        const b = u.badges.find(b => b.id === 'badge_mbti_animal');
+        if (b) b.unlocked = true;
+      } else if (u.id === 'user_rabbit') {
+        u.mbti = "INFP";
+        u.animalArchetype = DEFAULT_USERS[1].animalArchetype;
+        const b = u.badges.find(b => b.id === 'badge_mbti_animal');
+        if (b) b.unlocked = true;
+      }
+    }
+  });
+
   const currentUserId = localStorage.getItem("mindspace_current_user_id");
   if (currentUserId) {
     currentUser = usersList.find(u => u.id === currentUserId) || usersList[0];
@@ -1701,6 +1755,27 @@ function openProfileStatsModal() {
   if (minsEl) minsEl.innerText = `${currentUser.stats.breatheMinutes || 0} นาที`;
   if (sessionsEl) sessionsEl.innerText = `สะสม ${currentUser.stats.breatheSessions || 0} ครั้ง`;
 
+  // Populate MBTI Animal Archetype Banner
+  const animalBanner = document.getElementById("profileAnimalBanner");
+  const animalEmoji = document.getElementById("profileAnimalEmoji");
+  const animalName = document.getElementById("profileAnimalName");
+  const animalTag = document.getElementById("profileAnimalTag");
+  const animalDesc = document.getElementById("profileAnimalDesc");
+
+  if (animalBanner) {
+    if (currentUser.animalArchetype) {
+      if (animalEmoji) animalEmoji.innerText = currentUser.animalArchetype.emoji || "🐱";
+      if (animalName) animalName.innerText = `${currentUser.animalArchetype.name} (${currentUser.animalArchetype.type || currentUser.mbti})`;
+      if (animalTag) animalTag.innerText = "สัตว์ฮีลใจประจำตัว";
+      if (animalDesc) animalDesc.innerText = currentUser.animalArchetype.strengths ? currentUser.animalArchetype.strengths.slice(0, 2).join(" • ") : (currentUser.animalArchetype.role || "");
+    } else {
+      if (animalEmoji) animalEmoji.innerText = "🐾";
+      if (animalName) animalName.innerText = "ยังไม่ได้ประเมินสัตว์ฮีลใจ";
+      if (animalTag) animalTag.innerText = "รอการประเมิน";
+      if (animalDesc) animalDesc.innerText = "ทำแบบประเมิน 6 ข้อ เพื่อค้นพบสัตว์ประจำตัวและกราฟพลังใจ 6 มิติของคุณ";
+    }
+  }
+
   // Render Badges
   const badgesContainer = document.getElementById("userBadgesContainer");
   const badgesSummary = document.getElementById("unlockedBadgesSummary");
@@ -1793,3 +1868,747 @@ function checkBadgeUnlocks() {
     }
   }
 }
+
+// =========================================================================
+// MBTI & HEALING ANIMAL ARCHETYPE MATCHING SYSTEM WITH 6D SKILLS RADAR GRAPH
+// =========================================================================
+
+const MBTI_RADAR_DIMENSIONS = [
+  { key: "empathy", label: "ความเข้าอกเข้าใจ (Empathy)", icon: "💚", desc: "รับฟัง เข้าใจ และเยียวยาอารมณ์ผู้คน" },
+  { key: "resilience", label: "การฟื้นตัวจากเครียด (Resilience)", icon: "🛡️", desc: "รับมือแรงกดดัน ลุกไว ไม่ยอมแพ้" },
+  { key: "creativity", label: "ความคิดสร้างสรรค์ (Creativity)", icon: "🎨", desc: "จินตนาการ สุนทรียะ การแสดงออก" },
+  { key: "logic", label: "การคิดวิเคราะห์ (Logic & Plan)", icon: "💡", desc: "ตรรกะ มีระบบ จัดการแก้ปัญหา" },
+  { key: "mindfulness", label: "ความสงบในใจ (Mindfulness)", icon: "🧘", desc: "สติ อยู่กับปัจจุบัน คุมอารมณ์" },
+  { key: "social", label: "ส่งต่อพลังสังคม (Social Energy)", icon: "🤝", desc: "เชื่อมโยงผู้คน จุดประกายรอยยิ้ม" }
+];
+
+const MBTI_ANIMALS_DATA = {
+  INFP: {
+    type: "INFP",
+    emoji: "🐰",
+    name: "น้องกระต่ายช่างฝัน",
+    badge: "INFP • The Dreamer & Healer",
+    role: "ผู้เยียวยาใจ & นักรับฟังที่อ่อนโยน",
+    desc: "คุณเป็นผู้รับฟังที่อบอุ่น เข้าใจความรู้สึกของผู้อื่นได้ลึกซึ้งโดยไม่ต้องใช้คำพูด มีจินตนาการกว้างไกล ไวต่อความรู้สึก และมอบพื้นที่ปลอดภัยให้ทุกคนได้อย่างจริงใจ",
+    strengths: ["ความเข้าอกเข้าใจสูงลิ่ว 96%", "ความคิดสร้างสรรค์ 88%", "ความสงบและการตระหนักรู้ 86%"],
+    advice: "อย่าลืมให้เวลาตัวเองได้อยู่เงียบๆ คนเดียวเพื่อเติมพลัง และจำไว้ว่าความอ่อนโยนของคุณคือพลังวิเศษ ไม่ใช่จุดอ่อน",
+    scores: [96, 68, 88, 62, 86, 70]
+  },
+  INFJ: {
+    type: "INFJ",
+    emoji: "🦌",
+    name: "กวางน้อยผู้หยั่งรู้",
+    badge: "INFJ • The Counselor & Protector",
+    role: "ที่ปรึกษาผู้เปี่ยมปัญญา & ผู้มองเห็นความหวัง",
+    desc: "คุณมีเซนส์ในการอ่านความรู้สึกและเข้าใจมนุษย์อย่างลึกซึ้ง มักเป็นที่พึ่งทางใจที่มองเห็นทางออกของปัญหาชีวิต พร้อมนำทางผู้คนด้วยความเมตตาและหลักการที่มั่นคง",
+    strengths: ["ความเข้าอกเข้าใจลึกซึ้ง 94%", "ความสงบในใจ 90%", "การคิดวิเคราะห์อย่างมีระบบ 84%"],
+    advice: "คุณมักแบกรับความรู้สึกของคนอื่นมากเกินไป ฝึกวางภาระลงและบอกตัวเองว่าคุณไม่ต้องเป็นผู้กอบกู้ของทุกคน",
+    scores: [94, 76, 85, 84, 90, 72]
+  },
+  ENFP: {
+    type: "ENFP",
+    emoji: "🦦",
+    name: "นากน้อยร่าเริง",
+    badge: "ENFP • The Free Spirit & Inspirer",
+    role: "แสงตะวันผู้เติมพลัง & ปลุกรอยยิ้มรอบตัว",
+    desc: "คุณคือขุมพลังบวกที่เคลื่อนไหวได้ เข้ากับคนง่าย มีไอเดียสร้างสรรค์ไม่รู้จบ และสามารถเปลี่ยนบรรยากาศที่หม่นหมองให้กลับมามีชีวิตชีวาได้อย่างน่าอัศจรรย์",
+    strengths: ["ความคิดสร้างสรรค์ทะลุขอบ 96%", "การส่งต่อพลังบวก 95%", "ความเห็นอกเห็นใจ 90%"],
+    advice: "เมื่อแบตเตอรี่ชีวิตใกล้หมด ลองหยุดพักและให้เวลากับความเงียบ อย่ากลัวที่จะปฏิเสธหากรู้สึกเหนื่อยเกินไป",
+    scores: [90, 80, 96, 65, 70, 95]
+  },
+  ENFJ: {
+    type: "ENFJ",
+    emoji: "🐶",
+    name: "โกลเด้นผู้โอบอ้อม",
+    badge: "ENFJ • The Mentor & Giver",
+    role: "เพื่อนแท้ผู้ซื่อสัตย์ & เสาหลักทางใจของทุกคน",
+    desc: "คุณมีความเป็นผู้นำที่ขับเคลื่อนด้วยหัวใจ ชอบช่วยเหลือและผลักดันให้ทุกคนเติบโต คอยโอบอุ้มทุกคนในกลุ่มด้วยความจริงใจและความอบอุ่น",
+    strengths: ["การเชื่อมโยงและนำใจ 96%", "ความเห็นอกเห็นใจ 95%", "การฟื้นตัวร่วมกัน 84%"],
+    advice: "คุณดูแลคนอื่นจนลืมดูแลตัวเองเสมอ วันนี้ให้เวลาและถามตัวเองว่า 'ใจเราต้องการอะไร' บ้างนะ",
+    scores: [95, 84, 82, 76, 78, 96]
+  },
+  INTJ: {
+    type: "INTJ",
+    emoji: "🦉",
+    name: "นกฮูกนักปราชญ์",
+    badge: "INTJ • The Mastermind & Architect",
+    role: "นักวางแผนเฉียบคม & มองทะลุปัญหา",
+    desc: "คุณมีกระบวนการคิดที่เป็นระบบ มองการณ์ไกล มีสมาธิและจุดยืนที่มั่นคง เมื่อเผชิญความกดดัน คุณสามารถถอดความเครียดออกเป็นกลยุทธ์ที่จับต้องได้",
+    strengths: ["การคิดวิเคราะห์เฉียบคม 98%", "ความสงบและการควบคุมตน 90%", "การฟื้นตัวทางใจ 88%"],
+    advice: "ไม่จำเป็นต้องควบคุมทุกอย่างให้สมบูรณ์แบบ อนุญาตให้ตัวเองได้พักผ่อนและยอมรับความไม่แน่นอนบ้าง",
+    scores: [68, 88, 85, 98, 90, 60]
+  },
+  INTP: {
+    type: "INTP",
+    emoji: "🦝",
+    name: "แรคคูนนักประดิษฐ์",
+    badge: "INTP • The Thinker & Logician",
+    role: "นักคิดนอกกรอบ & ผู้คลี่คลายปริศนาซับซ้อน",
+    desc: "คุณรักการตั้งคำถามและค้นหาความจริง มองสิ่งต่างๆ ด้วยมุมมองสดใหม่ ไม่ตัดสินใครตามค่านิยมสังคม และสนุกกับการค้นคว้าในโลกส่วนตัว",
+    strengths: ["ตรรกะและมุมมองเจาะลึก 95%", "ความคิดสร้างสรรค์เชิงระบบ 92%", "ความสงบในโลกส่วนตัว 85%"],
+    advice: "อย่าปล่อยให้ตัวเองจมอยู่ในความคิดมากเกินไป ออกมาเดินเล่น สัมผัสธรรมชาติ และแบ่งปันความคิดกับเพื่อนสนิท",
+    scores: [65, 78, 92, 95, 85, 58]
+  },
+  ENTP: {
+    type: "ENTP",
+    emoji: "🦊",
+    name: "จิ้งจอกช่างคิด",
+    badge: "ENTP • The Visionary & Challenger",
+    role: "นักจุดประกายไอเดีย & ยืดหยุ่นแก้สถานการณ์",
+    desc: "คุณมีความคิดที่ว่องไว ปรับตัวเข้ากับสถานการณ์ยากๆ ได้ดีเยี่ยม มองเห็นทางออกใหม่ที่คนอื่นมองข้าม และชื่นชอบการสนทนาที่กระตุ้นสติปัญญา",
+    strengths: ["ความคิดสร้างสรรค์ไร้ขีดจำกัด 95%", "การคิดวิเคราะห์เร็ว 90%", "การส่งพลังและขับเคลื่อน 88%"],
+    advice: "มีไอเดียเยอะก็ดี แต่ระวังภาวะหมดไฟจากการทำหลายอย่างพร้อมกัน เลือกโฟกัสทีละเรื่องเพื่อความสบายใจ",
+    scores: [72, 85, 95, 90, 68, 88]
+  },
+  ENTJ: {
+    type: "ENTJ",
+    emoji: "🦁",
+    name: "สิงโตผู้นำ",
+    badge: "ENTJ • The Commander & Leader",
+    role: "ผู้นำที่เข้มแข็ง & เสาหลักในยามวิกฤต",
+    desc: "คุณมีความกล้าหาญ เด็ดขาด และมีความรับผิดชอบสูง มักเป็นคนที่เพื่อนๆ ไว้วางใจให้เป็นหัวหน้าในการแก้ปัญหาใหญ่ๆ พร้อมฟื้นตัวอย่างรวดเร็ว",
+    strengths: ["ความมุ่งมั่นและการฟื้นตัว 95%", "การวางแผนและจัดระบบ 95%", "การขับเคลื่อนสังคม 90%"],
+    advice: "การแสดงความรู้สึกอ่อนไหวไม่ใช่ความพ่ายแพ้ ให้โอกาสตัวเองได้ระบายและรับการปลอบประโลมจากผู้อื่นบ้าง",
+    scores: [70, 95, 80, 95, 75, 90]
+  },
+  ISFP: {
+    type: "ISFP",
+    emoji: "🐱",
+    name: "แมวน้อยศิลปิน",
+    badge: "ISFP • The Artist & Free Spirit",
+    role: "ศิลปินผู้รักอิสระ & สุนทรียภาพแห่งใจ",
+    desc: "คุณมีความอ่อนโยน มีเซนส์ด้านศิลปะและความงดงามสูงมาก อยู่กับความสงบ รักอิสระ และแสดงความจริงใจต่อทุกคนโดยไม่เสแสร้ง",
+    strengths: ["ความคิดสร้างสรรค์และสุนทรียะ 94%", "ความเข้าอกเข้าใจ 92%", "ความสงบนิ่งผ่อนคลาย 90%"],
+    advice: "เมื่อรู้สึกกดดันจากความคาดหวังของสังคม ปลีกวิเวกไปทำในสิ่งที่รัก เช่น วาดรูป ฟังเพลง หรือดูแลต้นไม้",
+    scores: [92, 72, 94, 60, 90, 65]
+  },
+  ISFJ: {
+    type: "ISFJ",
+    emoji: "🐨",
+    name: "โคอาล่าผู้พิทักษ์",
+    badge: "ISFJ • The Protector & Caregiver",
+    role: "ผู้พิทักษ์ที่อบอุ่น & ใส่ใจในทุกรายละเอียด",
+    desc: "คุณจดจำเรื่องราวเล็กๆ น้อยๆ ของคนรอบข้างได้เสมอ มีความซื่อสัตย์ ใส่ใจ และคอยช่วยเหลือคนอื่นอย่างเงียบๆ เป็นความสบายใจที่อบอุ่นที่สุด",
+    strengths: ["ความใส่ใจและเข้าอกเข้าใจ 95%", "ความสงบและการควบคุมตน 88%", "การเป็นที่พึ่งพิง 82%"],
+    advice: "คุณมักปฏิเสธใครไม่เป็นจนตัวเองเหนื่อยล้า การตั้งขอบเขต (Boundaries) คือของขวัญที่ดีที่สุดที่คุณควรให้ตัวเอง",
+    scores: [95, 76, 70, 75, 88, 80]
+  },
+  ESFP: {
+    type: "ESFP",
+    emoji: "🐬",
+    name: "โลมาสดใส",
+    badge: "ESFP • The Entertainer & Performer",
+    role: "ผู้มอบความสุข & ชีวิตชีวาแห่งปัจจุบันขณะ",
+    desc: "คุณรักความสนุกสนาน มีชีวิตชีวา มองโลกในแง่ดี และเป็นคนที่ทำให้ทุกคนรอบตัวหัวเราะได้ แม้ในวันที่มืดมน คุณพร้อมดึงทุกคนกลับมาสดใส",
+    strengths: ["พลังสังคมและสร้างรอยยิ้ม 98%", "ความคิดสร้างสรรค์ 90%", "ความเห็นอกเห็นใจ 88%"],
+    advice: "ไม่ต้องแบกรับหน้าที่เป็นคนทำให้ทุกคนยิ้มตลอดเวลาก็ได้ ถ้าวันไหนใจคุณเหนื่อย ให้เพื่อนๆ ช่วยดูแลคุณบ้างนะ",
+    scores: [88, 85, 90, 60, 68, 98]
+  },
+  ESFJ: {
+    type: "ESFJ",
+    emoji: "🦫",
+    name: "บีเวอร์นักประสาน",
+    badge: "ESFJ • The Caregiver & Provider",
+    role: "ผู้สร้างความสุข & สายใยแห่งความสามัคคี",
+    desc: "คุณใส่ใจความเป็นอยู่ที่ดีของครอบครัวและกลุ่มเพื่อน มีน้ำใจ พร้อมสละเวลาเพื่อส่วนรวม และสร้างบรรยากาศที่อบอุ่นปลอดภัยให้ทุกคนเสมอ",
+    strengths: ["การดูแลและเชื่อมโยงผู้คน 95%", "ความเข้าอกเข้าใจ 92%", "การฟื้นตัวร่วมกัน 80%"],
+    advice: "อย่าเอาคุณค่าของตัวเองไปผูกติดกับคำชมหรือความพึงพอใจของคนอื่น คุณมีคุณค่าในตัวเองเสมอ",
+    scores: [92, 80, 75, 72, 75, 95]
+  },
+  ISTP: {
+    type: "ISTP",
+    emoji: "🐺",
+    name: "หมาป่าเดียวดาย",
+    badge: "ISTP • The Crafter & Problem Solver",
+    role: "นักลงมือทำจริง & นิ่งสงบสยบความวุ่นวาย",
+    desc: "คุณมีจิตใจที่สงบนิ่งแม้อยู่ท่ามกลางความวุ่นวาย ช่างสังเกต พึ่งพาตนเองได้สูง และแก้ไขปัญหาเฉพาะหน้าได้อย่างยอดเยี่ยมโดยไม่ตื่นตระหนก",
+    strengths: ["การฟื้นตัวและรับมือวิกฤต 94%", "การคิดวิเคราะห์แก้ปัญหา 92%", "ความสงบนิ่ง 88%"],
+    advice: "เมื่อรู้สึกหงุดหงิดกับการสื่อสาร ให้เวลากับตัวเองทำกิจกรรมที่ต้องใช้สมาธิหรือขยับร่างกายเพื่อปล่อยวางอารมณ์",
+    scores: [64, 94, 78, 92, 88, 62]
+  },
+  ISTJ: {
+    type: "ISTJ",
+    emoji: "🐢",
+    name: "เต่าผู้มั่นคง",
+    badge: "ISTJ • The Inspector & Anchor",
+    role: "เสาหลักแห่งความไว้ใจ & ความหนักแน่นสม่ำเสมอ",
+    desc: "คุณเป็นคนซื่อตรง มีวินัย ทำตามคำมั่นสัญญาเสมอ เป็นคนที่ทุกคนรู้ว่าสามารถพึ่งพาได้ตลอดเวลา มีความมั่นคงทางอารมณ์สูงมาก",
+    strengths: ["ความมีวินัยและการฟื้นตัว 92%", "ความสงบหนักแน่น 92%", "การคิดวิเคราะห์เป็นระบบ 90%"],
+    advice: "คุณมักเข้มงวดกับตัวเองมากเกินไป ให้รางวัลตัวเองเมื่อทำงานเสร็จ และอย่าลืมว่าความผิดพลาดคือเรื่องธรรมดาของมนุษย์",
+    scores: [75, 92, 65, 90, 92, 68]
+  },
+  ESTP: {
+    type: "ESTP",
+    emoji: "🐆",
+    name: "เสือดาวคล่องแคล่ว",
+    badge: "ESTP • The Dynamo & Adventurer",
+    role: "นักผจญภัยใจกล้า & ฝ่าฟันทุกอุปสรรค",
+    desc: "คุณมีพลังงานสูง กล้าเผชิญหน้ากับความท้าทาย ลุกขึ้นใหม่ได้เร็ว ไม่จมอยู่กับความผิดพลาดในอดีต และพาคนรอบข้างก้าวข้ามอุปสรรคไปด้วยกัน",
+    strengths: ["การฟื้นตัวจากอุปสรรค 96%", "พลังสังคมและแรงผลักดัน 92%", "การคิดแก้ปัญหาฉับไว 85%"],
+    advice: "การใช้ชีวิตอย่างรวดเร็วอาจทำให้มองข้ามความรู้สึกเหนื่อยล้าของร่างกาย หยุดพักหายใจลึกๆ และเช็กความพร้อมของตัวเองเป็นระยะ",
+    scores: [68, 96, 82, 85, 65, 92]
+  },
+  ESTJ: {
+    type: "ESTJ",
+    emoji: "🐘",
+    name: "ช้างผู้ปกป้อง",
+    badge: "ESTJ • The Executive & Pillar",
+    role: "ผู้จัดการผู้เข้มแข็ง & พิทักษ์ความยุติธรรม",
+    desc: "คุณมีสำนึกรับผิดชอบต่อหน้าที่สูงมาก จัดการสิ่งต่างๆ ให้เรียบร้อยได้อย่างมีประสิทธิภาพ พร้อมเป็นกำแพงที่ปกป้องคนที่คุณรักจากความอยุติธรรม",
+    strengths: ["การจัดการและการฟื้นตัว 95%", "การคิดวิเคราะห์เป็นระบบ 94%", "พลังการขับเคลื่อนกลุ่ม 88%"],
+    advice: "การเปิดใจรับฟังความคิดเห็นที่แตกต่างจะช่วยลดความตึงเครียด และสร้างความสัมพันธ์ที่แน่นแฟ้นยิ่งขึ้น",
+    scores: [74, 95, 68, 94, 80, 88]
+  }
+};
+
+const MBTI_QUESTIONS = [
+  {
+    category: "⚡ การชาร์จพลังใจ (Energy Style)",
+    text: "เมื่อคุณรู้สึกเหนื่อยล้าหรือใจหมดพลัง คุณมักชาร์จแบตให้ตัวเองอย่างไร?",
+    options: [
+      {
+        emoji: "🛋️",
+        label: "ขออยู่เงียบๆ คนเดียวในห้อง อ่านหนังสือ หรือฟังเพลงโปรดในพื้นที่สบายใจ",
+        desc: "ฟื้นฟูพลังจากความสงบและการอยู่กับตัวเอง (Introvert - I)",
+        trait: "I",
+        dimensionBoost: 4 // Mindfulness
+      },
+      {
+        emoji: "☕",
+        label: "ออกไปพบเพื่อนสนิท พูดคุยแลกเปลี่ยน หรือหากิจกรรมทำนอกบ้าน",
+        desc: "ฟื้นฟูพลังจากการเชื่อมโยงและแบ่งปันกับผู้คน (Extravert - E)",
+        trait: "E",
+        dimensionBoost: 5 // Social
+      }
+    ]
+  },
+  {
+    category: "🔍 มุมมองและการรับรู้ (Perception Style)",
+    text: "เวลาเจอปัญหาหรือเรื่องเครียดเข้ามา คุณมักมองจากมุมไหนก่อน?",
+    options: [
+      {
+        emoji: "📋",
+        label: "มองตามความเป็นจริง ขั้นตอนรูปธรรม และสิ่งที่จับต้องแก้ไขได้ทันที",
+        desc: "ยึดข้อเท็จจริงและประสบการณ์ที่พิสูจน์ได้ (Sensing - S)",
+        trait: "S",
+        dimensionBoost: 3 // Logic
+      },
+      {
+        emoji: "✨",
+        label: "มองภาพกว้าง จินตนาการถึงความเป็นไปได้ใหม่ๆ และความหมายเบื้องหลัง",
+        desc: "มองหาความเป็นไปได้และแรงบันดาลใจนอกกรอบ (Intuition - N)",
+        trait: "N",
+        dimensionBoost: 2 // Creativity
+      }
+    ]
+  },
+  {
+    category: "💚 การดูแลความรู้สึก (Empathy & Coping)",
+    text: "เมื่อเพื่อนสนิทมาระบายเรื่องทุกข์ใจ สิ่งแรกที่คุณตั้งใจมอบให้คืออะไร?",
+    options: [
+      {
+        emoji: "🫂",
+        label: "รับฟังด้วยหัวใจ กอด ให้ความอบอุ่น และอยู่เคียงข้างทางอารมณ์โดยไม่ตัดสิน",
+        desc: "เน้นความเข้าอกเข้าใจและเยียวยาใจ (Feeling - F)",
+        trait: "F",
+        dimensionBoost: 0 // Empathy
+      },
+      {
+        emoji: "🧠",
+        label: "ช่วยวิเคราะห์ต้นสายปลายเหตุ หาวิธีแก้ปัญหา และวางแผนรับมืออย่างมีระบบ",
+        desc: "เน้นตรรกะและการคลี่คลายปัญหาอย่างตรงจุด (Thinking - T)",
+        trait: "T",
+        dimensionBoost: 1 // Resilience / Logic
+      }
+    ]
+  },
+  {
+    category: "🧭 รูปแบบการใช้ชีวิต (Lifestyle & Rhythm)",
+    text: "ในการใช้ชีวิตและการดูแลสุขภาพใจ รูปแบบไหนทำให้คุณรู้สึกสบายใจที่สุด?",
+    options: [
+      {
+        emoji: "📅",
+        label: "มีแผนการที่ชัดเจน เป็นระเบียบ รู้ล่วงหน้าว่าจะทำอะไรในแต่ละวัน",
+        desc: "ชอบความชัดเจน คาดเดาได้ และมีแบบแผน (Judging - J)",
+        trait: "J",
+        dimensionBoost: 3 // Plan & Logic
+      },
+      {
+        emoji: "🍃",
+        label: "ยืดหยุ่น ปรับตามอารมณ์และสถานการณ์ ไม่ชอบการตีกรอบจนอึดอัด",
+        desc: "เปิดรับอิสระ ปรับตัวง่าย สบายๆ (Perceiving - P)",
+        trait: "P",
+        dimensionBoost: 2 // Flexibility / Creativity
+      }
+    ]
+  },
+  {
+    category: "🌱 พลังใจที่เปล่งประกาย (Inner Superpower)",
+    text: "หากเปรียบพลังใจของคุณเป็นแสง คุณคิดว่าแสงของคุณเปล่งประกายด้านใดมากที่สุด?",
+    options: [
+      {
+        emoji: "🕯️",
+        label: "แสงแห่งความอบอุ่น คอยโอบกอดและเยียวยาใจให้คนข้างๆ รู้สึกปลอดภัย",
+        desc: "เด่นด้านความเข้าอกเข้าใจและการประคับประคองใจ (Empathy Focus)",
+        trait: "F",
+        dimensionBoost: 0 // Empathy
+      },
+      {
+        emoji: "⚡",
+        label: "แสงแห่งความแกร่ง นิ่งสงบ มั่นคง และลุกขึ้นสู้ใหม่ได้เสมอเมื่อเจอพายุชีวิต",
+        desc: "เด่นด้านความแกร่งและการฟื้นตัวจากแรงกดดัน (Resilience Focus)",
+        trait: "T",
+        dimensionBoost: 1 // Resilience
+      }
+    ]
+  },
+  {
+    category: "🎨 พื้นที่ปลดปล่อยใจ (Healing Expression)",
+    text: "วิธีปลดปล่อยอารมณ์หรือเยียวยาใจที่คุณรู้สึกว่าทำให้หัวใจเบาสบายที่สุดคือ?",
+    options: [
+      {
+        emoji: "🖌️",
+        label: "การถ่ายทอดความรู้สึกผ่านงานสร้างสรรค์ เขียนระบาย หรือเล่าความในใจอย่างเปิดอก",
+        desc: "ปลดปล่อยผ่านสุนทรียภาพและความคิดสร้างสรรค์ (Creative Expression)",
+        trait: "P",
+        dimensionBoost: 2 // Creativity
+      },
+      {
+        emoji: "🧘",
+        label: "การฝึกสติ หายใจลึกๆ สัมผัสธรรมชาติ หรือลงมือจัดระเบียบความคิดให้โล่งสงบ",
+        desc: "ปลดปล่อยผ่านสมาธิและความสงบภายใน (Mindfulness Focus)",
+        trait: "J",
+        dimensionBoost: 4 // Mindfulness
+      }
+    ]
+  }
+];
+
+// MBTI State
+let mbtiCurrentQuestionIndex = 0;
+let mbtiUserAnswers = {};
+let mbtiSelectedType = "INFP";
+let mbtiRadarChartInstance = null;
+
+function initMbtiSystem() {
+  render16MbtiPills();
+
+  // If currentUser already has a saved archetype, use that as initial display
+  if (currentUser && currentUser.mbti && MBTI_ANIMALS_DATA[currentUser.mbti]) {
+    mbtiSelectedType = currentUser.mbti;
+  } else {
+    mbtiSelectedType = "INFP";
+  }
+
+  // Pre-render the result view so it is ready when explorer is toggled
+  const initialScores = (currentUser && currentUser.animalArchetype && currentUser.animalArchetype.scores)
+    ? currentUser.animalArchetype.scores
+    : MBTI_ANIMALS_DATA[mbtiSelectedType].scores;
+
+  displayMbtiResult(mbtiSelectedType, initialScores);
+  renderMbtiQuestion();
+}
+
+function switchMbtiMode(mode) {
+  const btnQuiz = document.getElementById("btnMbtiTabQuiz");
+  const btnSelector = document.getElementById("btnMbtiTabSelector");
+  const quizView = document.getElementById("mbtiQuizView");
+  const resultView = document.getElementById("mbtiResultView");
+  const pillsContainer = document.getElementById("mbtiExplorerPills");
+
+  if (mode === "quiz") {
+    if (btnQuiz) btnQuiz.classList.add("active");
+    if (btnSelector) btnSelector.classList.remove("active");
+    if (quizView) quizView.classList.remove("hidden");
+    if (resultView) resultView.classList.add("hidden");
+    if (pillsContainer) pillsContainer.classList.add("hidden");
+    renderMbtiQuestion();
+  } else {
+    if (btnQuiz) btnQuiz.classList.remove("active");
+    if (btnSelector) btnSelector.classList.add("active");
+    if (quizView) quizView.classList.add("hidden");
+    if (resultView) resultView.classList.remove("hidden");
+    if (pillsContainer) pillsContainer.classList.remove("hidden");
+    displayMbtiResult(mbtiSelectedType);
+  }
+}
+
+function render16MbtiPills() {
+  const container = document.getElementById("mbtiPillsContainer");
+  if (!container) return;
+
+  const types = Object.keys(MBTI_ANIMALS_DATA);
+  container.innerHTML = types.map(type => {
+    const item = MBTI_ANIMALS_DATA[type];
+    const isActive = type === mbtiSelectedType;
+    return `
+      <button onclick="selectMbtiPill('${type}')" class="mbti-pill-btn ${isActive ? 'active' : ''} flex items-center gap-1.5" id="pill_${type}">
+        <span>${item.emoji}</span>
+        <span>${type}</span>
+      </button>
+    `;
+  }).join("");
+}
+
+function selectMbtiPill(type) {
+  if (!MBTI_ANIMALS_DATA[type]) return;
+  mbtiSelectedType = type;
+
+  // Update active pill styling
+  document.querySelectorAll(".mbti-pill-btn").forEach(btn => btn.classList.remove("active"));
+  const activeBtn = document.getElementById(`pill_${type}`);
+  if (activeBtn) activeBtn.classList.add("active");
+
+  displayMbtiResult(type);
+}
+
+function renderMbtiQuestion() {
+  const total = MBTI_QUESTIONS.length;
+  const current = mbtiCurrentQuestionIndex;
+  const qData = MBTI_QUESTIONS[current];
+  if (!qData) return;
+
+  // Progress Header
+  const labelEl = document.getElementById("mbtiStepLabel");
+  const percentEl = document.getElementById("mbtiStepPercent");
+  const barEl = document.getElementById("mbtiProgressBar");
+  const prevBtn = document.getElementById("btnMbtiPrev");
+
+  const pct = Math.round(((current + 1) / total) * 100);
+  if (labelEl) labelEl.innerHTML = `<i data-lucide="sparkles" class="w-4 h-4 text-emerald-600"></i> ข้อที่ ${current + 1} จาก ${total}`;
+  if (percentEl) percentEl.innerText = `${pct}%`;
+  if (barEl) barEl.style.width = `${pct}%`;
+  if (prevBtn) prevBtn.disabled = current === 0;
+
+  // Question content
+  const catEl = document.getElementById("mbtiQuestionCategory");
+  const textEl = document.getElementById("mbtiQuestionText");
+  const optContainer = document.getElementById("mbtiOptionsContainer");
+
+  if (catEl) catEl.innerText = qData.category;
+  if (textEl) textEl.innerText = qData.text;
+
+  const currentAnswer = mbtiUserAnswers[current];
+
+  if (optContainer) {
+    optContainer.innerHTML = qData.options.map((opt, idx) => {
+      const isSelected = currentAnswer && currentAnswer.idx === idx;
+      return `
+        <button onclick="selectMbtiOption(${idx})" class="mbti-option-card ${isSelected ? 'active-option' : ''} group">
+          <div class="w-12 h-12 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center justify-center text-2xl shrink-0 group-hover:scale-105 transition-transform">
+            ${opt.emoji}
+          </div>
+          <div class="text-left flex-1">
+            <div class="text-sm font-bold text-slate-900 font-heading leading-tight mb-1">
+              ${opt.label}
+            </div>
+            <div class="text-xs text-slate-500 font-body">
+              ${opt.desc}
+            </div>
+          </div>
+          <div class="w-5 h-5 rounded-full border-2 ${isSelected ? 'border-emerald-600 bg-emerald-600' : 'border-slate-300'} flex items-center justify-center shrink-0">
+            ${isSelected ? '<span class="text-white text-xs font-bold">✓</span>' : ''}
+          </div>
+        </button>
+      `;
+    }).join("");
+  }
+
+  if (window.lucide) window.lucide.createIcons();
+}
+
+function selectMbtiOption(optionIndex) {
+  const current = mbtiCurrentQuestionIndex;
+  const qData = MBTI_QUESTIONS[current];
+  const choice = qData.options[optionIndex];
+
+  mbtiUserAnswers[current] = {
+    idx: optionIndex,
+    trait: choice.trait,
+    dimensionBoost: choice.dimensionBoost
+  };
+
+  renderMbtiQuestion();
+
+  // Smooth short delay before advancing
+  setTimeout(() => {
+    if (mbtiCurrentQuestionIndex < MBTI_QUESTIONS.length - 1) {
+      mbtiCurrentQuestionIndex++;
+      renderMbtiQuestion();
+    } else {
+      calculateMbtiResult();
+    }
+  }, 240);
+}
+
+function prevMbtiQuestion() {
+  if (mbtiCurrentQuestionIndex > 0) {
+    mbtiCurrentQuestionIndex--;
+    renderMbtiQuestion();
+  }
+}
+
+function calculateMbtiResult() {
+  let eCount = 0, iCount = 0;
+  let sCount = 0, nCount = 0;
+  let tCount = 0, fCount = 0;
+  let jCount = 0, pCount = 0;
+
+  const dimensionBoosts = [0, 0, 0, 0, 0, 0];
+
+  Object.values(mbtiUserAnswers).forEach(ans => {
+    if (ans.trait === "E") eCount++;
+    if (ans.trait === "I") iCount++;
+    if (ans.trait === "S") sCount++;
+    if (ans.trait === "N") nCount++;
+    if (ans.trait === "T") tCount++;
+    if (ans.trait === "F") fCount++;
+    if (ans.trait === "J") jCount++;
+    if (ans.trait === "P") pCount++;
+
+    if (ans.dimensionBoost !== undefined && ans.dimensionBoost >= 0 && ans.dimensionBoost <= 5) {
+      dimensionBoosts[ans.dimensionBoost] += 3;
+    }
+  });
+
+  const letter1 = eCount > iCount ? "E" : "I";
+  const letter2 = sCount > nCount ? "S" : "N";
+  const letter3 = tCount > fCount ? "T" : "F";
+  const letter4 = jCount > pCount ? "J" : "P";
+
+  const computedType = `${letter1}${letter2}${letter3}${letter4}`;
+  const finalType = MBTI_ANIMALS_DATA[computedType] ? computedType : "INFP";
+  mbtiSelectedType = finalType;
+
+  // Calculate adjusted scores for radar chart based on user answers
+  const baseScores = MBTI_ANIMALS_DATA[finalType].scores.slice();
+  const adjustedScores = baseScores.map((score, i) => {
+    const boost = dimensionBoosts[i] || 0;
+    return Math.min(99, Math.max(50, score + boost));
+  });
+
+  // Switch to result view
+  const quizView = document.getElementById("mbtiQuizView");
+  const resultView = document.getElementById("mbtiResultView");
+  const btnQuiz = document.getElementById("btnMbtiTabQuiz");
+  const btnSelector = document.getElementById("btnMbtiTabSelector");
+
+  if (quizView) quizView.classList.add("hidden");
+  if (resultView) resultView.classList.remove("hidden");
+  if (btnQuiz) btnQuiz.classList.remove("active");
+  if (btnSelector) btnSelector.classList.add("active");
+
+  displayMbtiResult(finalType, adjustedScores);
+
+  // Confetti celebration
+  if (window.confetti) {
+    confetti({ particleCount: 70, spread: 85, origin: { y: 0.6 }, colors: ['#10B981', '#059669', '#34D399', '#F59E0B'] });
+  }
+
+  showDrinkToast(`✨ ยินดีด้วย! คุณจับคู่ตรงกับ "${MBTI_ANIMALS_DATA[finalType].name} (${finalType})"`);
+}
+
+function displayMbtiResult(type, customScores = null) {
+  const animal = MBTI_ANIMALS_DATA[type] || MBTI_ANIMALS_DATA["INFP"];
+  const scores = customScores || animal.scores;
+
+  // Left Card Elements
+  const badgeEl = document.getElementById("resultMbtiBadge");
+  const emojiEl = document.getElementById("resultAnimalEmoji");
+  const nameEl = document.getElementById("resultAnimalName");
+  const roleEl = document.getElementById("resultAnimalRole");
+  const descEl = document.getElementById("resultAnimalDesc");
+  const adviceEl = document.getElementById("resultAnimalAdvice");
+  const tagsEl = document.getElementById("resultStrengthsTags");
+
+  if (badgeEl) badgeEl.innerText = animal.badge;
+  if (emojiEl) emojiEl.innerText = animal.emoji;
+  if (nameEl) nameEl.innerText = animal.name;
+  if (roleEl) roleEl.innerText = animal.role;
+  if (descEl) descEl.innerText = animal.desc;
+  if (adviceEl) adviceEl.innerText = animal.advice;
+
+  if (tagsEl && animal.strengths) {
+    tagsEl.innerHTML = animal.strengths.map(s => `
+      <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-bold font-heading">
+        <i data-lucide="check" class="w-3 h-3 text-emerald-600"></i>
+        ${s}
+      </span>
+    `).join("");
+  }
+
+  // Right Card: 6 Dimensions List
+  const dimContainer = document.getElementById("radarDimensionsList");
+  if (dimContainer) {
+    dimContainer.innerHTML = MBTI_RADAR_DIMENSIONS.map((dim, idx) => {
+      const score = scores[idx] || 75;
+      return `
+        <div class="radar-dimension-chip">
+          <div class="flex items-center justify-between text-xs font-bold font-heading text-slate-800 mb-1">
+            <span class="flex items-center gap-1.5 truncate">
+              <span>${dim.icon}</span>
+              <span class="truncate">${dim.label.split(' ')[0]}</span>
+            </span>
+            <span class="text-emerald-700">${score}%</span>
+          </div>
+          <div class="w-full bg-slate-200/80 h-1.5 rounded-full overflow-hidden">
+            <div class="bg-gradient-to-r from-emerald-500 to-teal-500 h-full rounded-full" style="width: ${score}%;"></div>
+          </div>
+          <div class="text-[10px] text-slate-400 font-body truncate mt-1">${dim.desc}</div>
+        </div>
+      `;
+    }).join("");
+  }
+
+  // Average Score Badge
+  const avgEl = document.getElementById("radarAverageScore");
+  if (avgEl) {
+    const avg = Math.round(scores.reduce((a, b) => a + b, 0) / scores.length);
+    avgEl.innerText = `เฉลี่ยรวม ${avg}%`;
+  }
+
+  // Render Radar Chart
+  renderMbtiRadarChart(animal, scores);
+
+  // Update pills active status
+  document.querySelectorAll(".mbti-pill-btn").forEach(btn => btn.classList.remove("active"));
+  const pillBtn = document.getElementById(`pill_${type}`);
+  if (pillBtn) pillBtn.classList.add("active");
+
+  if (window.lucide) window.lucide.createIcons();
+}
+
+function renderMbtiRadarChart(animal, scores) {
+  const ctx = document.getElementById("mbtiRadarChart");
+  if (!ctx) return;
+
+  if (mbtiRadarChartInstance) {
+    mbtiRadarChartInstance.destroy();
+  }
+
+  const labels = MBTI_RADAR_DIMENSIONS.map(d => d.label.split(' ')[0]);
+
+  mbtiRadarChartInstance = new Chart(ctx, {
+    type: "radar",
+    data: {
+      labels: labels,
+      datasets: [{
+        label: `${animal.name} (${animal.type})`,
+        data: scores,
+        backgroundColor: "rgba(16, 185, 129, 0.22)",
+        borderColor: "#059669",
+        borderWidth: 2.5,
+        pointBackgroundColor: "#10B981",
+        pointBorderColor: "#FFFFFF",
+        pointBorderWidth: 2,
+        pointRadius: 5,
+        pointHoverRadius: 7
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: {
+        duration: 800,
+        easing: "easeOutQuart"
+      },
+      scales: {
+        r: {
+          suggestedMin: 40,
+          suggestedMax: 100,
+          angleLines: {
+            color: "rgba(226, 232, 240, 0.8)"
+          },
+          grid: {
+            color: "rgba(241, 245, 249, 1)"
+          },
+          ticks: {
+            stepSize: 20,
+            backdropColor: "transparent",
+            color: "#94a3b8",
+            font: {
+              size: 10,
+              family: "'Montserrat', 'Noto Sans Thai'"
+            }
+          },
+          pointLabels: {
+            color: "#1e293b",
+            font: {
+              size: 11,
+              weight: "bold",
+              family: "'Montserrat', 'Noto Sans Thai'"
+            }
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          display: false
+        },
+        tooltip: {
+          backgroundColor: "#0f172a",
+          titleFont: { family: "'Montserrat', 'Noto Sans Thai'" },
+          bodyFont: { family: "'Montserrat', 'Noto Sans Thai'" },
+          callbacks: {
+            label: function(context) {
+              return `ระดับความถนัด: ${context.raw}%`;
+            }
+          }
+        }
+      }
+    }
+  });
+}
+
+function saveAnimalToUserProfile() {
+  if (!currentUser) {
+    openAuthModal();
+    return;
+  }
+
+  const animal = MBTI_ANIMALS_DATA[mbtiSelectedType];
+  if (!animal) return;
+
+  currentUser.mbti = animal.type;
+  currentUser.animalArchetype = animal;
+
+  // Unlock badge
+  if (currentUser.badges) {
+    const badge = currentUser.badges.find(b => b.id === "badge_mbti_animal");
+    if (badge) badge.unlocked = true;
+  }
+
+  saveUsersToStorage();
+  updateNavAuthUI();
+
+  // Trigger celebration
+  if (window.confetti) {
+    confetti({ particleCount: 70, spread: 80, origin: { y: 0.6 }, colors: ['#10B981', '#059669', '#38BDF8'] });
+  }
+
+  showDrinkToast(`🐾 บันทึก "${animal.name} (${animal.type})" เป็นสัตว์ประจำตัวของคุณเรียบร้อยแล้ว!`);
+}
+
+function retakeMbtiQuiz() {
+  mbtiCurrentQuestionIndex = 0;
+  mbtiUserAnswers = {};
+  switchMbtiMode("quiz");
+}
+
+function shareMbtiCard() {
+  const animal = MBTI_ANIMALS_DATA[mbtiSelectedType];
+  if (!animal) return;
+
+  const shareText = `🐾 สัตว์ฮีลใจประจำตัวของฉันใน MindSpace คือ "${animal.name} (${animal.type})"\nบทบาท: ${animal.role}\nจุดเด่น: ${animal.strengths.join(', ')}\n🌿 มาค้นหาสัตว์ประจำใจและเช็กกราฟพลังใจ 6 มิติของคุณได้ที่ MindSpace (ฮีลใจ)`;
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(shareText).then(() => {
+      showDrinkToast("✨ คัดลอกผลลัพธ์สัตว์ฮีลใจเรียบร้อยแล้ว พร้อมแชร์ให้เพื่อนๆ ได้เลย!");
+    }).catch(() => {
+      showDrinkToast("✨ สามารถแคปหน้าจอเพื่อแชร์การ์ดสัตว์ฮีลใจได้เลยนะ!");
+    });
+  } else {
+    showDrinkToast("✨ สามารถแคปหน้าจอเพื่อแชร์การ์ดสัตว์ฮีลใจได้เลยนะ!");
+  }
+}
+
