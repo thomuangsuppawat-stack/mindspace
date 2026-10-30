@@ -61,17 +61,30 @@
 ### 1. เปิดทดสอบบนเครื่องตัวเอง (Offline / Local)
 - ดับเบิลคลิกที่ไฟล์ `index.html` เพื่อเปิดบนเว็บเบราว์เซอร์ (Google Chrome, Edge, Safari) ใช้งานได้ทันที 100% โดยไม่ต้องติดตั้ง Node.js หรือโปรแกรมเพิ่มเติม
 
-### 2. วิธีนำขึ้นออนไลน์เพื่อได้ "Link สำหรับทดลองใช้ Platform" ส่งอาจารย์ (ฟรี & ใช้เวลา 30 วินาที)
-สามารถเลือกวิธีที่ง่ายที่สุดได้ดังนี้:
+### 2. วิธีนำขึ้นออนไลน์ผ่าน GitHub Pages (ฟรี 100% ตลอดชีพ)
 
-#### วิธีที่ง่ายที่สุด: ผ่าน **Netlify Drop** (ไม่ต้องเขียนคำสั่ง)
-1. เข้าเว็บไซต์ [https://app.netlify.com/drop](https://app.netlify.com/drop)
-2. ลากโฟลเดอร์โปรเจกต์นี้ทั้งหมด (โฟลเดอร์ที่มี `index.html`, `css`, `js`) ไปวางในกล่องวงกลมบนหน้าเว็บ
-3. รอประมาณ 5-10 วินาที ระบบจะสร้างลิงก์เว็บไซต์จริงให้ทันที (เช่น `https://mindspace-healjai.netlify.app`)
-4. คัดลอกลิงก์นั้นไปส่งอาจารย์ได้เลย!
+โปรเจกต์นี้ได้รับการเตรียมความพร้อมสำหรับ **GitHub Pages** เรียบร้อยแล้ว (มีไฟล์ `.github/workflows/deploy.yml` รองรับ Auto Deploy และ Path ทั้งหมดเป็น Relative Path 100%)
 
-#### หรือผ่าน **Vercel** / **GitHub Pages**
-- อัปโหลดขึ้น GitHub แล้วเปิดใช้งาน GitHub Pages ในแท็บ Settings -> Pages เลือก Branch `main` โฟลเดอร์ `root`
+#### วิธีที่ 1: ผ่านโปรแกรม GitHub Desktop (ง่ายที่สุด 1 คลิก)
+1. เปิดโปรแกรม **GitHub Desktop** บนเครื่อง
+2. ไปที่เมนู **File** > **Add Local Repository...** (หรือกด `Ctrl + O`)
+3. เลือกโฟลเดอร์นี้: `C:\Users\yngwi\Downloads\Codeing` แล้วกด **Add Repository**
+4. กดปุ่มสีฟ้า **"Publish repository"** ด้านบน (ตั้งชื่อ repository เช่น `mindspace` และเอาติ๊กถูกที่ช่อง *Keep this code private* ออกเพื่อให้เปิดใช้งาน Pages ได้ฟรี)
+5. เมื่อ Publish เสร็จ เข้าไปที่หน้า Repository บนเว็บ GitHub:
+   - ไปที่แท็บ **Settings** > เมนู **Pages** ด้านซ้าย
+   - ที่หัวข้อ **Build and deployment > Source**: เลือก **GitHub Actions** (ระบบจะรัน Workflow Deploy ให้อัตโนมัติ) หรือเลือก **Deploy from a branch** > Branch: **`main`** / **`/(root)`** แล้วกด **Save**
+6. เว็บไซต์จะออนไลน์ทันทีที่: `https://thomuangsuppawat-stack.github.io/mindspace/`
+
+#### วิธีที่ 2: ผ่านคำสั่ง Git ใน Terminal / PowerShell
+1. เข้าไปสร้าง New Repository บน GitHub ที่ [https://github.com/new](https://github.com/new) (เช่นชื่อ `mindspace`)
+2. รันคำสั่งในโฟลเดอร์โปรเจกต์:
+   ```bash
+   git remote add origin https://github.com/thomuangsuppawat-stack/mindspace.git
+   git branch -M main
+   git push -u origin main
+   ```
+3. ไปที่ GitHub Repository > **Settings** > **Pages** > เลือก Source เป็น **GitHub Actions** หรือ **Deploy from a branch (`main` / `root`)**
+4. รอระบบ Build 1 นาที เว็บจะพร้อมใช้งานทันที!
 
 ---
 
